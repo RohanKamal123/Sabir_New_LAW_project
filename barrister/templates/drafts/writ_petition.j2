@@ -1,0 +1,53 @@
+IN THE SUPREME COURT OF BANGLADESH
+HIGH COURT DIVISION
+(SPECIAL ORIGINAL JURISDICTION)
+
+WRIT PETITION NO. ________ OF {{ year }}
+
+IN THE MATTER OF:
+An application under Article 102 of the Constitution of the People's
+Republic of Bangladesh.
+
+-AND-
+
+IN THE MATTER OF:
+{{ subject_matter }}
+
+-AND-
+
+IN THE MATTER OF:
+{% for p in petitioners %}{{ loop.index }}. {{ p }}
+{% endfor %}
+                                                          ... PETITIONER{{ 'S' if petitioners|length > 1 else '' }}
+
+-VERSUS-
+
+{% for r in respondents %}{{ loop.index }}. {{ r }}
+{% endfor %}
+                                                          ... RESPONDENT{{ 'S' if respondents|length > 1 else '' }}
+
+To
+The Hon'ble Chief Justice and his companion Justices of the said Hon'ble Court.
+
+The humble petition on behalf of the petitioner{{ 's' if petitioners|length > 1 else '' }} above named
+most respectfully —
+
+S H E W E T H :
+
+{{ body }}
+
+{% if grounds %}
+G R O U N D S
+
+{% for g in grounds %}{{ loop.index }}. {{ g }}
+
+{% endfor %}
+{% endif %}
+WHEREFORE it is most humbly prayed that Your Lordships would graciously be
+pleased to:
+
+{% for p in prayers %}({{ loop.index | roman }}) {{ p }}
+
+{% endfor %}
+AND for which act of kindness the petitioner{{ 's' if petitioners|length > 1 else '' }} as in duty bound
+shall ever pray.

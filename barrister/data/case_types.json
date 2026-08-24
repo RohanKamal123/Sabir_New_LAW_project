@@ -1,0 +1,508 @@
+{
+ "1": {
+  "division_id": 1,
+  "division": "Appellate Division",
+  "natures": [
+   {
+    "nature_id": 8,
+    "name": "Civil Cases",
+    "case_types": [
+     {
+      "case_type_id": 35,
+      "name": "Civil Appeal"
+     },
+     {
+      "case_type_id": 36,
+      "name": "Civil Petition"
+     },
+     {
+      "case_type_id": 37,
+      "name": "Civil Misc Petition"
+     },
+     {
+      "case_type_id": 38,
+      "name": "Civil Review Petition"
+     }
+    ]
+   },
+   {
+    "nature_id": 10,
+    "name": "Contempt Cases",
+    "case_types": [
+     {
+      "case_type_id": 45,
+      "name": "Contempt Petition(A)"
+     }
+    ]
+   },
+   {
+    "nature_id": 7,
+    "name": "Criminal Cases(AD)",
+    "case_types": [
+     {
+      "case_type_id": 39,
+      "name": "Criminal Appeal(A)"
+     },
+     {
+      "case_type_id": 40,
+      "name": "Criminal Petition"
+     },
+     {
+      "case_type_id": 41,
+      "name": "Criminal Misc Petition"
+     },
+     {
+      "case_type_id": 42,
+      "name": "Criminal Review Petition"
+     }
+    ]
+   },
+   {
+    "nature_id": 9,
+    "name": "Jail Cases",
+    "case_types": [
+     {
+      "case_type_id": 43,
+      "name": "Jail Petition"
+     },
+     {
+      "case_type_id": 44,
+      "name": "Jail Appeal(A)"
+     }
+    ]
+   }
+  ]
+ },
+ "2": {
+  "division_id": 2,
+  "division": "High Court Division",
+  "natures": [
+   {
+    "nature_id": 3,
+    "name": "Civil Appeal",
+    "case_types": [
+     {
+      "case_type_id": 47,
+      "name": "Election Petition"
+     },
+     {
+      "case_type_id": 1,
+      "name": "First Appeal"
+     },
+     {
+      "case_type_id": 2,
+      "name": "First Misc Appeal"
+     },
+     {
+      "case_type_id": 3,
+      "name": "Cross Objection"
+     },
+     {
+      "case_type_id": 4,
+      "name": "Transfer Appeal"
+     },
+     {
+      "case_type_id": 32,
+      "name": "Second Appeal"
+     },
+     {
+      "case_type_id": 33,
+      "name": "Second Misc Appeal"
+     },
+     {
+      "case_type_id": 48,
+      "name": "First Appeal Tender"
+     },
+     {
+      "case_type_id": 49,
+      "name": "First Misc Appeal Tender"
+     },
+     {
+      "case_type_id": 93,
+      "name": "VC Civil Rule"
+     },
+     {
+      "case_type_id": 94,
+      "name": "In re : VC F M A"
+     },
+     {
+      "case_type_id": 96,
+      "name": "In re : VC F A"
+     },
+     {
+      "case_type_id": 102,
+      "name": "VC First Appeal"
+     },
+     {
+      "case_type_id": 119,
+      "name": "Title Appeal"
+     },
+     {
+      "case_type_id": 120,
+      "name": "Bankruptcy Appeal"
+     }
+    ]
+   },
+   {
+    "nature_id": 4,
+    "name": "Civil Revision",
+    "case_types": [
+     {
+      "case_type_id": 5,
+      "name": "Civil Rule"
+     },
+     {
+      "case_type_id": 6,
+      "name": "Civil Revision"
+     },
+     {
+      "case_type_id": 7,
+      "name": "Civil Misc"
+     },
+     {
+      "case_type_id": 8,
+      "name": "Civil Order"
+     },
+     {
+      "case_type_id": 58,
+      "name": "Contempt"
+     },
+     {
+      "case_type_id": 81,
+      "name": "Civil Review"
+     },
+     {
+      "case_type_id": 89,
+      "name": "Violation Misc"
+     },
+     {
+      "case_type_id": 100,
+      "name": "In-re VC Voilation Misc"
+     },
+     {
+      "case_type_id": 83,
+      "name": "Violation Case"
+     },
+     {
+      "case_type_id": 88,
+      "name": "Violation Misc. Rule"
+     },
+     {
+      "case_type_id": 101,
+      "name": "VC Contempt Petition (H)"
+     },
+     {
+      "case_type_id": 98,
+      "name": "In re : VC Civil Revision"
+     },
+     {
+      "case_type_id": 99,
+      "name": "VC Civil Revision"
+     },
+     {
+      "case_type_id": 113,
+      "name": "Civil Reference Case"
+     },
+     {
+      "case_type_id": 117,
+      "name": "Civil Case"
+     },
+     {
+      "case_type_id": 116,
+      "name": "Civil Rule (Contempt)"
+     },
+     {
+      "case_type_id": 115,
+      "name": "Transfer Miscellaneous Case"
+     }
+    ]
+   },
+   {
+    "nature_id": 5,
+    "name": "Criminal Cases(HD)",
+    "case_types": [
+     {
+      "case_type_id": 74,
+      "name": "Misc."
+     },
+     {
+      "case_type_id": 72,
+      "name": "Criminal Rule(Con A)"
+     },
+     {
+      "case_type_id": 76,
+      "name": "Criminal Misc (Suo-Muto) Rule"
+     },
+     {
+      "case_type_id": 46,
+      "name": "Death Reference"
+     },
+     {
+      "case_type_id": 9,
+      "name": "Criminal Appeal(H)"
+     },
+     {
+      "case_type_id": 10,
+      "name": "Criminal Revision"
+     },
+     {
+      "case_type_id": 11,
+      "name": "Criminal Misc"
+     },
+     {
+      "case_type_id": 12,
+      "name": "Jail Appeal(H)"
+     },
+     {
+      "case_type_id": 55,
+      "name": "Criminal Rule"
+     },
+     {
+      "case_type_id": 50,
+      "name": "Jail Appeal Admission"
+     },
+     {
+      "case_type_id": 56,
+      "name": "Suo Muto"
+     },
+     {
+      "case_type_id": 57,
+      "name": "Govt. Appeal"
+     },
+     {
+      "case_type_id": 62,
+      "name": "In re"
+     },
+     {
+      "case_type_id": 71,
+      "name": "Criminal Rule(Con)"
+     },
+     {
+      "case_type_id": 75,
+      "name": "Transferred Misc Case"
+     },
+     {
+      "case_type_id": 77,
+      "name": "Suo-Muto Contempt Rule"
+     },
+     {
+      "case_type_id": 82,
+      "name": "Criminal Revision (Suo-Muto)"
+     },
+     {
+      "case_type_id": 85,
+      "name": "Govt. Criminal Appeal"
+     },
+     {
+      "case_type_id": 84,
+      "name": "Criminal Review Rule"
+     },
+     {
+      "case_type_id": 95,
+      "name": "VC Criminal Misc. Case"
+     },
+     {
+      "case_type_id": 97,
+      "name": "VC Criminal Appeal"
+     },
+     {
+      "case_type_id": 91,
+      "name": "In re : VC"
+     },
+     {
+      "case_type_id": 104,
+      "name": "VC Criminal Revision"
+     },
+     {
+      "case_type_id": 112,
+      "name": "Departmental Case"
+     }
+    ]
+   },
+   {
+    "nature_id": 1,
+    "name": "Original Cases",
+    "case_types": [
+     {
+      "case_type_id": 66,
+      "name": "Letter of Administration Suit"
+     },
+     {
+      "case_type_id": 70,
+      "name": "Violation Misc"
+     },
+     {
+      "case_type_id": 67,
+      "name": "Review Petition"
+     },
+     {
+      "case_type_id": 73,
+      "name": "Suo-Muto Rule (Original)"
+     },
+     {
+      "case_type_id": 34,
+      "name": "Execution Case"
+     },
+     {
+      "case_type_id": 22,
+      "name": "Company Matter"
+     },
+     {
+      "case_type_id": 23,
+      "name": "Contempt Matter"
+     },
+     {
+      "case_type_id": 24,
+      "name": "Customs Appeal"
+     },
+     {
+      "case_type_id": 25,
+      "name": "Divorce Suit"
+     },
+     {
+      "case_type_id": 26,
+      "name": "Income Tax Reference"
+     },
+     {
+      "case_type_id": 27,
+      "name": "Merchant Shipping"
+     },
+     {
+      "case_type_id": 28,
+      "name": "Trademark Appeal"
+     },
+     {
+      "case_type_id": 29,
+      "name": "Trademark Application"
+     },
+     {
+      "case_type_id": 30,
+      "name": "VAT Appeal"
+     },
+     {
+      "case_type_id": 18,
+      "name": "Admiralty Suit"
+     },
+     {
+      "case_type_id": 19,
+      "name": "Arbitration Appeal"
+     },
+     {
+      "case_type_id": 20,
+      "name": "Arbitration Application"
+     },
+     {
+      "case_type_id": 21,
+      "name": "Cancellation of Design Petition"
+     },
+     {
+      "case_type_id": 69,
+      "name": "Contempt Petition"
+     },
+     {
+      "case_type_id": 64,
+      "name": "Contempt Rule"
+     },
+     {
+      "case_type_id": 65,
+      "name": "Summary Suit"
+     },
+     {
+      "case_type_id": 79,
+      "name": "Arbitration Rule"
+     },
+     {
+      "case_type_id": 78,
+      "name": "Bank Company Application"
+     },
+     {
+      "case_type_id": 80,
+      "name": "Family Matter"
+     },
+     {
+      "case_type_id": 87,
+      "name": "VAT Revision"
+     },
+     {
+      "case_type_id": 114,
+      "name": "Bank Company Matter"
+     },
+     {
+      "case_type_id": 118,
+      "name": "Industrial Design Appeal"
+     },
+     {
+      "case_type_id": 110,
+      "name": "Cancellation of Trademark Petition"
+     },
+     {
+      "case_type_id": 105,
+      "name": "Financial Institution"
+     },
+     {
+      "case_type_id": 111,
+      "name": "Insurance Appeal"
+     }
+    ]
+   },
+   {
+    "nature_id": 2,
+    "name": "Writ Cases",
+    "case_types": [
+     {
+      "case_type_id": 61,
+      "name": "In re : Writ Petition"
+     },
+     {
+      "case_type_id": 13,
+      "name": "Writ Petition"
+     },
+     {
+      "case_type_id": 14,
+      "name": "Contempt Petition(H)"
+     },
+     {
+      "case_type_id": 15,
+      "name": "Review Petition"
+     },
+     {
+      "case_type_id": 16,
+      "name": "Suo-Muto Rule"
+     },
+     {
+      "case_type_id": 17,
+      "name": "Transfer Petiion"
+     },
+     {
+      "case_type_id": 51,
+      "name": "Reference Application"
+     },
+     {
+      "case_type_id": 59,
+      "name": "I.T.R."
+     },
+     {
+      "case_type_id": 60,
+      "name": "Rule"
+     },
+     {
+      "case_type_id": 90,
+      "name": "In re : VC Writ Petition"
+     },
+     {
+      "case_type_id": 86,
+      "name": "Copy Right Appeal"
+     },
+     {
+      "case_type_id": 92,
+      "name": "VC Writ Petition"
+     },
+     {
+      "case_type_id": 109,
+      "name": "Suo-Moto Rule Contempt"
+     }
+    ]
+   }
+  ]
+ }
+}

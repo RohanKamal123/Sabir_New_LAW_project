@@ -35,6 +35,26 @@ barristers too, covering case tracking, research, and drafting roughly equally.
 
 ---
 
+## Build status (2026-08-24)
+
+Tier 0 is implemented as one product, plus the Tier 1 limitation calculator.
+See [`../README.md`](../README.md) for usage and
+[`COMPLIANCE.md`](COMPLIANCE.md) for where the two pre-build checks stand.
+
+| # | Feature | Status |
+|---|---|---|
+| 1 | Cause-list watch + alerts | Built — scraper, watch matching, grouped Telegram alerts, idempotent nightly sweep |
+| 2 | Case status tracker | Built — 110-type registry, full hearing history, change detection |
+| 3 | Statute lookup | Built — bdlaws scraper, FTS5 exact-text search, no generation |
+| 4 | Template-based drafting | Built — Claude or DeepSeek writes narrative only; templates own structure; citation guard |
+| 5 | Limitation calculator | Engine built (ss. 4, 12(1)–(3)); First Schedule articles extracted but **all unverified** and refused until a lawyer checks them |
+| 6–11 | Tier 1 remainder and Tier 2 | Not started |
+
+Parsers were built against live pages, which are committed as fixtures in
+`tests/fixtures/` and drive a 186-test suite that needs no network.
+
+---
+
 ## Tier 0 — Ship now (days, minimal effort)
 
 Public, scrapable data and thin LLM wrapping only. No licensed data, no RAG pipeline, no

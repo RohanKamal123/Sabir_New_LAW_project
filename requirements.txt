@@ -1,0 +1,17 @@
+httpx>=0.27
+beautifulsoup4>=4.12
+lxml>=5.0
+jinja2>=3.1
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.6
+
+# Optional: drafting via Claude. DeepSeek needs no extra package (it is
+# reached over its OpenAI-compatible HTTP endpoint using httpx above).
+anthropic>=0.40
+
+# Optional: re-extracting the Limitation Act Schedule from the Ministry's PDF
+pdfminer.six>=20231228
+
+# Tests
+pytest>=8.0

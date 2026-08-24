@@ -1,0 +1,1108 @@
+{
+ "source": "The Limitation Act, 1908 — First Schedule",
+ "source_url": "http://bdlaws.minlaw.gov.bd/act-88.html",
+ "extracted_by": "tools/extract_limitation_schedule.py",
+ "warning": "Machine-extracted from a PDF table. Every article is unverified until a lawyer checks it against the official text.",
+ "articles": [
+  {
+   "article": "1",
+   "description": "[Omitted by section 3 and 2nd Schedule of the Bangladesh Laws (Revision and Declaration) Act, 1973 (Act No. VIII of 1973).]",
+   "period_text": "Part II.−Ninety days.",
+   "trigger": "",
+   "period": {
+    "value": 90,
+    "unit": "days",
+    "approx_days": 90
+   },
+   "verified": false
+  },
+  {
+   "article": "2",
+   "description": "For compensation for doing or for omitting to do an act alleged to be in pursuance of any enactment in force for the time being in Bangladesh.",
+   "period_text": "Ninety days . When the act or",
+   "trigger": "omission takes place.",
+   "period": {
+    "value": 90,
+    "unit": "days",
+    "approx_days": 90
+   },
+   "verified": false
+  },
+  {
+   "article": "3",
+   "description": "Under the Specific Relief Act, 1877, section 9, to recover possession of immoveable property.",
+   "period_text": "Six months .",
+   "trigger": "When the dispossession occurs.",
+   "period": {
+    "value": 6,
+    "unit": "months",
+    "approx_days": 180
+   },
+   "verified": false
+  },
+  {
+   "article": "4",
+   "description": "[Omitted by section 3 and Second Schedule of the by the Repealing and Amending Act, 1937 (Act No. XX of 1937).]",
+   "period_text": "Part IV.−One year.",
+   "trigger": "",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "5",
+   "description": "Under the summary procedure referred to in section 128 (2) (f) of the Code of Civil Procedure, 1908 where the provision of such summary procedure does not exclude the ordinary procedure in such suits. Period of limitation. One year.. One year.. One year.. One year.. One year.. One year.. Description of suit. (2) [Omitted by section 3 and 2nd Schedule of the Federal Laws (Revision and Declaration) Act, 1951 (Act No. XXVI of 1951).]",
+   "period_text": "One year..",
+   "trigger": "When the debt or liquidated demand becomes payable or when the property becomes recoverable. Time from which period begins to run.",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "11A",
+   "description": "By a person against whom an order has been made under the Code of Civil Procedure, 1908, upon an application by the holder of a decree for the possession of immoveable property or by the purchaser of such property sold in execution of a decree, complaining of resistance or obstruction to the delivery of possession thereof, or upon an application by any person dispossessed of such property in the delivery of possession thereof to the decree- holder or purchaser, to establish the right which he claims to the present possession of the property comprised in the order.",
+   "period_text": "One year..",
+   "trigger": "The date of the order.",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "12",
+   "description": "To set aside any of the following sales:− (a) sale in execution of a decree of a Civil Court; (b) sale in pursuance of a decree or order of a Collector or other officer of revenue; (c) sale for arrears of Government revenue, or for any demand recoverable as such arrears; Period of limitation. One year.. One year.. One year.. Description of suit.",
+   "period_text": "One year..",
+   "trigger": "When the sale is confirmed, or would otherwise have become final and conclusive had no such suit been brought.",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "17",
+   "description": "Against Government for compensation for land acquired for public purposes.",
+   "period_text": "One year",
+   "trigger": "The date of determining the",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "18",
+   "description": "Like suit for compensation when the acquisition is not completed.",
+   "period_text": "One year",
+   "trigger": "The date of the refusal to complete.",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "19",
+   "description": "For compensation for false imprisonment.",
+   "period_text": "One year",
+   "trigger": "When the imprisonment ends.",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "20",
+   "description": "By executors, administrators or representatives, under the Legal Representatives’ Suits Act, 1855.",
+   "period_text": "One year",
+   "trigger": "The date of the death of the",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "21",
+   "description": "By executors, adminis-trators or representatives under the Fatal Accidents Act, 1855.",
+   "period_text": "One year",
+   "trigger": "The date of the death of the person killed.",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "22",
+   "description": "For compensation for any other injury to the person.",
+   "period_text": "One year",
+   "trigger": "When the injury is committed.",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "23",
+   "description": "For compensation for a malicious prosecution.",
+   "period_text": "One year",
+   "trigger": "When the plaintiff is acquitted, or the prosecution is otherwise terminated.",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "24",
+   "description": "For compensation for libel.",
+   "period_text": "One year",
+   "trigger": "When the libel is published.",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "25",
+   "description": "For compensation for slander. Description of suit. Period of limitation. One year.. One year.. One year.. One year.. One year.. Two years.. Two years.. Two years.. Two years.. Description of suit.",
+   "period_text": "One year.. When the words are spoken or, if the words are not actionable in themselves, when the special damage complained of results.",
+   "trigger": "Time from which period begins to run.",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "36",
+   "description": "For compensation for any malfeasance, misfea-sance or non- feasance independent of contract and not herein specially provided for.",
+   "period_text": "Two years..",
+   "trigger": "When the misfeasance, misfeasance or non- feasance takes place.",
+   "period": {
+    "value": 2,
+    "unit": "years",
+    "approx_days": 730
+   },
+   "verified": false
+  },
+  {
+   "article": "37",
+   "description": "For compensation for obstructing a way or a watercourse.",
+   "period_text": "Three years..",
+   "trigger": "The date of the obstruction.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "38",
+   "description": "For compensation for diverting a water- course.",
+   "period_text": "Three years..",
+   "trigger": "The date of the diversion.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "39",
+   "description": "For compensation for trespass upon immove- able property.",
+   "period_text": "Three years..",
+   "trigger": "The date of the trespass.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "40",
+   "description": "For compensation for infringing copyright or any other exclusive privilege.",
+   "period_text": "Three years..",
+   "trigger": "The date of the infringement.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "41",
+   "description": "To restrain waste . .",
+   "period_text": "Three years..",
+   "trigger": "When the waste begins.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "42",
+   "description": "For compensation for injury caused by an injunction wrongfully obtained.",
+   "period_text": "Three years..",
+   "trigger": "When the injunction ceases.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "43",
+   "description": "Under the Succession Act, 1925, section 360 or section 361, to compel a refund by a person to whom an executor or administrator has paid a legacy or distributed assets.",
+   "period_text": "Three years..",
+   "trigger": "The date of the payment or distribution.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "44",
+   "description": "By a ward who has attained majority, to set aside a transfer of property by his guardian. Period of limitation. Three years. Three years. Three years. Three years. Description of suit. Period of limitation.",
+   "period_text": "Three years..",
+   "trigger": "When the ward attains majority. Time from which period begins to run.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "48B",
+   "description": "To set aside sale of moveable property comprised in a Hindu, Muslim or Buddhist religious or charitable endowment, made by a manager thereof for a valuable consideration.",
+   "period_text": "Three years..",
+   "trigger": "When the sale becomes known to the plaintiff.]",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "49",
+   "description": "For other specific moveable property, or for compensation for wrongfully taking or injuring or wrongfully detaining the same.",
+   "period_text": "Three years..",
+   "trigger": "When the property is wrongfully taken or injured, or when the detainer’s possession becomes unlawful.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "50",
+   "description": "For the hire of animals, vehicles, boats or household furniture.",
+   "period_text": "Three years..",
+   "trigger": "When the hire becomes payable.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "51",
+   "description": "For the balance of money advanced in payment of goods to be delivered.",
+   "period_text": "Three years..",
+   "trigger": "When the goods ought to be delivered.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "52",
+   "description": "For the price of goods sold and delivered, where no fixed period of credit is agreed upon.",
+   "period_text": "Three years..",
+   "trigger": "The date of the delivery of the goods.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "53",
+   "description": "For the price of goods sold and delivered to be paid for after the expiry of a fixed period of credit.",
+   "period_text": "Three years..",
+   "trigger": "When the period of credit expires.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "54",
+   "description": "For the price of goods sold and delivered to be paid for by a bill of exchange, no such bill being given. Period of limitation. Three years.. Three years.. Three years.. Three years.. Three years.. Three years.. Three years.. Description of suit.",
+   "period_text": "Three years..",
+   "trigger": "When the period of the proposed bill elapses.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "64",
+   "description": "For money payable to the plaintiff for money found to be due from the defendant to the plaintiff on accounts stated between them. 1[64A. Under Order XXXVII of the Code of Civil 2[Procedure, 1908.]",
+   "period_text": "Three years",
+   "trigger": "When the accounts are",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "65",
+   "description": "For compensation for breach of a promise to do anything at a specified time, or upon the happening of a specified contingency.",
+   "period_text": "Three years",
+   "trigger": "When the time specified",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "66",
+   "description": "On a single bond, where a day is specified for payment.",
+   "period_text": "Three years",
+   "trigger": "The day so specified.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "67",
+   "description": "On a single bond, where no such day is specified.",
+   "period_text": "Three years",
+   "trigger": "The date of executing the",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "68",
+   "description": "On a bond subject to a condition.",
+   "period_text": "Three years",
+   "trigger": "When the condition is broken.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "69",
+   "description": "On a bill of exchange or promissory note paya- ble at a fixed time after date. Period of limitation. Three years.. Three years.. Three years.. Three years.. Three years.. Three years.. Three years.. Description of suit.",
+   "period_text": "Three years.. When the bill or note falls",
+   "trigger": "Time from which period begins to run.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "77",
+   "description": "On a dishonoured foreign bill where protest has been made and notice given.",
+   "period_text": "Three years..",
+   "trigger": "When the notice is given.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "78",
+   "description": "By the payee against the drawer of a bill of exchange which has been dishonoured by non-acceptance.",
+   "period_text": "Three years..",
+   "trigger": "The date of the refusal to accept.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "79",
+   "description": "By the acceptor of an accommodation bill against the drawer.",
+   "period_text": "Three years..",
+   "trigger": "When the acceptor pays the amount of the bill.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "80",
+   "description": "Suit on a bill of exchange, promissory note or bond not herein expressly provided for.",
+   "period_text": "Three years..",
+   "trigger": "When the bill, note or bond becomes payable.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "81",
+   "description": "By a surety against the principal debtor.",
+   "period_text": "Three years..",
+   "trigger": "When the surety pays the creditor.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "82",
+   "description": "By a surety against a co- surety.",
+   "period_text": "Three years..",
+   "trigger": "When the surety pays anything in excess of his own share.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "83",
+   "description": "Upon any other contract to indemnify.",
+   "period_text": "Three years..",
+   "trigger": "When the plaintiff is actually damnified.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "84",
+   "description": "By an 1[advocate] for his costs of a suit or a particular business, there being no express agreement as to the time when such costs are to be paid. Period of limitation. Three years.. Three years.. Three years.. Three years.. Three years.. Three years.. Three years.. Description of suit.",
+   "period_text": "Three years..",
+   "trigger": "The date of the termination of the Suit or business, or (where the 2[advocate] properly discontinues the suit or business) the date of such discontinuance.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "91",
+   "description": "To cancel or set aside an instrument not other-wise provided for.",
+   "period_text": "Three years",
+   "trigger": "When the facts entitling the plaintiff to have the instrument cancelled or set aside become known to him.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "92",
+   "description": "To declare the forgery of an instrument issued or registered.",
+   "period_text": "Three years",
+   "trigger": "When the issue or",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "93",
+   "description": "To declare the forgery of an instrument attempted to be enforced against the plaintiff.",
+   "period_text": "Three years",
+   "trigger": "The date of the attempt.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "94",
+   "description": "For property which the plaintiff has conveyed while insane.",
+   "period_text": "Three years",
+   "trigger": "When the plaintiff is",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "95",
+   "description": "To set aside a decree obtained by fraud, or for other relief on the ground of fraud.",
+   "period_text": "Three years",
+   "trigger": "When the fraud becomes",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "96",
+   "description": "For relief on the ground of mistake.",
+   "period_text": "Three years",
+   "trigger": "When the mistake",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "97",
+   "description": "For money paid upon an existing consideration which afterwards fails.",
+   "period_text": "Three years",
+   "trigger": "The date of the failure.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "98",
+   "description": "To make good out of the general estate of a deceased trustee the loss occasioned by a breach of trust.",
+   "period_text": "Three years",
+   "trigger": "The date of the trustee’s death, or, if the loss has not then resulted, the date of the loss.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "99",
+   "description": "For contribution by a party who has paid the whole or more than his share of the amount due under a joint decree, or by a sharer in a joint estate who has paid the whole or more than his share of the amount of revenue due from himself and his co-sharers. Period of limitation. Three years.. Three years.. Three years.. otherwise expressly provided for by this schedule. Three years.. exigible dower (mu’ajjal). Three years.. deferred dower (mu’wajjal). Three years.. after the mortgage has been satisfied, to recover surplus collections received by the mortgagee. Three years.. share of the profits of a dissolved partnership. Three years.. joint estate of an undivided family for contribution, in respect of a payment made by him on account of the estate. Description of suit.",
+   "period_text": "Three years.. The date of the payment in excess of the plaintiff’s own share.",
+   "trigger": "Time from which period begins to run.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "108",
+   "description": "By a lessor for the value of trees cut down by his lessee contrary to the terms of the lease. 109. For the profits of immoveable property belonging to the plaintiff which have been wrongfully received by the defendant. 110. For arrears of rent ….",
+   "period_text": "Three years",
+   "trigger": "When the trees are cut down.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "111",
+   "description": "By a vendor of immoveable property for personal payment of unpaid purchase-money.",
+   "period_text": "Three years..",
+   "trigger": "",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "112",
+   "description": "For a call by a company registered under any Statute or Act.",
+   "period_text": "Three years",
+   "trigger": "When the call is payable.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "113",
+   "description": "For specific performance of a contract.",
+   "period_text": "1[One year] The date fixed for the performance, or, if no such date is fixed, when the plaintiff has notice that performance is refused. 2[One year] When the facts entitling the plaintiff to have the contract rescinded first become known to him.",
+   "trigger": "",
+   "period": {
+    "value": 1,
+    "unit": "years",
+    "approx_days": 365
+   },
+   "verified": false
+  },
+  {
+   "article": "114",
+   "description": "For the rescission of a contract.",
+   "period_text": "",
+   "trigger": "",
+   "period": null,
+   "verified": false
+  },
+  {
+   "article": "115",
+   "description": "For compensation for the breach of any contract, express or implied, not in writing registered and not herein specially provided for. 1 The words \"One year\" were substituted, for the words \"Three years\" by section 2 2 The words \"One year\" were substituted, for the words \"Three years\" by section 2 Period of limitation. Part VII.−Six years. Six years.. Six years.. judgment as defined in the Code of Civil Procedure, 1908. Six years.. declaration that an alleged adoption is invalid, or never, in fact, took place. Six years.. declaration that an adoption is valid. Six years.. period of limitation is provided elsewhere in this schedule. Part VIII.−Twelve years Twelve years.. When the sale becomes incumbrances or under-tenures in an entire estate sold for arrears of Government revenue, or in a patni taluq or other saleable tenure sold for arrears of rent. Twelve years.. Description of suit. Period of limitation.",
+   "period_text": "Three years.. When the contract is",
+   "trigger": "Time from which period begins to run.",
+   "period": {
+    "value": 3,
+    "unit": "years",
+    "approx_days": 1095
+   },
+   "verified": false
+  },
+  {
+   "article": "123",
+   "description": "For a legacy or for a share of a residue bequeathed by a testator, or for a distributive share of the property of an intestate.",
+   "period_text": "Twelve years..",
+   "trigger": "When the legacy or share becomes payable or deliverable.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "124",
+   "description": "For possession of an hereditary office.",
+   "period_text": "Twelve years..",
+   "trigger": "When the defendant takes possession of the office adversely to the plaintiff. Explanation.⎯An hereditary office is possessed when the profits thereof are usually received, or (if there are no profits) when the duties thereof are usually performed.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "125",
+   "description": "Suit during the life of a Hindu or Muslim female by a Hindu or Muslim who, if the female died at the date of instituting the suit, would be entitled to the possession of land, to have an alienation of such land made by the female declared to be void except for her life or until her re-marriage.",
+   "period_text": "Twelve years..",
+   "trigger": "The date of the alienation.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "126",
+   "description": "By a Hindu governed by the law of the Mitakshara to set aside his father’s alienation of ancestral property. Period of limitation. Twelve years.. When the exclusion from joint family property to enforce a right to share therein. Twelve years.. When the arrears are Twelve years.. When the right is declaration of his right to maintenance. Twelve years.. When the right to assessment of rent-free land. Twelve years.. When the plaintiff is periodically recurring right. Twelve years.. When the money sued money charged upon immoveable property. purposes of this article− the allowance and fees respectively called malikana and haqqs, and the value of any agricultural or other produce the right to receive which is secured by a charge upon immoveable property, and advances secured by mortgage by deposit of title-deeds, Description of suit. Shall be deemed to be to be money charged upon immoveable property,",
+   "period_text": "Twelve years..",
+   "trigger": "When the alience takes possession of the property. Time from which period begins to run.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "133",
+   "description": "[Omitted by section 3 of the Indian Limitation (Amendment) Act, 1923 (Act No. I of 1923).]",
+   "period_text": "",
+   "trigger": "",
+   "period": null,
+   "verified": false
+  },
+  {
+   "article": "134",
+   "description": "To recover possession of immoveable property conveyed or bequeathed in trust or mortgaged and afterwards transferred by the trustee or mortgagee for a valuable consideration. 1[134A. To set aside a transfer of immoveable property comprised in a Hindu, Muslim or Buddhist religious or charitable endowment, made by a manager thereof for a valuable consideration.",
+   "period_text": "Twelve years. When the transfer",
+   "trigger": "becomes known to the plaintiff. becomes known to the plaintiff.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "134B",
+   "description": "By the manager of Hindu, Muslim or Buddhist religious or charitable endowment to recover possession of immoveable property comprised in the endowment, which has been transferred by a previous manager for a valuable consideration. Description of suit. Period of limitation. Twelve years. Twelve years. When the mortgagor’s Twelve years. When the vendor is first private sale for procession of immoveable property sold when the vendor was out of possession at the date of the sale. Twelve years. When the judgment- at a sale in execution of a decree, when the judgment-debtor was out of possession at the date of the sale. Twelve years. at a sale in execution of a decree, when the judgment- debtor was in possession at the date of the sale. Description of suit.",
+   "period_text": "Twelve years.",
+   "trigger": "The death, resignation or removal of the transferor. Time from which period begins to run.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "139",
+   "description": "By a landlord to recover possessions from a tenant.",
+   "period_text": "Twelve years. When the tenancy is",
+   "trigger": "determined.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "140",
+   "description": "By a remainder man, a reversioner (other than a landlord) or a devisee, for possession of immoveable property.",
+   "period_text": "Twelve years. When his estate falls",
+   "trigger": "into possession.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "141",
+   "description": "Like suit by a Hindu or Muslim entitled to the possession of immoveable property on the death of a Hindu or Muslim female.",
+   "period_text": "Twelve years",
+   "trigger": "When the female dies.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "142",
+   "description": "For possession of immoveable property when the plaintiff, while in possession of the property, has been dispossessed or has discontinued the possession.",
+   "period_text": "Twelve years.",
+   "trigger": "The date of the dispossession or discontinuance.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "143",
+   "description": "Like suit, when the plaintiff has become entitled by reason of any forfeiture or breach of condition.",
+   "period_text": "Twelve years. When the forfeiture is",
+   "trigger": "incurred or the condition is broken.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "144",
+   "description": "For possession of immoveable property or any interest therein not hereby otherwise specially provided for. Description of suit. Period of limitation. Part IX.−Thirty years. Thirty years. pawnee to recover moveable property deposited or pawned. Thirty years. Division in the exercise of its ordinary original civil jurisdiction by a mortgagee to recover from the mortgagor the possession of immoveable property mortgaged. Thirty years. local authority for possession of any public street or road or any part thereof from which it has been dispossessed or of which it has discontinued the possession. Part X.−Sixty years. Sixty years. Sixty years. redeem or to recover possession of immoveable property mortgaged. 1 The proviso was omitted by section 3 and 2nd Schedule of the Bangladesh Laws Description of suit.",
+   "period_text": "Twelve years. When the possession of the defendant becomes adverse to the plaintiff.",
+   "trigger": "Time from which period begins to run.",
+   "period": {
+    "value": 12,
+    "unit": "years",
+    "approx_days": 4380
+   },
+   "verified": false
+  },
+  {
+   "article": "149",
+   "description": "Any suit by or on behalf of the 1[Government] except a suit before the 2[Appellate Division] in the exercise of its original jurisdiction. SECOND DIVISION: APPEALS Description of Appeal",
+   "period_text": "Sixty years. When the period of",
+   "trigger": "Time from which period begins to run.",
+   "period": {
+    "value": 60,
+    "unit": "years",
+    "approx_days": 21900
+   },
+   "verified": false
+  },
+  {
+   "article": "150",
+   "description": "Under the Code of Criminal Procedure, 1898, from a sentence of death passed by a Court to Session or by the High Court Division in the exercise of its original Criminal Jurisdiction.",
+   "period_text": "Seven days",
+   "trigger": "The date of the sentence.",
+   "period": {
+    "value": 7,
+    "unit": "days",
+    "approx_days": 7
+   },
+   "verified": false
+  },
+  {
+   "article": "150A",
+   "description": "[Omitted by section 2 of the Extinction of Discriminatory Privileges Act, 1949 (Act No. II of 1950).]",
+   "period_text": "",
+   "trigger": "",
+   "period": null,
+   "verified": false
+  },
+  {
+   "article": "151",
+   "description": "From a decree or order of the High Court Division in the exercise of its original jurisdiction.",
+   "period_text": "Twenty days",
+   "trigger": "The date of the decree or",
+   "period": {
+    "value": 20,
+    "unit": "days",
+    "approx_days": 20
+   },
+   "verified": false
+  },
+  {
+   "article": "152",
+   "description": "Under the Code of Civil Procedure, 1908, to the Court of a District Judge.",
+   "period_text": "Thirty days",
+   "trigger": "The date of the decree or order appealed from.",
+   "period": {
+    "value": 30,
+    "unit": "days",
+    "approx_days": 30
+   },
+   "verified": false
+  },
+  {
+   "article": "153",
+   "description": "Under the same Code to the High Court Division from an order of a Sub- refusing ordinate Court leave the to 3[Appellate Division]. to appeal Period of limitation. Thirty days Criminal Procedure, 1898, to any Court other than the High Court Division. Sixty days Ninety days Six months Criminal Procedure, 1898, from an order of acquittal. THIRD DIVISION: APPLICATIONS Period of limitation. Thirty days Act, 1940, to set aside an award or to get an award remitted for reconsideration. Ten days defend a suit under summary procedure referred to in section 128 (2) (f) or under Order XXXVII of the Code of Civil Procedure, 1908. Description of application.",
+   "period_text": "Thirty days The date of the order.",
+   "trigger": "Time from which period begins to run.",
+   "period": {
+    "value": 30,
+    "unit": "days",
+    "approx_days": 30
+   },
+   "verified": false
+  },
+  {
+   "article": "160",
+   "description": "For an order under the same Code, to restore to the file an application for review rejected in consequence of the failure of the applicant to appear when the application was called on for hearing.",
+   "period_text": "Fifteen days",
+   "trigger": "When the application for review is rejected.",
+   "period": {
+    "value": 15,
+    "unit": "days",
+    "approx_days": 15
+   },
+   "verified": false
+  },
+  {
+   "article": "161",
+   "description": "For a review of judgment by a Court of Small Causes or by Court invested with the jurisdiction of a Court of Small Causes when exercising that jurisdiction.",
+   "period_text": "Fifteen days",
+   "trigger": "The date of the decree or order.",
+   "period": {
+    "value": 15,
+    "unit": "days",
+    "approx_days": 15
+   },
+   "verified": false
+  },
+  {
+   "article": "162",
+   "description": "For a review of judgment by the High Court Division in the exercise of its original jurisdiction.",
+   "period_text": "Twenty days",
+   "trigger": "The date of the decree or order.",
+   "period": {
+    "value": 20,
+    "unit": "days",
+    "approx_days": 20
+   },
+   "verified": false
+  },
+  {
+   "article": "162A",
+   "description": "[Omitted by the Limitation (Amendment) Act, 1965 (Act No. XI of 1965).]",
+   "period_text": "",
+   "trigger": "",
+   "period": null,
+   "verified": false
+  },
+  {
+   "article": "163",
+   "description": "By a plaintiff, for an order to set aside a dismissal for default of appearance or for failure to pay costs of service of process or to furnish security for costs.",
+   "period_text": "Thirty days",
+   "trigger": "The date of the dismissal.",
+   "period": {
+    "value": 30,
+    "unit": "days",
+    "approx_days": 30
+   },
+   "verified": false
+  },
+  {
+   "article": "164",
+   "description": "By a defendant, for an order to set aside a decree passed ex parte. Period of limitation. Thirty days Civil Procedure, 1908, by a person dispossessed of immoveable property an disputing the right of the decree holder or purchaser at a sale in execution of a decree to be put into possession. Thirty days to set aside a sale in execution of a decree including any such application by a Judgment-debtor. Thirty days resistance or obstruction to delivery of possession of immoveable property decreed or sold in execution of a decree. Thirty days an appeal dismissed for want of prosecution. Thirty days Thirty days a pauper. Sixty days Civil Procedure, 1908, for an order to set aside an abatement. Description of application",
+   "period_text": "Thirty days",
+   "trigger": "The date of the decree or, where the summons was not duly served, when the applicant has knowledge of the decree. Time from which period begins to run.",
+   "period": {
+    "value": 30,
+    "unit": "days",
+    "approx_days": 30
+   },
+   "verified": false
+  },
+  {
+   "article": "172",
+   "description": "Under the same Code by the assignee or the receiver of an insolvent plaintiff or appellant for an order to set aside the dismissal of a suit or an appeal.",
+   "period_text": "Sixty days",
+   "trigger": "The date of the order of dismissal.",
+   "period": {
+    "value": 60,
+    "unit": "days",
+    "approx_days": 60
+   },
+   "verified": false
+  },
+  {
+   "article": "173",
+   "description": "For a review of judgment except in the cases provided for by article 161 and article 162.",
+   "period_text": "Ninety days",
+   "trigger": "The date of the decree or order.",
+   "period": {
+    "value": 90,
+    "unit": "days",
+    "approx_days": 90
+   },
+   "verified": false
+  },
+  {
+   "article": "174",
+   "description": "For the issue of a notice under the same Code, to show cause why any payment made out of Court of any money payable under a decree or any adjustment of the decree should not be recorded as certified.",
+   "period_text": "Ninety days",
+   "trigger": "When the payment or adjustment is made.",
+   "period": {
+    "value": 90,
+    "unit": "days",
+    "approx_days": 90
+   },
+   "verified": false
+  },
+  {
+   "article": "175",
+   "description": "For payment of the amount of a decree by instalments.",
+   "period_text": "Six months",
+   "trigger": "The date of the decree.",
+   "period": {
+    "value": 6,
+    "unit": "months",
+    "approx_days": 180
+   },
+   "verified": false
+  },
+  {
+   "article": "176",
+   "description": "Under the same Code to have the legal representative of a deceased plaintiff or of a deceased appellant made a party.",
+   "period_text": "Ninety days",
+   "trigger": "The date of the death of the deceased plaintiff or appellant.",
+   "period": {
+    "value": 90,
+    "unit": "days",
+    "approx_days": 90
+   },
+   "verified": false
+  },
+  {
+   "article": "177",
+   "description": "Under the same Code to have the legal representative of a deceased defendant or of a deceased respondent made a party.",
+   "period_text": "Ninety days",
+   "trigger": "The date of the death of the deceased defendant or respondent.",
+   "period": {
+    "value": 90,
+    "unit": "days",
+    "approx_days": 90
+   },
+   "verified": false
+  },
+  {
+   "article": "178",
+   "description": "Under the Arbitration Act, 1940, for the filing in Court of an award. Period of limitation. Ninety days to appeal under the Code of Civil Procedure, 1908 to the 1[Appellate Division] for leave to appeal. Three days immoveable property at a sale in execution of a decree for delivery of possession. Three days Three years; or, where a certified copy of the decree or order has been registered, six years. applications to which section 48 of the Code of Civil Procedure, 1908, applied; and applications provided for by Article 183. Description of application Period of limitation. Three years; or, where a certified copy of the decree or order has been registered, six years ⎯contd. Description of application Period of limitation. Twelve years. When a present right to enforce 183. To enforce a judgment, decree or order of the High Court Division in the exercise of its ordinary original civil jurisdiction, or an order of the 1[Appellate Division]. Period of limitation. Time from which period begins to run. Provided that when the THE SECOND SCHEDULE - [Repealed by section 3 and Second Schedule of the",
+   "period_text": "Ninety days",
+   "trigger": "The date of service of the notice of making of the award. Time from which period begins to run. 3. (where there has been a review of judgment) the date of the decision passed on the review, or 4. (where the decree has been amended) the date of amendment, or 5. (where the application next hereinafter mentioned has been made) the date of the final order passed on an application made in accordance with law to the proper Court for execution or to take some step in aid of execution of the decree or order, or 6. (in respect of any amount, recovered by execution of the decree or order, which the decree- holder has been directed to refund by a decree passed in a suit for such refund) the date of such last mentioned decree or, in the case of an appeal therefrom, the date of the final decree of the Appellate Court or of the withdrawal of the appeal, or",
+   "period": {
+    "value": 90,
+    "unit": "days",
+    "approx_days": 90
+   },
+   "verified": false
+  }
+ ]
+}
