@@ -1,0 +1,1105 @@
+<title>The Night Before</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Spectral:ital,wght@0,300;0,400;0,600;1,400&family=Azeret+Mono:wght@400;600&display=swap">
+
+<style>
+/* ===================================================================
+   Palette: cool slate ground, indigo ink, brass spine, teal for
+   machine actions, vermilion reserved for the places the product
+   refuses to answer. Deliberately not the product's own warm paper —
+   the product appears inside this document as a framed specimen, and
+   the two should not be mistaken for each other.
+   =================================================================== */
+:root {
+  --ground:   #e7eaee;
+  --ground-2: #dce0e6;
+  --panel:    #f3f5f8;
+  --ink:      #161b2b;
+  --ink-2:    #4a5266;
+  --ink-3:    #79808f;
+  --hair:     #c3c9d2;
+  --spine:    #9c6c25;
+  --system:   #1b615f;
+  --alarm:    #b23a2b;
+
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Spectral", Georgia, "Times New Roman", serif;
+  --mono: "Azeret Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* The product's own palette, used only inside .specimen */
+  --p-paper: #f6f3ec;
+  --p-raised:#fbf9f4;
+  --p-sunk:  #efeade;
+  --p-ink:   #22201c;
+  --p-muted: #5f5a51;
+  --p-faint: #8b8478;
+  --p-rule:  #d6cfc0;
+  --p-heavy: #2a2722;
+  --p-ox:    #8a2b2b;
+  --p-green: #2f5d3f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:   #11141b;
+    --ground-2: #171b23;
+    --panel:    #1a1e27;
+    --ink:      #e5e8ef;
+    --ink-2:    #a3aab9;
+    --ink-3:    #6f7686;
+    --hair:     #2a2f3a;
+    --spine:    #cf9a4c;
+    --system:   #4fa8a5;
+    --alarm:    #e2705e;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground:   #11141b;
+  --ground-2: #171b23;
+  --panel:    #1a1e27;
+  --ink:      #e5e8ef;
+  --ink-2:    #a3aab9;
+  --ink-3:    #6f7686;
+  --hair:     #2a2f3a;
+  --spine:    #cf9a4c;
+  --system:   #4fa8a5;
+  --alarm:    #e2705e;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.62;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 3rem); }
+
+/* ---------------- masthead ---------------- */
+
+.hero { padding: clamp(3rem, 9vw, 6.5rem) 0 clamp(2rem, 5vw, 3.5rem); }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--spine);
+  margin: 0 0 1.4rem;
+}
+
+h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 8vw, 5.2rem);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  margin: 0 0 1.5rem;
+  text-wrap: balance;
+}
+
+.standfirst {
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 34em;
+  margin: 0;
+}
+
+.standfirst strong { color: var(--ink); font-weight: 600; }
+
+.credits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 2.5rem;
+  margin-top: 2.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--hair);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.credits b { color: var(--ink-2); font-weight: 600; }
+
+/* ---------------- section furniture ---------------- */
+
+section { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+
+.section-mark {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.section-mark h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.section-mark .tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--spine);
+  white-space: nowrap;
+}
+
+.lede { max-width: 36em; color: var(--ink-2); margin: 0 0 2rem; }
+.lede strong { color: var(--ink); font-weight: 600; }
+
+/* ---------------- the time spine ---------------- */
+
+.spine { position: relative; }
+
+.beat {
+  display: grid;
+  grid-template-columns: 6.5rem 1px 1fr;
+  gap: 0 2rem;
+  padding-bottom: 2.75rem;
+}
+
+.beat__time {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-align: right;
+  padding-top: 0.15rem;
+}
+
+.beat__day {
+  display: block;
+  font-weight: 400;
+  font-size: 0.62rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 0.3rem;
+}
+
+.beat__rail { position: relative; background: var(--hair); }
+
+.beat__rail::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0.35rem;
+  width: 9px;
+  height: 9px;
+  transform: translateX(-50%) rotate(45deg);
+  background: var(--spine);
+}
+
+.beat--machine .beat__rail::before { background: var(--system); border-radius: 50%; }
+/* The spine fades out rather than stopping dead, and the last beat gives up
+   its trailing space to the section rule below it. */
+.beat:last-child .beat__rail { background: linear-gradient(var(--hair), transparent); }
+.beat:last-child { padding-bottom: 0.5rem; }
+
+.beat__body { padding-top: 0; min-width: 0; }
+
+.beat h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.18rem;
+  letter-spacing: -0.012em;
+  margin: 0 0 0.5rem;
+  text-wrap: balance;
+}
+
+.beat p { margin: 0 0 0.85rem; max-width: 34em; }
+.beat p:last-child { margin-bottom: 0; }
+
+.actor {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  margin-bottom: 0.6rem;
+  border: 1px solid currentColor;
+  color: var(--spine);
+}
+
+.beat--machine .actor { color: var(--system); }
+
+/* ---------------- product specimens ---------------- */
+
+.specimen {
+  margin: 1.25rem 0 0.5rem;
+  border: 1px solid var(--hair);
+  background: var(--p-paper);
+  color: var(--p-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  overflow: hidden;
+  max-width: 46rem;
+}
+
+.specimen__chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--panel);
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--hair);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.specimen__body { padding: 1.1rem 1.25rem; overflow-x: auto; }
+
+.spec-caption {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink-3);
+  margin: 0.5rem 0 0;
+  max-width: 40em;
+  line-height: 1.5;
+}
+
+/* product-language pieces used inside specimens */
+.s-rubric {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--p-faint);
+  padding-bottom: 0.25rem; border-bottom: 1px solid var(--p-rule);
+  margin: 0 0 0.6rem;
+}
+.s-rubric + .s-rubric, .s-block + .s-rubric { margin-top: 1.4rem; }
+
+.s-figures { display: flex; border-top: 1px solid var(--p-heavy); border-bottom: 1px solid var(--p-heavy); margin-bottom: 1.2rem; }
+.s-figure { padding: 0.6rem 1.1rem 0.6rem 0; border-right: 1px solid var(--p-rule); flex: 1; }
+.s-figure:last-child { border-right: 0; }
+.s-figure b { display: block; font-family: var(--mono); font-size: 1.25rem; font-weight: 400; letter-spacing: -0.02em; }
+.s-figure b.alert { color: var(--p-ox); }
+.s-figure span { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.58rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--p-faint); }
+
+.s-bench { padding: 0.5rem 0 0.3rem; border-bottom: 1px solid var(--p-rule); }
+.s-bench b { display: block; font-size: 0.95rem; }
+.s-bench i { color: var(--p-muted); font-size: 0.82rem; }
+
+.s-section { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--p-faint); padding: 0.7rem 0 0.25rem 3.2rem; }
+
+.s-entry { display: grid; grid-template-columns: 3.2rem 1fr; gap: 0 0.7rem; padding: 0.45rem 0; border-bottom: 1px solid var(--p-rule); }
+.s-entry--mine { border-left: 3px solid var(--p-ox); padding-left: 0.7rem; margin-left: -0.7rem; }
+.s-entry .sn { font-family: var(--mono); font-size: 0.75rem; color: var(--p-muted); text-align: right; }
+.s-entry .cs { font-weight: 700; font-size: 0.9rem; }
+.s-entry .ref { font-family: var(--mono); font-size: 0.66rem; color: var(--p-ox); margin-left: 0.4rem; }
+.s-entry .pt { color: var(--p-muted); font-size: 0.82rem; }
+.s-entry .pt em { color: var(--p-faint); padding: 0 0.3rem; }
+.s-entry .sc { font-size: 0.75rem; color: var(--p-faint); }
+
+.s-diary { display: grid; grid-template-columns: 6rem 4rem 1fr; gap: 0 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid var(--p-rule); }
+.s-diary--urgent { border-left: 3px solid var(--p-ox); padding-left: 0.7rem; margin-left: -0.7rem; }
+.s-diary .dt { font-family: var(--mono); font-size: 0.76rem; }
+.s-diary .ct { font-family: var(--mono); font-size: 0.72rem; text-align: right; color: var(--p-muted); }
+.s-diary--urgent .ct { color: var(--p-ox); font-weight: 700; }
+.s-diary b { font-size: 0.88rem; }
+.s-diary span { display: block; font-size: 0.76rem; color: var(--p-muted); }
+
+.s-prov { max-width: 40em; }
+.s-prov .cit { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.6rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--p-faint); }
+.s-prov h4 { font-size: 0.98rem; margin: 0.15rem 0 0.35rem; }
+.s-prov p { margin: 0; font-size: 0.86rem; line-height: 1.6; }
+.s-prov .src { font-family: var(--mono); font-size: 0.68rem; color: #1f3f66; margin-top: 0.4rem; }
+
+.s-working { border-left: 2px solid var(--p-heavy); padding-left: 1rem; }
+.s-working .ans { font-family: var(--mono); font-size: 1.5rem; letter-spacing: -0.02em; }
+.s-working .sub { color: var(--p-muted); font-size: 0.8rem; margin-bottom: 0.9rem; }
+.s-step { display: grid; grid-template-columns: 4rem 1fr; gap: 0 0.8rem; padding: 0.3rem 0; border-bottom: 1px dotted var(--p-rule); font-size: 0.82rem; }
+.s-step .r { font-family: var(--mono); font-size: 0.72rem; color: var(--p-ox); }
+.s-step .v { font-family: var(--mono); font-size: 0.75rem; }
+
+.s-caveat { border-left: 3px solid var(--p-ox); background: #f2e4e2; padding: 0.65rem 0.9rem; margin-top: 0.9rem; font-size: 0.82rem; line-height: 1.5; }
+.s-caveat b { display: block; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--p-ox); margin-bottom: 0.2rem; }
+
+/* A specimen is a fixed light-paper artefact in both themes, so anything
+   inside it must take the product's palette, never the document's tokens —
+   otherwise dark-mode ink lands on light-mode paper. */
+.specimen code {
+  font-family: var(--mono); font-size: 0.82em;
+  background: var(--p-sunk); border: 1px solid var(--p-rule); color: var(--p-ink);
+  padding: 0.1em 0.35em;
+}
+
+/* telegram specimen */
+.tg { background: #e9edf0; padding: 1rem; font-family: "Helvetica Neue", Arial, sans-serif; }
+.tg__bubble {
+  background: #fff; border-radius: 10px 10px 10px 2px; padding: 0.8rem 0.95rem;
+  max-width: 27rem; font-size: 0.82rem; line-height: 1.5; color: #14181d;
+  box-shadow: 0 1px 2px rgba(0,0,0,.14);
+}
+.tg__bubble b { color: #0b0e12; }
+.tg__bubble .file { font-family: var(--mono); font-size: 0.72rem; color: #8a2b2b; }
+.tg__bubble .dim { color: #5c6470; }
+.tg__time { font-size: 0.62rem; color: #8892a0; text-align: right; margin-top: 0.35rem; }
+.tg__cmd { background: #2b6a9e; color: #fff; border-radius: 10px 10px 2px 10px; margin-left: auto; max-width: 16rem; padding: 0.5rem 0.8rem; font-family: var(--mono); font-size: 0.74rem; margin-top: 0.6rem; }
+
+/* ---------------- diagrams ---------------- */
+
+figure { margin: 0 0 1rem; }
+figure svg { display: block; width: 100%; height: auto; }
+figcaption {
+  font-family: var(--mono); font-size: 0.68rem; color: var(--ink-3);
+  margin-top: 0.6rem; line-height: 1.5; max-width: 40em;
+}
+.dia-frame { border: 1px solid var(--hair); background: var(--panel); padding: 1.25rem; overflow-x: auto; }
+
+/* ---------------- refusal cards ---------------- */
+
+.refusals { display: grid; gap: 1px; background: var(--hair); border: 1px solid var(--hair); }
+.refusal { background: var(--ground-2); padding: 1.35rem 1.5rem; }
+.refusal__q {
+  font-family: var(--display); font-weight: 600; font-size: 1.02rem;
+  margin: 0 0 0.55rem; letter-spacing: -0.01em;
+}
+.refusal__a { margin: 0 0 0.7rem; font-size: 0.94rem; color: var(--ink-2); }
+.refusal__out {
+  font-family: var(--mono); font-size: 0.72rem; line-height: 1.55;
+  color: var(--alarm); border-left: 2px solid var(--alarm); padding-left: 0.7rem;
+}
+
+@media (min-width: 760px) { .refusals { grid-template-columns: 1fr 1fr; } }
+
+/* ---------------- tables ---------------- */
+
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; font-variant-numeric: tabular-nums; }
+th {
+  text-align: left; font-family: var(--mono); font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-3);
+  padding: 0 0.8rem 0.5rem 0; border-bottom: 2px solid var(--ink); white-space: nowrap;
+}
+td { padding: 0.6rem 0.8rem 0.6rem 0; border-bottom: 1px solid var(--hair); vertical-align: top; color: var(--ink-2); }
+td b { color: var(--ink); font-weight: 600; }
+td code, .beat code, .lede code, .refusal code {
+  font-family: var(--mono); font-size: 0.82em; background: var(--panel);
+  padding: 0.1em 0.35em; border: 1px solid var(--hair); color: var(--ink);
+}
+
+/* ---------------- seams ---------------- */
+
+.seam { display: grid; grid-template-columns: 1.6rem 1fr; gap: 0 0.9rem; padding: 0.85rem 0; border-bottom: 1px solid var(--hair); }
+.seam__box { width: 1.05rem; height: 1.05rem; border: 2px solid var(--ink-3); margin-top: 0.3rem; }
+.seam b { font-family: var(--display); font-weight: 600; font-size: 1rem; display: block; margin-bottom: 0.2rem; }
+.seam p { margin: 0; font-size: 0.9rem; color: var(--ink-2); max-width: 40em; }
+
+/* ---------------- colophon ---------------- */
+
+.end {
+  margin-top: 2rem; padding: clamp(2rem,5vw,3rem) 0 clamp(3rem,7vw,5rem);
+  border-top: 2px solid var(--ink);
+  font-size: 0.88rem; color: var(--ink-3); max-width: 42em;
+}
+.end p { margin: 0 0 0.8rem; }
+
+a { color: var(--ink); text-underline-offset: 2px; text-decoration-color: var(--spine); }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--spine); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+@media (max-width: 680px) {
+  .beat { grid-template-columns: 4.2rem 1px 1fr; gap: 0 1rem; }
+  .beat__time { font-size: 0.7rem; }
+  .s-diary { grid-template-columns: 5rem 1fr; }
+  .s-diary .ct { grid-column: 2; text-align: left; }
+}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">User journey · Barrister Tools</p>
+  <h1>The Night Before</h1>
+  <p class="standfirst">
+    The Supreme Court of Bangladesh publishes tomorrow's cause list the evening
+    before hearings, as plain HTML, with no API and no notification. Every
+    litigator in Dhaka finds out the same way: by going and looking.
+    <strong>This is what one barrister's week looks like when something looks
+    for them.</strong>
+  </p>
+  <div class="credits">
+    <span><b>Practitioner</b> Sabir Rahman, Supreme Court of Bangladesh</span>
+    <span><b>Sources</b> supremecourt.gov.bd · bdlaws.minlaw.gov.bd</span>
+    <span><b>Scope</b> Roadmap Tier 0 + Tier 1</span>
+  </div>
+</header>
+
+<!-- =============================================================== -->
+<section>
+  <div class="section-mark">
+    <h2>The day it replaces</h2>
+    <span class="tag">Before</span>
+  </div>
+  <p class="lede">
+    Nothing here is hypothetical friction. Each of these is a task that exists
+    because the Court's data is published but not delivered.
+  </p>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr><th>Every evening</th><th>Why it is like that</th><th>What it costs</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Open the cause list and read ~60 bench lists</b></td>
+        <td>Lists are split by division and bench, published as separate pages, with no search across them.</td>
+        <td>20–40 minutes, every working evening, done tired.</td>
+      </tr>
+      <tr>
+        <td><b>Recognise your own matters by case number</b></td>
+        <td>The list carries case numbers and parties, not your file references.</td>
+        <td>The failure mode is silent: you scroll past your own case.</td>
+      </tr>
+      <tr>
+        <td><b>Re-check a case's status by hand</b></td>
+        <td>Case history sits behind a JavaScript form, one case at a time.</td>
+        <td>Adjournments and results are found late, or by phone call.</td>
+      </tr>
+      <tr>
+        <td><b>Compute limitation on paper</b></td>
+        <td>Sections 4 and 12 of the Limitation Act 1908 are arithmetic, but fiddly arithmetic — copy time, court closures.</td>
+        <td>The one error class that can end a client's cause of action.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<section>
+  <div class="section-mark">
+    <h2>Thursday evening into Sunday</h2>
+    <span class="tag">The journey</span>
+  </div>
+  <p class="lede">
+    Diamonds on the spine are things <strong>Sabir</strong> does. Circles are
+    things the <strong>software</strong> does while he is not looking — which
+    is most of the value.
+  </p>
+
+  <div class="spine">
+
+    <!-- 1 -->
+    <div class="beat beat--machine">
+      <div class="beat__time">20:30<span class="beat__day">Thu</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">System</span>
+        <h3>The list drops. A cron job notices.</h3>
+        <p>
+          The Court publishes tomorrow's lists. A minute later <code>barrister
+          sweep</code> walks both divisions: one bench-list page each, then one
+          page per sitting bench — about 65 requests, made one at a time, 1.5
+          seconds apart, over roughly 90 seconds.
+        </p>
+        <p>
+          That pacing is the point. The whole product depends on continued
+          access to a small government site that publishes no
+          <code>robots.txt</code>, so the crawler is built to be the least
+          interesting traffic in their logs, and carries a contact address in
+          its User-Agent.
+        </p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="beat beat--machine">
+      <div class="beat__time">20:31<span class="beat__day">Thu</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">System</span>
+        <h3>Two of his matters are on it</h3>
+        <p>
+          Each listing is matched against his watches. Matching folds honorifics
+          and spacing, because the same advocate is
+          <em>Mr. Md. Abu Hanif</em> one day and <em>Md. Abu Hanif</em> the next.
+          It is deliberately generous: a false positive costs ten seconds of
+          reading, a false negative costs a hearing.
+        </p>
+        <p>
+          Because both cases are attached to open files, the alert can name the
+          file rather than leaving him to recognise a bare case number at half
+          past eight at night.
+        </p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="beat">
+      <div class="beat__time">20:32<span class="beat__day">Thu</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">Sabir</span>
+        <h3>His phone buzzes once</h3>
+        <p>
+          One message for the whole day, not one per matter. A barrister with
+          nine listed cases wants one notification, not nine.
+        </p>
+
+        <div class="specimen">
+          <div class="specimen__chrome"><span>Telegram · @ChambersBot</span><span>Specimen</span></div>
+          <div class="specimen__body tg">
+            <div class="tg__bubble">
+              <b>Cause list 24/08/2026: 2 matters listed</b><br><br>
+              • First Appeal 226/2013 &nbsp;<span class="file">[MAT-2026-001]</span><br>
+              <span class="dim">&nbsp;&nbsp; High Court Division — Annex Building Court No. 18<br>
+              &nbsp;&nbsp; Bench: Justice Sheikh Abdul Awal and Justice A. K. M. Rabiul Hassan<br>
+              &nbsp;&nbsp; Serial 10 — Fixing a date of hearing<br>
+              &nbsp;&nbsp; Md. Ruhul Amin and ors. vs Alhaj Md. Aiyub Ali Sikder and ors.<br>
+              &nbsp;&nbsp; Matched: case listed</span><br><br>
+              • First Appeal 171/2017 Manikgonj &nbsp;<span class="file">[MAT-2026-002]</span><br>
+              <span class="dim">&nbsp;&nbsp; Serial 14 — For Hearing &nbsp;·&nbsp; Note: heard in part<br>
+              &nbsp;&nbsp; Matched: listed as advocate — Mr. Md. Abu Hanif</span><br><br>
+              <span class="dim">Source: supremecourt.gov.bd — verify against the official list.</span>
+              <div class="tg__time">20:32</div>
+            </div>
+          </div>
+        </div>
+        <p class="spec-caption">
+          Serial number and section carry most of the information: serial 3
+          “For Judgment” is a completely different evening from serial 3
+          “For Hearing”.
+        </p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="beat">
+      <div class="beat__time">07:10<span class="beat__day">Sun</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">Sabir</span>
+        <h3>Breakfast. He opens the day view.</h3>
+        <p>
+          Four figures, his listings grouped by bench, and what falls due. His
+          own matters carry a rule in the left margin — the way you would mark
+          them on a printed list with a pen, rather than highlighting the row
+          and fighting the text around it.
+        </p>
+
+        <div class="specimen">
+          <div class="specimen__chrome"><span>Web · Today</span><span>Specimen</span></div>
+          <div class="specimen__body">
+            <div class="s-figures">
+              <div class="s-figure"><b>2</b><span>Listed today</span></div>
+              <div class="s-figure"><b class="alert">2</b><span>Due within 7 days</span></div>
+              <div class="s-figure"><b>3</b><span>Open files</span></div>
+              <div class="s-figure"><b>3.25</b><span>Unbilled hours</span></div>
+            </div>
+            <p class="s-rubric">Your listings</p>
+            <div class="s-bench">
+              <b>Annex Building Court No. 18</b>
+              <i>Justice Sheikh Abdul Awal and Justice A. K. M. Rabiul Hassan</i>
+            </div>
+            <div class="s-entry s-entry--mine">
+              <div class="sn">10</div>
+              <div>
+                <span class="cs">First Appeal 226/2013</span><span class="ref">MAT-2026-001</span>
+                <div class="pt">Md. Ruhul Amin and ors.<em>vs</em>Alhaj Md. Aiyub Ali Sikder and ors.</div>
+                <div class="sc">Fixing a date of hearing</div>
+              </div>
+            </div>
+            <div class="s-entry s-entry--mine">
+              <div class="sn">14</div>
+              <div>
+                <span class="cs">First Appeal 171/2017</span><span class="ref">MAT-2026-002</span>
+                <div class="pt">Aradhan Mandal and others<em>vs</em>Dhananjoy Sarker and others</div>
+                <div class="sc">For Hearing</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="spec-caption">
+          Rules rather than cards; serif text with tabular figures so serials
+          and dates align down the page. The reference is the printed cause
+          list, not a dashboard.
+        </p>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="beat">
+      <div class="beat__time">07:40<span class="beat__day">Sun</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">Sabir</span>
+        <h3>The diary catches something overdue</h3>
+        <p>
+          A reply affidavit went past two days ago. It is the only thing on the
+          page in red, which is the whole reason he believes the red.
+        </p>
+
+        <div class="specimen">
+          <div class="specimen__chrome"><span>Web · Diary</span><span>Specimen</span></div>
+          <div class="specimen__body">
+            <div class="s-diary s-diary--urgent">
+              <div class="dt">2026-08-22</div><div class="ct">+2d over</div>
+              <div><b>Reply affidavit</b><span>MAT-2026-003 · Karim Uddin — acquisition writ</span></div>
+            </div>
+            <div class="s-diary s-diary--urgent">
+              <div class="dt">2026-08-28</div><div class="ct">4d</div>
+              <div><b>File paper book supplement</b><span>MAT-2026-001 · Ruhul Amin v Aiyub Ali</span></div>
+            </div>
+            <div class="s-diary">
+              <div class="dt">2026-09-19</div><div class="ct">26d</div>
+              <div><b>File CPLA in the Appellate Division</b><span>MAT-2026-002 · Mandal v Sarker · basis not verified</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="beat">
+      <div class="beat__time">08:15<span class="beat__day">Sun</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">Sabir</span>
+        <h3>Chambers. He needs section 5, exactly.</h3>
+        <p>
+          The overdue affidavit will need a condonation application, so he wants
+          the text of section 5 as it is actually printed — not a paraphrase.
+          A query shaped like a citation is answered by exact lookup first,
+          because a barrister who names a section wants that section, not the
+          ten that mention it.
+        </p>
+
+        <div class="specimen">
+          <div class="specimen__chrome"><span>Web · Statutes</span><span>Specimen</span></div>
+          <div class="specimen__body">
+            <div class="s-prov">
+              <div class="cit">Section 5, The Limitation Act, 1908 · Part II</div>
+              <h4>Extension of period in certain cases</h4>
+              <p>
+                5. Any appeal or application for a revision or a review of judgment
+                or for leave to appeal or any other application to which this
+                section may be made applicable by or under any enactment for the
+                time being in force may be admitted after the period of limitation
+                prescribed therefor, when the appellant or applicant satisfies the
+                Court that he had sufficient cause for not preferring the appeal or
+                making the application within such period.
+              </p>
+              <div class="src">bdlaws.minlaw.gov.bd/act-88/section-6447.html</div>
+            </div>
+          </div>
+        </div>
+        <p class="spec-caption">
+          Retrieved, never generated. No model sits between the Bangladesh Code
+          and the screen — which is exactly why statute lookup could ship on day
+          one while case-law answers cannot.
+        </p>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="beat">
+      <div class="beat__time">08:40<span class="beat__day">Sun</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">Sabir</span>
+        <h3>He checks a deadline he already computed on paper</h3>
+        <p>
+          Ninety days from a judgment of 15 January, with the certified copy
+          applied for on the 20th and ready on 3 February. The answer is not the
+          product; the working is. A limitation figure you cannot audit is a
+          figure you cannot file on.
+        </p>
+
+        <div class="specimen">
+          <div class="specimen__chrome"><span>Web · Limitation</span><span>Specimen</span></div>
+          <div class="specimen__body">
+            <div class="s-working">
+              <div class="ans">2026-04-30</div>
+              <div class="sub">Thursday · 15 days later than the naïve answer</div>
+              <div class="s-step"><div class="r">s. 12(2)</div><div>Exclude the day judgment was pronounced (2026-01-15)</div></div>
+              <div class="s-step"><div class="r">period</div><div>Add the prescribed period of 90 days <span class="v">→ 2026-04-15</span></div></div>
+              <div class="s-step"><div class="r">s. 12(2)</div><div>Exclude 15 days requisite for the decree copy (2026-01-20 to 2026-02-03)</div></div>
+              <div class="s-step"><div class="r">s. 12</div><div>Add back 15 excluded days <span class="v">→ 2026-04-30</span></div></div>
+              <div class="s-caveat">
+                <b>Note</b>
+                If this period has expired, s. 5 may still permit admission on
+                sufficient cause — that is a matter of judgment, not computation.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="beat">
+      <div class="beat__time">09:20<span class="beat__day">Sun</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">Sabir</span>
+        <h3>He drafts the condonation application</h3>
+        <p>
+          He pastes in the facts and the prayer. The template supplies the
+          cause title, the <em>SHEWETH</em>, the numbered grounds, the prayer in
+          Roman numerals and the closing — that shape is fixed by convention and
+          is not something a model should re-invent per document. The model
+          writes the narrative paragraphs, and nothing else.
+        </p>
+        <p>
+          A citation appears that he did not supply. The draft still renders;
+          the citation is flagged at the top of it.
+        </p>
+
+        <div class="specimen">
+          <div class="specimen__chrome"><span>Web · Drafting</span><span>Specimen</span></div>
+          <div class="specimen__body">
+            <div class="s-caveat" style="margin-top:0">
+              <b>Check before filing</b>
+              UNVERIFIED CITATION in the draft: <code>'45 DLR (AD) 123'</code>.
+              It was not among the authorities you supplied — check it against
+              the report before filing.
+            </div>
+          </div>
+        </div>
+        <p class="spec-caption">
+          Global legal tools with fully licensed corpora still hallucinate
+          citations 17–33% of the time. This product has no case-law corpus at
+          all, so the only defensible position is to cite nothing the barrister
+          did not hand it.
+        </p>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="beat">
+      <div class="beat__time">10:30<span class="beat__day">Sun</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">Sabir</span>
+        <h3>Court. He takes a printout.</h3>
+        <p>
+          The bench list prints black on white, without navigation or form
+          controls, with page breaks that never split a matter across two sheets.
+          Barristers print things and carry them into court; a web page that
+          prints badly is a web page that gets replaced by the Court's own
+          printout.
+        </p>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="beat">
+      <div class="beat__time">16:05<span class="beat__day">Sun</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">Sabir</span>
+        <h3>Back in chambers, he logs the day without opening anything</h3>
+        <p>
+          Time recording fails when it needs a browser tab. In the thread that
+          already buzzed at him last night, two lines cover it.
+        </p>
+
+        <div class="specimen">
+          <div class="specimen__chrome"><span>Telegram · @ChambersBot</span><span>Specimen</span></div>
+          <div class="specimen__body tg">
+            <div class="tg__cmd">/time MAT-2026-001 150 Settling grounds of appeal</div>
+            <div class="tg__bubble" style="margin-top:.6rem">
+              Logged 150m on <span class="file">MAT-2026-001</span> — 3.5h total.
+              <div class="tg__time">16:05</div>
+            </div>
+            <div class="tg__cmd">/note MAT-2026-001 Court fixed 07.09 for hearing</div>
+            <div class="tg__bubble" style="margin-top:.6rem">
+              Noted on <span class="file">MAT-2026-001</span>.
+              <div class="tg__time">16:06</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="beat beat--machine">
+      <div class="beat__time">06:00<span class="beat__day">Fri +5</span></div>
+      <div class="beat__rail"></div>
+      <div class="beat__body">
+        <span class="actor">System</span>
+        <h3>A result appears on a case he had stopped thinking about</h3>
+        <p>
+          The weekly re-check finds that hearing 22 now carries a result. The
+          tracker compares parsed hearings rather than page bytes, so a
+          re-render or a rotating banner never wakes him — only three things do:
+          a new listing, a result recorded where there was none, and a result
+          amended.
+        </p>
+
+        <div class="specimen">
+          <div class="specimen__chrome"><span>Telegram · @ChambersBot</span><span>Specimen</span></div>
+          <div class="specimen__body tg">
+            <div class="tg__bubble">
+              <b>First Appeal 226/2013: 2 updates</b><br><br>
+              • <b>Result recorded:</b> 24/08/26 — Annex Building Court No. 18
+              — result: <b>Adjourned till 07.09.2026</b><br>
+              <span class="dim">&nbsp;&nbsp; Bench: Justice Sheikh Abdul Awal, Justice A. K. M. Rabiul Hassan</span><br><br>
+              • <b>New listing:</b> 07/09/26 — Annex Building Court No. 18
+              <div class="tg__time">06:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<section>
+  <div class="section-mark">
+    <h2>One core, four ways in</h2>
+    <span class="tag">Shape</span>
+  </div>
+  <p class="lede">
+    Sabir touched the product through Telegram, a browser and a cron job in a
+    single week, and never noticed a seam — because matching, diffing and
+    limitation logic exist <strong>exactly once</strong>. A surface that grew
+    its own copy of “does this listing belong to me?” would be a surface that
+    quietly disagreed with the others.
+  </p>
+
+  <figure>
+    <div class="dia-frame">
+      <svg viewBox="0 0 760 330" role="img" aria-labelledby="dia1t">
+        <title id="dia1t">Four front ends over one shared service layer, over one SQLite file, fed by two scraped sources</title>
+        <g font-family="Azeret Mono, monospace" font-size="10.5" fill="var(--ink)">
+
+          <!-- sources -->
+          <rect x="120" y="8" width="200" height="34" fill="none" stroke="var(--ink-3)" stroke-dasharray="3 3"/>
+          <text x="220" y="24" text-anchor="middle" fill="var(--ink-2)">supremecourt.gov.bd</text>
+          <text x="220" y="36" text-anchor="middle" fill="var(--ink-3)" font-size="9">no API · no robots.txt</text>
+
+          <rect x="440" y="8" width="200" height="34" fill="none" stroke="var(--ink-3)" stroke-dasharray="3 3"/>
+          <text x="540" y="24" text-anchor="middle" fill="var(--ink-2)">bdlaws.minlaw.gov.bd</text>
+          <text x="540" y="36" text-anchor="middle" fill="var(--ink-3)" font-size="9">UTF-16 · official Code</text>
+
+          <path d="M220 42 L220 62 L380 62 L380 76" fill="none" stroke="var(--ink-3)"/>
+          <path d="M540 42 L540 62 L380 62" fill="none" stroke="var(--ink-3)"/>
+
+          <!-- politeness layer -->
+          <rect x="180" y="76" width="400" height="30" fill="none" stroke="var(--spine)" stroke-width="2"/>
+          <text x="380" y="95" text-anchor="middle" fill="var(--spine)" font-weight="600">http.py — serial · rate-limited · cached · named</text>
+
+          <path d="M380 106 L380 124" fill="none" stroke="var(--ink-3)"/>
+
+          <!-- scrapers -->
+          <rect x="120" y="124" width="520" height="28" fill="none" stroke="var(--hair)"/>
+          <text x="380" y="142" text-anchor="middle" fill="var(--ink-2)">scrapers — HTML in, dataclasses out, no side effects</text>
+
+          <path d="M380 152 L380 170" fill="none" stroke="var(--ink-3)"/>
+
+          <!-- services -->
+          <rect x="60" y="170" width="640" height="46" fill="var(--panel)" stroke="var(--system)" stroke-width="2"/>
+          <text x="380" y="188" text-anchor="middle" fill="var(--system)" font-weight="600">services — matching · watchlist · tracker · statutes</text>
+          <text x="380" y="205" text-anchor="middle" fill="var(--system)" font-weight="600">limitation · matters · drafting · notify</text>
+
+          <path d="M380 216 L380 234" fill="none" stroke="var(--ink-3)"/>
+
+          <!-- db -->
+          <rect x="290" y="234" width="180" height="26" fill="none" stroke="var(--ink)"/>
+          <text x="380" y="251" text-anchor="middle" font-weight="600">one SQLite file</text>
+
+          <!-- surfaces -->
+          <path d="M380 260 L380 274 M110 274 L650 274" fill="none" stroke="var(--ink-3)"/>
+          <path d="M110 274 L110 288 M290 274 L290 288 M470 274 L470 288 M650 274 L650 288" fill="none" stroke="var(--ink-3)"/>
+
+          <rect x="45" y="288" width="130" height="30" fill="none" stroke="var(--ink)"/>
+          <text x="110" y="303" text-anchor="middle">CLI</text>
+          <text x="110" y="313" text-anchor="middle" font-size="8.5" fill="var(--ink-3)">cron + terminal</text>
+
+          <rect x="225" y="288" width="130" height="30" fill="none" stroke="var(--ink)"/>
+          <text x="290" y="303" text-anchor="middle">JSON API</text>
+          <text x="290" y="313" text-anchor="middle" font-size="8.5" fill="var(--ink-3)">integrations</text>
+
+          <rect x="405" y="288" width="130" height="30" fill="none" stroke="var(--ink)"/>
+          <text x="470" y="303" text-anchor="middle">Web UI</text>
+          <text x="470" y="313" text-anchor="middle" font-size="8.5" fill="var(--ink-3)">server-rendered</text>
+
+          <rect x="585" y="288" width="130" height="30" fill="none" stroke="var(--ink)"/>
+          <text x="650" y="303" text-anchor="middle">Telegram</text>
+          <text x="650" y="313" text-anchor="middle" font-size="8.5" fill="var(--ink-3)">long polling</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>
+      The brass band is the only place the product talks to the outside world;
+      the teal band is the only place it decides anything.
+    </figcaption>
+  </figure>
+</section>
+
+<!-- =============================================================== -->
+<section>
+  <div class="section-mark">
+    <h2>Where it says no</h2>
+    <span class="tag">Trust</span>
+  </div>
+  <p class="lede">
+    The hardest design decisions in this product are the four places it declines
+    to answer. Citation accuracy is the core engineering problem in legal AI —
+    tools with licensed corpora still get it wrong a third of the time — and a
+    practitioner who catches the software being confidently wrong once does not
+    come back. <strong>Every refusal below is load-bearing.</strong>
+  </p>
+
+  <div class="refusals">
+    <div class="refusal">
+      <p class="refusal__q">“What is the limitation period for this appeal?”</p>
+      <p class="refusal__a">
+        The First Schedule's 183 articles exist only as a PDF table. They were
+        machine-extracted, and the extraction is visibly imperfect — some
+        articles still carry their neighbour's text. So none of them is trusted.
+      </p>
+      <p class="refusal__out">UnverifiedRuleError: Schedule article 152 has not been verified by a lawyer. Check it against bdlaws and set "verified": true.</p>
+    </div>
+
+    <div class="refusal">
+      <p class="refusal__q">“Find me authority for this proposition.”</p>
+      <p class="refusal__a">
+        DLR, BLD, BLC, BLT and MLR are paywalled with no public API. There is no
+        corpus, so there is no grounding, so there is no answer — and the
+        drafting prompt forbids citing anything the barrister did not supply.
+      </p>
+      <p class="refusal__out">[AUTHORITY TO BE SUPPLIED]</p>
+    </div>
+
+    <div class="refusal">
+      <p class="refusal__q">“Fill in the facts I didn't give you.”</p>
+      <p class="refusal__a">
+        A drafting model that invents a date, a sum or a procedural step
+        produces a document that reads perfectly and is wrong. Gaps are marked,
+        never closed.
+      </p>
+      <p class="refusal__out">[TO BE SUPPLIED: date of service of the impugned notice]</p>
+    </div>
+
+    <div class="refusal">
+      <p class="refusal__q">“Was this delay condonable?”</p>
+      <p class="refusal__a">
+        Section 5 turns on “sufficient cause”, which is judgment, not
+        arithmetic. The calculator reports the period as expired and stops
+        there, with a pointer to the section.
+      </p>
+      <p class="refusal__out">If this period has expired, s. 5 may still permit admission on sufficient cause — that is a matter of judgment, not computation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<section>
+  <div class="section-mark">
+    <h2>What is still open</h2>
+    <span class="tag">Seams</span>
+  </div>
+  <p class="lede">
+    Honest status. These are not future features — they are things this build
+    depends on that a human still has to do.
+  </p>
+
+  <div class="seam">
+    <div class="seam__box"></div>
+    <div>
+      <b>93 limitation articles await verification</b>
+      <p>
+        The extractor and the review queue exist (<code>barrister
+        review-queue</code>); the reading does not. Until an article is checked
+        and flipped, the calculator refuses it. This is knowledge-encoding work
+        only a lawyer can do.
+      </p>
+    </div>
+  </div>
+
+  <div class="seam">
+    <div class="seam__box"></div>
+    <div>
+      <b>Terms of use on both sites have not been read</b>
+      <p>
+        Neither publishes a <code>robots.txt</code> — that was checked, and both
+        return 404. That is the absence of a machine-readable restriction, not
+        the presence of permission. Reading the published terms, and emailing
+        the Court's IT contact before running the sweep on a schedule, is
+        outstanding.
+      </p>
+    </div>
+  </div>
+
+  <div class="seam">
+    <div class="seam__box"></div>
+    <div>
+      <b>Bar Council rules on solicitation are unchecked</b>
+      <p>
+        Everything built so far is inward-facing practice software — a
+        barrister's own list, own cases, own files — which keeps clear of the
+        obvious problem. That is a description of the code, not a legal opinion,
+        and it stops being sufficient the day this is sold to other chambers.
+      </p>
+    </div>
+  </div>
+
+  <div class="seam">
+    <div class="seam__box"></div>
+    <div>
+      <b>The web UI has no authentication</b>
+      <p>
+        Single-tenant by design; bind it to localhost or put it behind an
+        authenticating proxy. The schema is already per-user throughout, so
+        adding login later is a form, not a migration.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<footer class="end">
+  <p>
+    <b>Barrister Tools</b> — Roadmap Tier 0 and Tier 1, built as one product.
+    309 tests, none of which touch the network: every parser runs against real
+    pages saved from the live sites, so a change to the Court's markup is caught
+    against what it actually serves rather than against a mock.
+  </p>
+  <p>
+    Cause lists and case histories from
+    <a href="https://www.supremecourt.gov.bd/web/">supremecourt.gov.bd</a>;
+    statute text from
+    <a href="http://bdlaws.minlaw.gov.bd/">bdlaws.minlaw.gov.bd</a>,
+    reproduced verbatim.
+    Everything the product produces is a working aid, not advice.
+  </p>
+</footer>
+
+</div>

@@ -32,6 +32,7 @@ against.
 
 | Document | What it covers |
 |---|---|
+| [`docs/JOURNEY.md`](docs/JOURNEY.md) | **The Night Before** — a barrister's week through the product, with screen designs |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | How the pieces fit and why each decision was made |
 | [`docs/API.md`](docs/API.md) | Every JSON endpoint and web route |
 | [`docs/OPERATIONS.md`](docs/OPERATIONS.md) | Install, cron, systemd, backup, what to do when it breaks |
