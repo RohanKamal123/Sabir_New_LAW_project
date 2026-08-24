@@ -316,3 +316,36 @@ class TestSchemaUpgrade:
         columns = {row["name"] for row in conn.execute("PRAGMA table_info(cause_list_entries)")}
         assert "petitioner" in columns
         conn.close()
+
+
+class TestDemoSeed:
+    """The demo seed script must keep producing a database the UI can render.
+
+    Driven through its real command-line entry point against a throwaway data
+    dir, so the test exercises exactly what a user runs.
+    """
+
+    def test_seed_builds_a_usable_practice(self, tmp_path):
+        import subprocess
+        import sys
+        from pathlib import Path
+
+        repo = Path(__file__).resolve().parent.parent
+        result = subprocess.run(
+            [sys.executable, "tools/seed_demo.py", "--reset", "--data-dir", str(tmp_path)],
+            cwd=repo, capture_output=True, text=True, timeout=120,
+        )
+        assert result.returncode == 0, result.stderr
+
+        from barrister.db import session
+        from barrister.services import matters as matters_mod
+
+        with session(tmp_path / "barrister.db") as conn:
+            user = conn.execute("SELECT id FROM users LIMIT 1").fetchone()
+            assert user is not None, "seed created no user"
+            assert len(matters_mod.list_matters(conn, int(user["id"]))) >= 3
+            # Today-dated listings are what makes the dashboard show rows.
+            listed = conn.execute(
+                "SELECT COUNT(*) AS n FROM cause_list_entries"
+            ).fetchone()["n"]
+            assert listed >= 1

@@ -41,6 +41,11 @@ from pathlib import Path
 # before any barrister module is imported.
 ROOT = Path(__file__).resolve().parent.parent
 
+# Make `barrister` importable when this is run as a bare script from the repo
+# root (python tools/seed_demo.py) without the package installed.
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(

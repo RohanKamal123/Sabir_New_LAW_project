@@ -13,3 +13,4 @@ venv/
 *.db-shm
 http-cache/
 .env
+.demodata/

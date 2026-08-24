@@ -32,6 +32,8 @@ against.
 
 | Document | What it covers |
 |---|---|
+| [`docs/PRD.md`](docs/PRD.md) | Product requirements — problem, scope, acceptance, risks |
+| [`docs/MANUAL_TESTING.md`](docs/MANUAL_TESTING.md) | How to run it and try every feature by hand |
 | [`docs/JOURNEY.md`](docs/JOURNEY.md) | **The Night Before** — a barrister's week through the product, with screen designs |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | How the pieces fit and why each decision was made |
 | [`docs/API.md`](docs/API.md) | Every JSON endpoint and web route |
@@ -46,6 +48,20 @@ against.
 pip install -r requirements.txt
 export BARRISTER_CONTACT_EMAIL="you@chambers.test"   # please set this
 ```
+
+## Try it in one minute
+
+Seed a throwaway database from the committed fixtures (no network needed), then
+open the web UI:
+
+```bash
+python3 tools/seed_demo.py --reset      # builds <repo>/.demodata from fixtures
+python3 tools/run_demo.py               # serves it on http://127.0.0.1:8000
+```
+
+You are logged in as a demo barrister with three files, two listed today, a
+synced statute and an overdue deadline. Full walkthrough — CLI, live scraping,
+the bot, the drafting model — in [`docs/MANUAL_TESTING.md`](docs/MANUAL_TESTING.md).
 
 ## The wedge: cause-list alerts
 

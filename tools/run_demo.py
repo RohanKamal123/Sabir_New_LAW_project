@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -28,6 +29,14 @@ def main() -> int:
 
     os.environ.setdefault("BARRISTER_DATA_DIR", str(Path(args.data_dir).resolve()))
     os.environ.setdefault("BARRISTER_CONTACT_EMAIL", "sabir@rahman.test")
+
+    # uvicorn imports "barrister.api:app" by string, so the repo root must be on
+    # the path both here and in any worker uvicorn may spawn.
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    os.environ["PYTHONPATH"] = os.pathsep.join(
+        filter(None, [str(ROOT), os.environ.get("PYTHONPATH", "")])
+    )
 
     import uvicorn
 
