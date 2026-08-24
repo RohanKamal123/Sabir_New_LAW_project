@@ -4,85 +4,238 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Legal Domain Knowledge — Barrister Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&display=swap">
 <style>
+/* ===================================================================
+   Legal Domain Knowledge — redesign
+   ----------------------------------------------------------------
+   A narrative / field-guide document, so it joins the project's
+   narrative family (presentation.html, journey/the-night-before.html):
+   cool slate ground, indigo ink, and a 3-accent semantic palette.
+   The product's OWN warm-paper language appears only inside the framed
+   .specimen (the cause list), so the two voices never get confused.
+
+   Accent semantics (load-bearing, not decoration):
+     brass  --spine   = references: section serials, glossary terms,
+                        statute citations, case-number chips
+     teal   --system  = machine / product actions: feature numbers,
+                        Q&A labels, actor "System" in the week
+     vermilion--alarm = refusals & warnings: the ▲ marks and spines
+                        (text that must say "no" stays oxblood, so the
+                        product's "trust the red" rule survives)
+
+   Accessibility: every text-size colour pair is chosen ≥7:1; accents
+   used only as large text or graphics are ≥3:1. Tertiary "faint" text
+   is darkened (#3d4554) to clear 7:1, with hierarchy carried by size,
+   weight and letter-spacing rather than by lightness.
+   =================================================================== */
 :root {
-  --paper:#f6f3ec; --paper-raised:#fbf9f4; --paper-sunk:#efeade;
-  --ink:#22201c; --ink-muted:#5f5a51; --ink-faint:#8b8478;
-  --rule:#d6cfc0; --rule-heavy:#2a2722; --oxblood:#8a2b2b; --ink-blue:#1f3f66;
-  --serif: Georgia, "Times New Roman", Times, serif;
-  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --sans: Helvetica, Arial, sans-serif;
+  /* narrative palette */
+  --ground:   #e7eaee;
+  --ground-2: #dce0e6;
+  --panel:    #f3f5f8;
+  --ink:      #161b2b;
+  --ink-2:    #3f4759;
+  --ink-3:    #3d4554;
+  --hair:     #c3c9d2;
+  --spine:    #9c6c25;   /* brass — large text / graphics only (≥3:1) */
+  --ref:      #5d3f0e;   /* dark brass — references in text (≥7:1) */
+  --ref-tint: #f0ead9;
+  --system:   #14514f;   /* teal — machine actions (≥7:1) */
+  --alarm:    #b23a2b;   /* vermilion — ▲ mark + spines (graphics) */
+  --oxblood:  #8a2b2b;   /* refusal text (≥7:1 on slate) */
+
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: Charter, "Iowan Old Style", Palatino, "Palatino Linotype", "Book Antiqua", "Liberation Serif", serif;
+  --mono: ui-monospace, "SF Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+
+  /* the product's own warm-paper language — used only inside .specimen */
+  --p-paper: #f6f3ec;
+  --p-raised:#fbf9f4;
+  --p-sunk:  #efeade;
+  --p-ink:   #22201c;
+  --p-muted: #4f4a42;
+  --p-rule:  #d6cfc0;
+  --p-heavy: #2a2722;
+  --p-ox:    #8a2b2b;
 }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body {
-  margin:0; background:var(--paper); color:var(--ink);
-  font-family:var(--serif); font-size:17px; line-height:1.62;
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--body); font-size:17px; line-height:1.62;
   font-variant-numeric: tabular-nums;
 }
 .wrap { max-width:880px; margin:0 auto; padding:0 24px 80px; }
-/* Masthead */
-.masthead {
-  border-bottom:3px double var(--rule-heavy); padding:34px 24px 20px; margin-bottom:8px;
+
+/* ---- masthead ---- */
+.masthead { padding:56px 24px 30px; }
+.masthead .eyebrow {
+  font-family:var(--mono); font-size:12px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--spine); margin:0 0 18px;
 }
-.masthead .doc { font-family:var(--sans); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 10px; }
-.masthead h1 { font-size:34px; line-height:1.15; margin:0 0 6px; }
-.masthead .sub { font-size:18px; color:var(--ink-muted); margin:0; font-style:italic; }
-.masthead .meta { font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin-top:14px; }
-/* Nav */
-nav { position:sticky; top:0; background:var(--paper); border-bottom:1px solid var(--rule); padding:10px 0; z-index:5; }
-nav .wrap { padding:0 24px; display:flex; flex-wrap:wrap; gap:4px 18px; }
-nav a { font-family:var(--sans); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-blue); text-decoration:none; }
-nav a:hover { text-decoration:underline; }
-/* Sections */
-h2 {
-  font-size:24px; margin:56px 0 6px; padding-top:18px; border-top:1px solid var(--rule-heavy);
-  display:flex; align-items:baseline; gap:12px;
+.masthead h1 {
+  font-family:var(--display); font-weight:800;
+  font-size:clamp(30px,5vw,46px); line-height:1.02; letter-spacing:-.02em;
+  margin:0 0 18px; text-wrap:balance;
 }
-h2 .no { font-family:var(--mono); font-size:15px; color:var(--oxblood); }
-h2 + .lead { color:var(--ink-muted); font-style:italic; margin-top:2px; }
-h3 { font-size:18px; margin:28px 0 4px; }
-p { margin:10px 0; }
-ul, ol { margin:10px 0; padding-left:24px; }
-li { margin:6px 0; }
-a { color:var(--ink-blue); }
-code { font-family:var(--mono); font-size:.9em; background:var(--paper-sunk); padding:0 3px; border-radius:2px; }
-/* Glossary table */
-table { width:100%; border-collapse:collapse; margin:16px 0; font-size:15.5px; }
-th, td { text-align:left; vertical-align:top; padding:9px 10px; border-bottom:1px solid var(--rule); }
-th { font-family:var(--sans); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); border-bottom:1px solid var(--rule-heavy); }
-td.term { font-family:var(--mono); font-size:.92em; color:var(--ink); width:26%; white-space:nowrap; }
-/* Feature cards */
-.feature { border-top:1px solid var(--rule); padding:20px 0 6px; }
-.feature:first-of-type { border-top:none; }
-.feature h3 { display:flex; align-items:baseline; gap:10px; margin:0 0 2px; }
-.feature h3 .n { font-family:var(--mono); font-size:13px; color:var(--oxblood); }
-.feature .screen { font-family:var(--sans); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); }
-.map { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
-.map div { background:var(--paper-raised); border:1px solid var(--rule); padding:12px 14px; border-radius:2px; }
-.map .k { font-family:var(--sans); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint); display:block; margin-bottom:4px; }
-.map .s { color:var(--ink-muted); font-size:15px; }
-/* Callouts */
-.caveat { border-left:3px solid var(--oxblood); background:var(--paper-sunk); padding:12px 16px; margin:16px 0; }
-.caveat .k { font-family:var(--sans); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--oxblood); display:block; margin-bottom:4px; }
-/* Week timeline */
-.beat { border-left:1px solid var(--rule-heavy); margin-left:8px; padding:0 0 18px 22px; position:relative; }
-.beat:before { content:""; position:absolute; left:-5px; top:4px; width:9px; height:9px; background:var(--oxblood); border-radius:50%; }
-.beat .t { font-family:var(--mono); font-size:13px; color:var(--oxblood); }
-.beat .a { font-family:var(--sans); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); }
-/* Footer */
-footer { margin-top:64px; padding-top:16px; border-top:1px solid var(--rule-heavy); font-size:13px; color:var(--ink-faint); font-family:var(--sans); }
-@media (max-width:640px){ .map{grid-template-columns:1fr;} body{font-size:16px;} .masthead h1{font-size:27px;} }
-@media print { nav{display:none;} .wrap{padding:0;} body{background:#fff;} a{color:inherit;text-decoration:none;} .feature, h2{page-break-inside:avoid;} }
+.masthead h1 .prod { color:var(--spine); }
+.masthead .standfirst {
+  font-family:var(--display); font-weight:500;
+  font-size:clamp(17px,2vw,20px); line-height:1.45; color:var(--ink);
+  max-width:38em; margin:0;
+}
+.masthead .meta {
+  font-family:var(--mono); font-size:12px; color:var(--ink-3);
+  margin:22px 0 0; padding-top:14px; border-top:1px solid var(--hair);
+}
+
+/* ---- nav ---- */
+nav { position:sticky; top:0; background:rgba(231,234,238,.92); backdrop-filter:blur(4px); border-bottom:1px solid var(--hair); z-index:6; }
+nav .wrap { display:flex; flex-wrap:wrap; gap:4px 18px; padding:12px 24px; max-width:880px; margin:0 auto; }
+nav a { font-family:var(--display); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-2); text-decoration:none; }
+nav a:hover { color:var(--spine); }
+
+/* ---- section heads: serial gutter + brass side stripe ---- */
+.sec {
+  position:relative; display:grid; grid-template-columns:64px 1fr; gap:0 22px;
+  align-items:baseline; margin:72px 0 6px; padding:22px 0 0 20px;
+  border-top:3px solid var(--spine);
+}
+.sec:before { content:""; position:absolute; left:0; top:24px; bottom:24px; width:5px; background:var(--spine); }
+.sec .no { font-family:var(--mono); font-size:24px; font-weight:600; color:var(--spine); line-height:1; text-align:right; }
+.sec .txt { font-family:var(--display); font-weight:700; font-size:clamp(22px,3vw,28px); line-height:1.12; letter-spacing:-.01em; color:var(--ink); }
+.lede { font-family:var(--display); font-weight:500; font-size:16px; line-height:1.5; color:var(--ink); margin:8px 0 22px; max-width:46em; }
+
+h3 { font-family:var(--display); font-weight:700; font-size:20px; margin:30px 0 6px; color:var(--ink); }
+p { margin:11px 0; }
+ul, ol { margin:11px 0; padding-left:26px; }
+li { margin:7px 0; }
+a { color:var(--system); }
+code { font-family:var(--mono); font-size:.88em; background:var(--ground-2); padding:0 4px; border-radius:2px; }
+
+/* ---- legal references & case numbers ---- */
+.ref { font-variant:small-caps; letter-spacing:.02em; color:var(--ref); font-weight:600; }
+.casenum {
+  font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.86em;
+  background:var(--ref-tint); color:var(--ref); padding:0 5px; border-radius:2px;
+  white-space:nowrap; border:1px solid rgba(93,63,14,.25);
+}
+/* ---- glossary table ---- */
+table { width:100%; border-collapse:collapse; margin:18px 0; font-size:15.5px; }
+th, td { text-align:left; vertical-align:top; padding:9px 10px; border-bottom:1px solid var(--hair); }
+th { font-family:var(--display); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); border-bottom:1px solid var(--ink); }
+td.term { font-family:var(--mono); font-size:.92em; color:var(--ref); width:26%; font-weight:600; }
+
+/* ---- features (Q&A) ---- */
+.feature { margin-top:46px; padding-top:20px; border-top:1px solid var(--hair); }
+.feature:first-of-type { border-top:none; margin-top:8px; }
+.feature h3 { display:flex; align-items:baseline; gap:10px; margin:0 0 2px; font-size:22px; }
+.feature h3 .n { font-family:var(--mono); font-size:14px; color:var(--system); font-weight:600; }
+.feature .screen { font-family:var(--mono); font-size:12px; letter-spacing:.05em; color:var(--ink-3); margin:0 0 12px; }
+.feature .ask {
+  font-family:var(--display); font-weight:600; font-size:17px; color:var(--ink);
+  margin:16px 0 2px; padding-left:16px; border-left:3px solid var(--system);
+}
+.feature .ask:before { content:"Q.  "; color:var(--oxblood); }
+.qa { display:grid; gap:0; margin-top:6px; }
+.qa .row { display:grid; grid-template-columns:150px 1fr; gap:2px 16px; border-top:1px solid var(--hair); padding:9px 0; align-items:baseline; }
+.qa .k { font-family:var(--display); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--system); font-weight:600; }
+.qa .v { margin:0; font-size:15.5px; color:var(--ink-2); }
+
+/* ---- caveats: full-height spine + ▲ mark, pull-quote (no box) ---- */
+.caveat { position:relative; margin:24px 0 24px 8px; padding:4px 0 6px 26px; border-left:4px solid var(--alarm); }
+.caveat:before { content:"▲"; position:absolute; left:-6px; top:-6px; transform:translateX(-100%); color:var(--alarm); font-size:22px; line-height:1; }
+.caveat .ck { font-family:var(--display); font-weight:700; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--oxblood); margin:0 0 8px; }
+.caveat .cd { font-size:18.5px; line-height:1.55; margin:0; color:var(--ink); }
+
+/* ---- cause-list as a true table (columns, not stacked rows) ---- */
+.spec-table { width:100%; border-collapse:collapse; background:var(--p-paper); color:var(--p-ink); border:1px solid var(--p-rule); margin:6px 0; font-size:13px; }
+.spec-table th { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--p-ox); text-align:left; padding:8px 10px; border-bottom:3px double var(--p-heavy); background:var(--p-raised); }
+.spec-table td { padding:9px 10px; border-bottom:1px solid var(--p-rule); vertical-align:top; }
+.spec-table tr:last-child td { border-bottom:none; }
+.spec-table td.sn { font-family:var(--mono); white-space:nowrap; }
+.spec-table tr.mine td { border-left:3px solid var(--p-ox); background:var(--p-sunk); }
+.spec-table .adv { color:var(--p-ink); }
+.spec-table .muted { color:var(--p-muted); }
+
+/* ---- terminology relationship panel ---- */
+.termpanel { font-family:var(--mono); font-size:14px; line-height:1.7; background:var(--panel); border:1px solid var(--hair); border-left:4px solid var(--spine); padding:18px 20px; margin:18px 0; color:var(--ink); overflow-x:auto; }
+.termpanel .root { font-weight:700; color:var(--ref); }
+.termpanel .lbl { color:var(--system); font-weight:600; }
+.termpanel .note { font-family:var(--body); font-size:14.5px; color:var(--ink-3); margin-top:10px; }
+
+/* ---- verification-status specimen ---- */
+.verify { display:grid; gap:10px; margin:18px 0 6px; }
+.verify .vrow { display:flex; gap:12px; align-items:baseline; padding:10px 12px; border:1px solid var(--p-rule); background:var(--p-paper); color:var(--p-ink); border-radius:2px; font-size:14px; }
+.verify .vrow--unv { background:var(--p-sunk); color:var(--p-muted); }
+.verify .vrow--unv .sn { color:var(--p-muted); }
+.verify .badge { font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding:2px 7px; border-radius:2px; white-space:nowrap; }
+.verify .badge--unv { background:rgba(138,43,43,.12); color:var(--p-ox); border:1px solid rgba(138,43,43,.35); }
+.verify .badge--ok { background:rgba(20,81,79,.12); color:var(--system); border:1px solid rgba(20,81,79,.35); }
+.verify .sn { font-family:var(--mono); font-size:13px; color:var(--p-ink); min-width:70px; }
+
+/* ---- cause-list specimen (the product's own warm-paper voice) ---- */
+.specimen { background:var(--p-paper); color:var(--p-ink); border:1px solid var(--p-rule); border-radius:2px; margin:24px 0 6px; box-shadow:0 12px 34px rgba(20,20,20,.12); }
+.spec-head { border-bottom:3px double var(--p-heavy); padding:12px 16px; font-family:var(--mono); }
+.spec-head .sd { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--p-ox); }
+.spec-head .st { display:block; font-size:16px; margin-top:3px; color:var(--p-ink); }
+.spec-row { display:flex; gap:12px; align-items:baseline; padding:9px 16px; border-bottom:1px solid var(--p-rule); }
+.spec-row:last-child { border-bottom:none; }
+.spec-row .s { font-family:var(--mono); font-size:12px; color:var(--p-ox); min-width:30px; }
+.spec-row .c { flex:1; min-width:0; }
+.spec-row .sn { font-family:var(--mono); font-size:13px; color:var(--p-ink); }
+.spec-row .who { color:var(--p-muted); font-size:13px; display:block; }
+.spec-row .stat { font-family:var(--mono); font-size:11px; letter-spacing:.03em; color:var(--p-muted); text-align:right; white-space:nowrap; }
+.spec-row--mine { border-left:3px solid var(--p-ox); }
+.spec-cap { font-family:var(--mono); font-size:12px; color:var(--ink-3); margin:10px 0 26px; }
+
+/* ---- week timeline ---- */
+.beat { display:grid; grid-template-columns:96px 1fr; gap:2px 18px; padding:12px 0 12px 16px; border-top:1px solid var(--hair); position:relative; }
+.beat:before { content:""; position:absolute; left:0; top:0; bottom:0; width:4px; }
+.beat:first-child { border-top:none; }
+.beat .t { font-family:var(--mono); font-size:13px; color:var(--ink-3); }
+.beat .who { display:block; margin-bottom:2px; font-family:var(--display); font-size:11px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; }
+.beat p { margin:0; }
+.beat .tag { font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-3); margin-right:9px; }
+.beat--sys:before { background:var(--system); }
+.beat--sys .who { color:var(--system); }
+.beat--sb:before { background:var(--ink); }
+.beat--sb .who { color:var(--ink); }
+.beat--court:before { background:var(--spine); }
+.beat--court .who { color:var(--spine); }
+
+/* ---- footer ---- */
+footer { margin-top:72px; padding:18px 24px 26px; border-top:1px solid var(--ink); font-family:var(--mono); font-size:12px; color:var(--ink-3); }
+footer .wrap { max-width:880px; margin:0 auto; padding:0; }
+
+@media (max-width:640px){
+  body { font-size:16px; }
+  .sec { grid-template-columns:48px 1fr; gap:0 12px; }
+  .qa .row { grid-template-columns:1fr; gap:2px; }
+  .beat { grid-template-columns:1fr; gap:2px; }
+  .spec-row { flex-wrap:wrap; gap:6px; }
+  .spec-row .stat { text-align:left; width:100%; white-space:normal; }
+}
+@media print {
+  nav { display:none; }
+  .wrap { padding:0; }
+  body { background:#fff; }
+  a { color:inherit; text-decoration:none; }
+  .feature, .beat, .specimen, .caveat, table tr { page-break-inside:avoid; }
+  .sec { break-before:page; }
+  .sec:first-of-type { break-before:auto; }
+}
 </style>
 </head>
 <body>
-
 <header class="masthead">
-  <div class="doc">Companion document · for the non-lawyer</div>
-  <h1>The law behind Barrister Tools</h1>
-  <p class="sub">Everything a barrister of the Supreme Court of Bangladesh does, and how each screen of this product helps them — explained with no legal background required.</p>
-  <p class="meta">Domain knowledge guide · built to go with the UI walkthrough · plain English throughout</p>
+  <p class="eyebrow">Barrister Tools · Field guide</p>
+  <h1>The law behind <span class="prod">Barrister Tools</span></h1>
+  <p class="standfirst">Everything a barrister of the Supreme Court of Bangladesh does, and how each screen of this product helps them — read with no legal background required.</p>
+  <p class="meta">Companion to the UI walkthrough · plain English throughout · not legal advice</p>
 </header>
 
 <nav>
@@ -98,8 +251,9 @@ footer { margin-top:64px; padding-top:16px; border-top:1px solid var(--rule-heav
 <div class="wrap">
 
 <section id="world">
-  <h2><span class="no">01</span>The legal world in five minutes</h2>
-  <p class="lead">Before the product makes sense, you need the place it lives in. This is the short version.</p>
+  <h2 class="sec"><span class="no">01</span><span class="txt">The legal world in five minutes</span></h2>
+  <p class="lede">Before the product makes sense, you need the place it lives in. This is the short version.</p>
+  <p>Why this tool, this time. For decades a barrister's evening ritual was unchanged: wait for the next morning's cause list to be circulated, then scan page after page by hand for a name. That has quietly changed. The Supreme Court now publishes its cause lists — and its case-status records — directly on <code>supremecourt.gov.bd</code> as plain pages and PDFs, issued the evening before a hearing, by division and by bench. There is no official API, but the material is now machine-readable at the exact moment it matters. That window is the whole reason this product exists: it reads the list the evening it drops, so a barrister no longer has to. Paper files, email notices and a desk diary are still the working tools of the trade — this tool does not replace them, it sits beside them and does the scanning.</p>
 
   <h3>Bangladesh has one Supreme Court with two divisions</h3>
   <p>A barrister of the Supreme Court of Bangladesh practises before two bodies that sit inside the same building:</p>
@@ -116,12 +270,60 @@ footer { margin-top:64px; padding-top:16px; border-top:1px solid var(--rule-heav
     <li>In court, the bench does something to the case — hears argument, fixes a date, adjourns it, or delivers an order or judgment. That becomes an entry in the <strong>case history</strong>.</li>
     <li>Between appearances, the barrister <strong>drafts documents</strong>, watches <strong>deadlines</strong> (some set by statute, not by the judge), and keeps <strong>files</strong> for every client.</li>
   </ol>
-  <p>The four repetitive, easy-to-miss tasks above — <em>check the list, track the case, don't miss the deadline, draft correctly</em> — are exactly what this product automates.</p>
-</section>
 
+  <p>This is the form the barrister is fighting with, every evening:</p>
+  <figure class="specimen">
+    <div class="spec-head"><span class="sd">Cause list</span><span class="st">High Court Division · Annex Building Court No. 18 · Thursday, 20 Aug 2026</span></div>
+    <table class="spec-table">
+      <thead><tr><th>Serial</th><th>Case no.</th><th>Parties</th><th>Status</th><th>Advocate</th></tr></thead>
+      <tbody>
+        <tr class="mine">
+          <td>10</td>
+          <td class="sn">First Appeal 226/2013</td>
+          <td>Md. Ruhul Amin and ors. vs Alhaj Md. Aiyub Ali Sikder and ors.</td>
+          <td>Fixing a date of hearing</td>
+          <td class="adv">Mr. Sabir Rahman</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td class="sn">Civil Rule 832(FM)/2006</td>
+          <td>State of Bangladesh vs Md. Shafiul Islam</td>
+          <td>For Hearing</td>
+          <td class="muted">Mr. A. K. Chowdhury</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="sn">Criminal Appeal 88/2015</td>
+          <td>… vs …</td>
+          <td>For Judgment</td>
+          <td class="muted">—</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td class="sn">Civil Revision 492/2017</td>
+          <td>(with Serial 10)</td>
+          <td>Connected matter</td>
+          <td class="muted">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </figure>
+  <p class="spec-cap">The oxblood margin rule on serial 10 marks the barrister's own matter — the same way he'd mark his printed list with a pen; it is his name in the advocates' column that earns the alert. Serial 3 "For Judgment" is a very different moment than serial 3 "For Hearing".</p>
+
+  <p>The four repetitive, easy-to-miss tasks above — <em>check the list, track the case, don't miss the deadline, draft correctly</em> — are exactly what this product automates.</p>
+
+  <h3>Common situations barristers face</h3>
+  <p>Real practice does not line up in neat rows, and the product is built for the mess:</p>
+  <ul>
+    <li><strong>A case listed in both divisions at once.</strong> An appeal travels: a Writ Petition or Civil Revision in the High Court Division can be challenged further in the Appellate Division. Same parties, two case numbers, two benches, two cause lists. The barrister needs both watched — and they are, because one <em>file</em> can hold several <em>cases</em>, each with its own watch.</li>
+    <li><strong>Petitioner and respondent swap roles.</strong> A man who is petitioner in the writ becomes respondent in the appeal the other side files. The role changes; the dispute does not. It is still one <em>matter</em>, whatever the current heading says.</li>
+    <li><strong>One matter, several cases.</strong> A dispute rarely lives in a single proceeding: a suit below, a First Appeal against the decree, a Civil Revision after that. All sit inside one file.</li>
+    <li><strong>Connected and adjourned matters.</strong> A matter "(with Serial 10)" is heard alongside its parent, not under its own listing. Missing the parent serial is the same as missing the child — the product carries the parent's serial through so one watch covers both.</li>
+  </ul>
+</section>
 <section id="glossary">
-  <h2><span class="no">02</span>Plain-English glossary</h2>
-  <p class="lead">Every legal term the product surfaces, explained the way you'd explain it to a friend. Skim this once; the feature section will then read easily.</p>
+  <h2 class="sec"><span class="no">02</span><span class="txt">Plain-English glossary</span></h2>
+  <p class="lede">Every legal term the product surfaces, explained the way you'd explain it to a friend. Skim this once; the feature section will then read easily.</p>
 
   <table>
     <tr><th>Term</th><th>What it means</th></tr>
@@ -132,136 +334,173 @@ footer { margin-top:64px; padding-top:16px; border-top:1px solid var(--rule-heav
     <tr><td class="term">Party</td><td>One of the people or organisations on a side of a case — e.g. a client.</td></tr>
     <tr><td class="term">Petitioner / Respondent</td><td>In a writ or petition, the <strong>petitioner</strong> is the one who filed it (asking the court to act); the <strong>respondent</strong> is the side asked to respond.</td></tr>
     <tr><td class="term">Appellant / Respondent (appeal)</td><td>In an appeal, the <strong>appellant</strong> is the side who lost below and is appealing; the <strong>respondent</strong> is the side defending the earlier decision.</td></tr>
-    <tr><td class="term">Case number</td><td>The court's identifier for a matter, e.g. <code>First Appeal 226/2013</code> or <code>Civil Rule 832(FM)/2006</code>. Not a simple integer — "832(FM)" is real. The product treats it as text, not a number.</td></tr>
+    <tr><td class="term">Case number</td><td>The court's identifier for a matter, e.g. <span class="casenum">First Appeal 226/2013</span> or <span class="casenum">Civil Rule 832(FM)/2006</span>. Not a simple integer — "832(FM)" is real. The product treats it as text, not a number.</td></tr>
+    <tr><td class="term">Case</td><td>One specific proceeding in a court, identified by its <em>case number</em> and the division it sits in. A case has its own history, its own list entry and its own bench. The court thinks in cases.</td></tr>
+    <tr><td class="term">Matter</td><td>The client's entire dispute — the human story that may span several <em>cases</em>, hearings, documents and years. The product builds its <em>file</em> around the matter, not around any single case.</td></tr>
+    <tr><td class="term">File</td><td>The barrister's own record-keeping folder for a matter: one client, one or more cases, plus the notes, documents, time entries and deadlines that accrete around them. Carries a chamber-style reference like <span class="casenum">MAT-2026-001</span>. A matter and its file are the same object seen from two sides — the dispute, and the papers that follow it.</td></tr>
+    <tr><td class="term">Case history</td><td>The official record of what a court has actually <em>done</em> to one case — every order, adjournment and judgment, in order. Not the same as a matter history: each case in a matter has its own history.</td></tr>
     <tr><td class="term">Adjournment</td><td>The court postpones the matter to another day. Recorded in the case history.</td></tr>
     <tr><td class="term">Judgment</td><td>The court's reasoned decision. A <strong>decree</strong> is the formal, enforceable outcome that follows a judgment.</td></tr>
-    <tr><td class="term">Statute / Act / Section</td><td>A written law passed by Parliament. A statute divides into <strong>sections</strong> (s. 5, s. 12…). The <strong>Bangladesh Code</strong> is the official collection of these acts.</td></tr>
-    <tr><td class="term">Limitation period</td><td>A law-set time limit within which a legal step (e.g. filing an appeal) must be taken. File too late and the court can refuse to hear you at all — the matter is barred. The <strong>Limitation Act 1908</strong> sets these periods.</td></tr>
+    <tr><td class="term">Statute / Act / Section</td><td>A written law passed by Parliament. A statute divides into <strong>sections</strong> (<span class="ref">s. 5</span>, <span class="ref">s. 12</span>…). The <strong>Bangladesh Code</strong> is the official collection of these acts.</td></tr>
+    <tr><td class="term">Limitation period</td><td>A law-set time limit within which a legal step (e.g. filing an appeal) must be taken. File too late and the court can refuse to hear you at all — the matter is barred. The <span class="ref">Limitation Act 1908</span> sets these periods.</td></tr>
     <tr><td class="term">Cause of action</td><td>The set of facts giving someone the right to sue or appeal. The limitation clock often starts when the cause of action arises (e.g. the date of the order you want to challenge).</td></tr>
-    <tr><td class="term">Condonation of delay</td><td>Court permission to file late, if the delay is excusable. Section 5 of the Limitation Act lets a court admit a late filing if sufficient cause is shown — which is why the calculator warns "s. 5 may still permit admission" when a period has expired.</td></tr>
+    <tr><td class="term">Condonation of delay</td><td>Court permission to file late, if the delay is excusable. <span class="ref">Section 5</span> of the Limitation Act lets a court admit a late filing if sufficient cause is shown — which is why the calculator warns "<span class="ref">s. 5</span> may still permit admission" when a period has expired.</td></tr>
     <tr><td class="term">Writ petition</td><td>A petition to the High Court Division seeking a remedy — commonly against the government (challenging an order, an acquisition, or a breach of rights).</td></tr>
     <tr><td class="term">Leave to appeal</td><td>Permission from the Appellate Division to hear an appeal. Getting "leave" is a stage in itself.</td></tr>
     <tr><td class="term">Rule Nisi</td><td>A common writ remedy: the court issues a rule calling on respondents to show cause why the court should not act. The standard prayer in a writ petition.</td></tr>
     <tr><td class="term">Grounds</td><td>The numbered legal reasons ("That…") a petition or appeal should succeed.</td></tr>
     <tr><td class="term">Prayers</td><td>The specific orders the petitioner asks the court to make at the end of a petition.</td></tr>
     <tr><td class="term">Affidavit</td><td>A sworn written statement of facts. A "reply affidavit" answers an opponent's affidavit.</td></tr>
-    <tr><td class="term">Copy time (s. 12)</td><td>When counting a limitation period, the law can exclude time spent obtaining a copy of the decree/order (s. 12 of the Limitation Act). The calculator shows this exclusion in its working.</td></tr>
+    <tr><td class="term">Copy time (<span class="ref">s. 12</span>)</td><td>When counting a limitation period, the law can exclude time spent obtaining a copy of the decree/order (<span class="ref">s. 12</span> of the Limitation Act). The calculator shows this exclusion in its working.</td></tr>
   </table>
-</section>
 
+  <h3>How the four fit together</h3>
+  <p>One <em>matter</em>, the client's whole dispute; several <em>cases</em> under it; one <em>file</em> that holds them:</p>
+  <div class="termpanel">
+    <div class="root">MATTER — "Ruhul Amin v Aiyub Ali" (the dispute)</div>
+    <div>&nbsp;&nbsp;├─ <span class="lbl">CASE 1</span> — <span class="casenum">First Appeal 226/2013</span> (current hearing, High Court Division)</div>
+    <div>&nbsp;&nbsp;├─ <span class="lbl">CASE 2</span> — <span class="casenum">Writ Petition 3421/2025</span> (related challenge)</div>
+    <div>&nbsp;&nbsp;└─ <span class="lbl">FILE</span> — <span class="casenum">MAT-2026-001</span> (the barrister's folder for the matter)</div>
+    <div class="note">Each case carries its own case number and its own case history; the file carries everything the barrister adds by hand — notes, documents, time, deadlines.</div>
+  </div>
+</section>
 <section id="features">
-  <h2><span class="no">03</span>Feature by feature</h2>
-  <p class="lead">For each screen: what the lawyer sees, what it legally means, and why it matters to them.</p>
+  <h2 class="sec"><span class="no">03</span><span class="txt">Feature by feature</span></h2>
+  <p class="lede">For each screen: the question a barrister actually asks, and what the product does about it.</p>
+
+  <h3>How it works with what you already have</h3>
+  <p>This product is a companion to a paper practice, not a replacement for it. The web UI prints correctly, so the bench list taken to court can stand in for the Court's own page; the oxblood margin rule on your own matters mirrors the pen mark you already make. Court notices still arrive by email — the alerts sit in Telegram, an app already open on your phone, next to your clients. Your existing filing system and diary become the <em>file</em> and the <em>diary</em> views; nothing kept on paper is discarded, only indexed.</p>
+
+  <h3>Scope: what this covers, and what it does not</h3>
+  <p><strong>It covers:</strong> the two divisions of the Supreme Court of Bangladesh — the Appellate Division and the High Court Division — for cause-list watch, case-status tracking, statute lookup and limitation work. A matter can hold cases in both divisions at once, and the product handles that.</p>
+  <p><strong>It does not cover:</strong> the district and subordinate courts, e-filing, court-system integration, or case-law research. Those are outside its scope by design — see where the product deliberately says "no".</p>
 
   <div class="feature">
     <h3><span class="n">F1</span> Cause-list watch &amp; alerts</h3>
     <div class="screen">Today screen · cause-list screen · Telegram</div>
-    <p>The barrister tells the product their own name, their cases, and their clients' names. Every evening the product reads the Court's published cause list, finds every matter that matches, and sends <em>one</em> Telegram message listing them all.</p>
-    <div class="map">
-      <div><span class="k">What the lawyer sees</span><span class="s">"Cause list 24/08/2026: 2 matter(s) listed — First Appeal 226/2013, High Court Division, Court No. 18, Serial 10 — Fixing a date of hearing. Matched: case listed."</span></div>
-      <div><span class="k">What it legally means</span><span class="s">The matter is on tomorrow's roster. "For Hearing" vs "For Judgment" vs "Fixing a date" tells the barrister <em>what will happen</em> — whether to prepare argument, expect a decision, or just take the next date.</span></div>
-      <div><span class="k">Why it matters</span><span class="s">A missed hearing is a default, a wasted day, or a disservice to a client who travelled. The barrister would otherwise scan ~65 pages at 9pm looking for their own name.</span></div>
-      <div><span class="k">The clever bit</span><span class="s">Connected matters heard "(with)" another carry their parent's serial; "832(FM)" is not an integer; the barrister's own files get a margin rule, like a pen mark on paper.</span></div>
+    <p class="ask">Is anything of mine in court tomorrow?</p>
+    <div class="qa">
+      <div class="row"><span class="k">What you see</span><p class="v">"Cause list 24/08/2026: 2 matter(s) listed — <span class="casenum">First Appeal 226/2013</span>, High Court Division, Court No. 18, Serial 10 — Fixing a date of hearing. Matched: case listed."</p></div>
+      <div class="row"><span class="k">What it means</span><p class="v">The matter is on tomorrow's roster. "For Hearing" vs "For Judgment" vs "Fixing a date" tells the barrister <em>what will happen</em> — whether to prepare argument, expect a decision, or just take the next date.</p></div>
+      <div class="row"><span class="k">Why it matters</span><p class="v">A missed hearing is a default, a wasted day, or a disservice to a client who travelled. The barrister would otherwise scan ~65 pages at 9pm looking for their own name.</p></div>
+      <div class="row"><span class="k">The clever bit</span><p class="v">Connected matters heard "(with)" another carry their parent's serial; <span class="casenum">832(FM)</span> is not an integer; the barrister's own files get a margin rule, like a pen mark on paper.</p></div>
     </div>
   </div>
 
   <div class="feature">
     <h3><span class="n">F2</span> Case-status tracker</h3>
     <div class="screen">Case status screen · case search</div>
-    <p>The product tracks a case's full hearing history from the Court's own case-search pages, and only flags the <em>changes</em> that matter — a new listing, a result filled in, or a result amended.</p>
-    <div class="map">
-      <div><span class="k">What the lawyer sees</span><span class="s">"Adjourned till 07.09.2026" appears as a new result where there was none before.</span></div>
-      <div><span class="k">What it legally means</span><span class="s">The case history is the official record of every order, adjournment and judgment. A change here is the court actually <em>deciding something</em> about the case.</span></div>
-      <div><span class="k">Why it matters</span><span class="s">Old matters move slowly. A result can appear on a case the barrister had stopped watching — the tracker notices the difference so no one has to re-check 50 pages by hand.</span></div>
-      <div><span class="k">The clever bit</span><span class="s">It reports three things only (new listing, result filled, result amended) — not the whole history every time, which would bury the signal in noise.</span></div>
+    <p class="ask">Has anything changed on my cases?</p>
+    <div class="qa">
+      <div class="row"><span class="k">What you see</span><p class="v">"Adjourned till 07.09.2026" appears as a new result where there was none before.</p></div>
+      <div class="row"><span class="k">What it means</span><p class="v">The case history is the official record of every order, adjournment and judgment. A change here is the court actually <em>deciding something</em> about the case.</p></div>
+      <div class="row"><span class="k">Why it matters</span><p class="v">Old matters move slowly. A result can appear on a case the barrister had stopped watching — the tracker notices the difference so no one has to re-check 50 pages by hand.</p></div>
+      <div class="row"><span class="k">The clever bit</span><p class="v">It reports three things only (new listing, result filled, result amended) — not the whole history every time, which would bury the signal in noise.</p></div>
     </div>
   </div>
 
   <div class="feature">
     <h3><span class="n">F3</span> Statute lookup</h3>
     <div class="screen">Statutes screen</div>
-    <p>Search the official Bangladesh Code (e.g. <code>bdlaws.minlaw.gov.bd</code>) for the exact text of a section. Results are verbatim — never summarised, never generated.</p>
-    <div class="map">
-      <div><span class="k">What the lawyer sees</span><span class="s">Section 5 of the Limitation Act, word for word, with the source URL attached.</span></div>
-      <div><span class="k">What it legally means</span><span class="s">The exact statutory wording is what a judge will read; quoting it precisely is what wins. A statute like the Limitation Act governs rights and time limits across all civil practice.</span></div>
-      <div><span class="k">Why it matters</span><span class="s">Knowing a section exists is not the same as having its exact text at hand mid-research. This removes the "which act, which section, which words?" guesswork.</span></div>
-      <div><span class="k">The clever bit</span><span class="s">Zero hallucination risk by design — it returns what the official Code says, not what a model remembers. That is the whole point of exact-text lookup.</span></div>
+    <p class="ask">What exactly does <span class="ref">s. 5</span> say?</p>
+    <div class="qa">
+      <div class="row"><span class="k">What you see</span><p class="v"><span class="ref">Section 5</span> of the Limitation Act, word for word, with the source URL attached.</p></div>
+      <div class="row"><span class="k">What it means</span><p class="v">The exact statutory wording is what a judge will read; quoting it precisely is what wins. A statute like the Limitation Act governs rights and time limits across all civil practice.</p></div>
+      <div class="row"><span class="k">Why it matters</span><p class="v">Knowing a section exists is not the same as having its exact text at hand mid-research. This removes the "which act, which section, which words?" guesswork.</p></div>
+      <div class="row"><span class="k">The clever bit</span><p class="v">Zero hallucination risk by design — it returns what the official Code says, not what a model remembers. That is the whole point of exact-text lookup.</p></div>
+      <div class="row"><span class="k">A note</span><p class="v">Text is verbatim from the official Bangladesh Code (<span class="ref">bdlaws.minlaw.gov.bd</span>) and is current as of the day it was fetched. For amendments after that date, check the Code directly — the product never guesses at later changes.</p></div>
     </div>
   </div>
 
   <div class="feature">
     <h3><span class="n">F4</span> Template-based drafting</h3>
     <div class="screen">Drafting screen</div>
-    <p>The barrister picks a document type (writ petition, leave to appeal, stay application, condonation application), supplies parties, facts, grounds and prayers, and the product assembles the document. The <em>structure</em> comes from a fixed template; an AI model writes only the narrative from the facts given.</p>
-    <div class="map">
-      <div><span class="k">What the lawyer sees</span><span class="s">"IN THE SUPREME COURT OF BANGLADESH…" — a structured petition with the facts laid into the right places, ready to be read, corrected and settled.</span></div>
-      <div><span class="k">What it legally means</span><span class="s">A Supreme Court petition has a fixed conventional shape (parties, subject, facts, grounds, prayers). Getting that shape right is non-negotiable; the legal reasoning is the human's job.</span></div>
-      <div><span class="k">Why it matters</span><span class="s">Drafting is slow and error-prone. A solid first skeleton cut from the barrister's own facts saves hours — but the barrister must verify every date, figure and authority before filing.</span></div>
-      <div><span class="k">The clever bit</span><span class="s">The citation guard: the AI is forbidden from citing any authority the barrister did not supply, and anything it slips in is flagged. No invented case references.</span></div>
+    <p class="ask">Give me the skeleton of this writ petition.</p>
+    <div class="qa">
+      <div class="row"><span class="k">What you see</span><p class="v">"IN THE SUPREME COURT OF BANGLADESH…" — a structured petition with the facts laid into the right places, ready to be read, corrected and settled.</p></div>
+      <div class="row"><span class="k">What it means</span><p class="v">A Supreme Court petition has a fixed conventional shape (parties, subject, facts, grounds, prayers). Getting that shape right is non-negotiable; the legal reasoning is the human's job.</p></div>
+      <div class="row"><span class="k">Why it matters</span><p class="v">Drafting is slow and error-prone. A solid first skeleton cut from the barrister's own facts saves hours — but the barrister must verify every date, figure and authority before filing.</p></div>
+      <div class="row"><span class="k">The clever bit</span><p class="v">The citation guard: the AI is forbidden from citing any authority the barrister did not supply, and anything it slips in is flagged. No invented case references.</p></div>
     </div>
   </div>
-
   <div class="feature">
     <h3><span class="n">F5</span> Limitation calculator</h3>
     <div class="screen">Limitation screen</div>
-    <p>The barrister enters a start date and the kind of legal step (e.g. an appeal), and the product computes the filing deadline under the Limitation Act — showing its working, rule by rule.</p>
-    <div class="map">
-      <div><span class="k">What the lawyer sees</span><span class="s">A date, with steps: "s. 12(2) — exclude 15 days for the copy of the decree… add back 15 days → due 2026-04-30," plus the source citations.</span></div>
-      <div><span class="k">What it legally means</span><span class="s">Deadlines are set by law, not by the judge. Sections 4 (court closed), 5 (condonation), and 12 (copy time) adjust a raw number of days into the true filing date.</span></div>
-      <div><span class="k">Why it matters</span><span class="s">A wrong deadline can <em>bar the client's cause of action entirely</em> — the single most expensive mistake in this product. A figure you cannot audit is a figure you cannot file on.</span></div>
-      <div><span class="k">The clever bit</span><span class="s">It refuses to answer from any limitation article a lawyer has not verified. Machine-extracted from a PDF, every article stays "unverified" until a human checks it — better to say "I don't know" than to guess.</span></div>
+    <p class="ask">When is the last day I can file this appeal?</p>
+    <div class="qa">
+      <div class="row"><span class="k">What you see</span><p class="v">A date, with steps: "<span class="ref">s. 12(2)</span> — exclude 15 days for the copy of the decree… add back 15 days → due 2026-04-30," plus the source citations.</p></div>
+      <div class="row"><span class="k">What it means</span><p class="v">Deadlines are set by law, not by the judge. Sections 4 (court closed), 5 (condonation), and 12 (copy time) adjust a raw number of days into the true filing date.</p></div>
+      <div class="row"><span class="k">Why it matters</span><p class="v">A wrong deadline can <em>bar the client's cause of action entirely</em> — the single most expensive mistake in this product. A figure you cannot audit is a figure you cannot file on.</p></div>
+      <div class="row"><span class="k">The clever bit</span><p class="v">It refuses to answer from any limitation article a lawyer has not verified. Machine-extracted from a PDF, every article stays "unverified" until a human checks it — better to say "I don't know" than to guess.</p></div>
     </div>
   </div>
 
   <div class="feature">
     <h3><span class="n">F6</span> Matter / case-file management</h3>
     <div class="screen">Matters screen · one matter · diary</div>
-    <p>A lightweight case file per client: the client's details, every case in the file, notes, documents, time entries and deadlines — all in one place, linked to the case so the watch covers it automatically.</p>
-    <div class="map">
-      <div><span class="k">What the lawyer sees</span><span class="s">"Ruhul Amin v Aiyub Ali — First Appeal 226/2013 [MAT-2026-001], 150 mins @ Tk 6000/hr, diary: reply affidavit overdue."</span></div>
-      <div><span class="k">What it legally means</span><span class="s">A "matter" is a client's entire dispute, which can span several cases, hearings and documents over years. The diary holds every deadline that could be missed.</span></div>
-      <div><span class="k">Why it matters</span><span class="s">This is the daily-habit layer: it turns a set of single-use tools into the barrister's desk. Time logged is time billed; a deadline caught is a client's case saved.</span></div>
-      <div><span class="k">The clever bit</span><span class="s">Opening a file with a case number also starts watching that case — so the file and the cause-list alert are the same thread, not two systems.</span></div>
+    <p class="ask">What is owed on this file, and what's overdue?</p>
+    <div class="qa">
+      <div class="row"><span class="k">What you see</span><p class="v">"Ruhul Amin v Aiyub Ali — <span class="casenum">First Appeal 226/2013</span> [MAT-2026-001], 150 mins @ Tk 6000/hr, diary: reply affidavit overdue."</p></div>
+      <div class="row"><span class="k">Time &amp; billing</span><p class="v">Time is logged per entry — <code>/time MAT-2026-001 90 "Settling grounds"</code> — and the rate is stored on each entry, so it can differ from one client or matter to the next. The matter view rolls minutes into hours, shows what is billed and what is not, and a value. It is a ledger a barrister can bill from, not an invoicing engine.</p></div>
+      <div class="row"><span class="k">What it means</span><p class="v">A <em>matter</em> is a client's entire dispute, which can span several <em>cases</em>, hearings and documents over years (see the glossary frame). The <em>file</em> — <span class="casenum">MAT-2026-001</span> — is the barrister's folder for it. The diary holds every deadline that could be missed.</p></div>
+      <div class="row"><span class="k">Why it matters</span><p class="v">This is the daily-habit layer: it turns a set of single-use tools into the barrister's desk. Time logged is time billed; a deadline caught is a client's case saved.</p></div>
+      <div class="row"><span class="k">The clever bit</span><p class="v">Opening a file with a case number also starts watching that case — so the file and the cause-list alert are the same thread, not two systems.</p></div>
     </div>
   </div>
 
   <div class="feature">
     <h3><span class="n">F7</span> Telegram bot</h3>
     <div class="screen">Telegram</div>
-    <p>The same features reachable from a messaging app — today's listings, the diary, case and statute lookups, quick notes and time entries.</p>
-    <div class="map">
-      <div><span class="k">What the lawyer sees</span><span class="s"><code>/today</code>, <code>/diary</code>, <code>/case First Appeal 226 2013</code>, <code>/statute s. 5 of the Limitation Act</code>, <code>/note MAT-2026-001 …</code></span></div>
-      <div><span class="k">What it legally means</span><span class="s">The legal work is the same; only the surface changes. The point is that it sits in an app the barrister already has open, next to their clients.</span></div>
-      <div><span class="k">Why it matters</span><span class="s">A tool embedded in an already-open surface gets used; a separate dashboard gets ignored. This is how the alerts actually reach the barrister at 9pm.</span></div>
-      <div><span class="k">The clever bit</span><span class="s">One set of services behind every surface — the bot, the web UI, the CLI and the API can never disagree with each other.</span></div>
+    <p class="ask">Same desk, but from my phone.</p>
+    <div class="qa">
+      <div class="row"><span class="k">What you see</span><p class="v"><code>/today</code>, <code>/diary</code>, <code>/case First Appeal 226 2013</code>, <code>/statute s. 5 of the Limitation Act</code>, <code>/note MAT-2026-001 …</code></p></div>
+      <div class="row"><span class="k">What it means</span><p class="v">The legal work is the same; only the surface changes. The point is that it sits in an app the barrister already has open, next to their clients.</p></div>
+      <div class="row"><span class="k">Why it matters</span><p class="v">A tool embedded in an already-open surface gets used; a separate dashboard gets ignored. This is how the alerts actually reach the barrister at 9pm.</p></div>
+      <div class="row"><span class="k">The clever bit</span><p class="v">One set of services behind every surface — the bot, the web UI, the CLI and the API can never disagree with each other.</p></div>
     </div>
   </div>
 </section>
-
 <section id="week">
-  <h2><span class="no">04</span>A barrister's week, retold in plain terms</h2>
-  <p class="lead">The same journey the UI walkthrough shows — here with every legal term unpacked.</p>
+  <h2 class="sec"><span class="no">04</span><span class="txt">A barrister's week, retold in plain terms</span></h2>
+  <p class="lede">The same journey the UI walkthrough shows — here with every legal term unpacked. Teal = the machine working while he sleeps; black = his own hands; the brass spine marks the hours he is actually in court.</p>
 
-  <div class="beat"><div class="t">Thursday 20:30</div><div class="a">System</div><p>The cause list is published. The sweep reads ~65 pages of it.</p></div>
-  <div class="beat"><div class="t">Thursday 20:31</div><div class="a">System</div><p>Two of the barrister's matters match — one is an open client file.</p></div>
-  <div class="beat"><div class="t">Thursday 20:32</div><div class="a">Sabir</div><p>One Telegram message names both matters and tomorrow's bench. No need to scan the list.</p></div>
-  <div class="beat"><div class="t">Sunday 07:10</div><div class="a">Sabir</div><p>The day view over breakfast — listings, diary, figures, at a glance.</p></div>
-  <div class="beat"><div class="t">Sunday 07:40</div><div class="a">Sabir</div><p>The diary flags a reply affidavit (a sworn answer) two days overdue.</p></div>
-  <div class="beat"><div class="t">Sunday 08:15</div><div class="a">Sabir</div><p>Section 5 of the Limitation Act, verbatim, with its source. Knows the condonation rule cold.</p></div>
-  <div class="beat"><div class="t">Sunday 08:40</div><div class="a">Sabir</div><p>A limitation deadline, with the copy-time exclusion (s. 12) shown in the working.</p></div>
-  <div class="beat"><div class="t">Sunday 09:20</div><div class="a">Sabir</div><p>Drafts the condonation application (asking the court to excuse the delay); a citation is flagged for checking.</p></div>
-  <div class="beat"><div class="t">Sunday 10:30</div><div class="a">Sabir</div><p>Prints the bench list and takes it to court — the printed page is a usable substitute for the Court's own.</p></div>
-  <div class="beat"><div class="t">Sunday 16:05</div><div class="a">Sabir</div><p>Logs time and a note from the Telegram thread, straight into the client's file.</p></div>
-  <div class="beat"><div class="t">Friday 06:00</div><div class="a">System</div><p>A result appears on an old case: "Adjourned till 07.09.2026." The tracker notices the change.</p></div>
+  <p>And the week this product saves him from. Without it, each beat above is an evening and a morning lost:</p>
+  <ul>
+    <li><strong>A missed hearing.</strong> The list is 65 pages and his matter sits at serial 70, deep in the middle. Nobody calls. His client has travelled from outside Dhaka; the bench fixes the date, the matter is adjourned, and the client's day — and his fee — is gone.</li>
+    <li><strong>A wrong deadline.</strong> He counts 90 days from the decree but forgets the copy time, or that Friday and Saturday are closed. The appeal is filed a day late and the court refuses to hear it at all; the cause of action is barred, and the loss is the client's, on his name.</li>
+    <li><strong>An hour gone at 9pm.</strong> Reading the whole list line by line, hunting his own name, then the client's, then the case numbers. It is not research; it is scanning, and it has to be done again tomorrow.</li>
+    <li><strong>A conflict nobody saw.</strong> Two files with deadlines on the same day, or a "For Hearing" and a "For Judgment" the same morning in different courts. Paper diaries do not shout at you; this product does.</li>
+  </ul>
+
+  <div class="beat beat--sys"><span class="t">Thu 20:30</span><div><span class="who">System</span><p><span class="tag">sweep</span>The cause list is published. The sweep reads ~65 pages of it.</p></div></div>
+  <div class="beat beat--sys"><span class="t">Thu 20:31</span><div><span class="who">System</span><p><span class="tag">match</span>Two of the barrister's matters match — one is an open client file.</p></div></div>
+  <div class="beat beat--sb"><span class="t">Thu 20:32</span><div><span class="who">Sabir</span><p><span class="tag">alert</span>One Telegram message names both matters and tomorrow's bench. No need to scan the list.</p></div></div>
+  <div class="beat beat--sb"><span class="t">Sun 07:10</span><div><span class="who">Sabir</span><p><span class="tag">diary</span>The day view over breakfast — listings, diary, figures, at a glance.</p></div></div>
+  <div class="beat beat--sb"><span class="t">Sun 07:40</span><div><span class="who">Sabir</span><p><span class="tag">diary</span>The diary flags a reply affidavit (a sworn answer) two days overdue.</p></div></div>
+  <div class="beat beat--sb"><span class="t">Sun 08:15</span><div><span class="who">Sabir</span><p><span class="tag">research</span><span class="ref">Section 5</span> of the Limitation Act, verbatim, with its source. Knows the condonation rule cold.</p></div></div>
+  <div class="beat beat--sb"><span class="t">Sun 08:40</span><div><span class="who">Sabir</span><p><span class="tag">research</span>A limitation deadline, with the copy-time exclusion (<span class="ref">s. 12</span>) shown in the working.</p></div></div>
+  <div class="beat beat--sb"><span class="t">Sun 09:20</span><div><span class="who">Sabir</span><p><span class="tag">draft</span>Drafts the condonation application (asking the court to excuse the delay); a citation is flagged for checking.</p></div></div>
+  <div class="beat beat--court"><span class="t">Sun 10:30</span><div><span class="who">Sabir</span><p><span class="tag">court</span>Prints the bench list and takes it to court — the printed page is a usable substitute for the Court's own.</p></div></div>
+  <div class="beat beat--sb"><span class="t">Sun 16:05</span><div><span class="who">Sabir</span><p><span class="tag">log</span>Logs time and a note from the Telegram thread, straight into the client's file.</p></div></div>
+  <div class="beat beat--sys"><span class="t">Fri 06:00</span><div><span class="who">System</span><p><span class="tag">tracker</span>A result appears on an old case: "Adjourned till 07.09.2026." The tracker notices the change.</p></div></div>
 </section>
 
 <section id="refusals">
-  <h2><span class="no">05</span>Where the product deliberately says "no"</h2>
-  <p class="lead">The parts that <em>look</em> like missing features are the product being careful — and that is exactly what a barrister should trust.</p>
-  <div class="caveat"><span class="k">No invented case law</span>It never answers with a Bangladeshi judgment from memory. Case-law reporters are paywalled, and even the big global tools invent citations 17–33% of the time. This product refuses rather than risk a false citation.</div>
-  <div class="caveat"><span class="k">No unverified limitation articles</span>The First Schedule was machine-extracted from a PDF. Until a lawyer checks each article, the calculator refuses to compute from it. An unverified figure could bar a client's case — so it waits.</div>
-  <div class="caveat"><span class="k">No generated statute text</span>Statute results are verbatim from the official Bangladesh Code, with the source attached. Exact text or nothing.</div>
-  <div class="caveat"><span class="k">No drafting without the barrister's citations</span>The drafting AI may only cite authorities the barrister supplied. Anything else is flagged as unverified.</div>
+  <h2 class="sec"><span class="no">05</span><span class="txt">Where the product deliberately says "no"</span></h2>
+  <p class="lede">The parts that <em>look</em> like missing features are the product being careful — and that is exactly what a barrister should trust.</p>
+
+  <div class="caveat"><p class="ck">No invented case law</p><p class="cd">It never answers with a Bangladeshi judgment from memory. Case-law reporters are paywalled, and even the big global tools invent citations 17–33% of the time. This product refuses rather than risk a false citation.</p></div>
+  <div class="caveat"><p class="ck">No unverified limitation articles</p><p class="cd">The First Schedule was machine-extracted from a PDF. Until a lawyer checks each article, the calculator refuses to compute from it. An unverified figure could bar a client's case — so it waits.</p></div>
+
+  <p>This is what that looks like in the product — an article the calculator will not touch, and the same article once a barrister has checked it:</p>
+  <div class="verify">
+    <div class="vrow vrow--unv"><span class="sn">Art. 152</span><span class="muted">Thirty days — from the date of the decree or order appealed from</span><span class="badge badge--unv">▲ unverified</span></div>
+    <div class="vrow"><span class="sn">Art. 152</span><span class="muted">Thirty days — from the date of the decree or order appealed from</span><span class="badge badge--ok">verified</span></div>
+  </div>
+  <p>To move an article from the first line to the second: run <code>barrister review-queue</code> to see what still needs checking, open the official text at the source URL, and flip the article to verified in the schedule. The calculator only computes from verified articles, and the diary drops its "not verified by a lawyer" warning once a deadline's basis is checked.</p>
+  <div class="caveat"><p class="ck">No generated statute text</p><p class="cd">Statute results are verbatim from the official Bangladesh Code, with the source attached. Exact text or nothing.</p></div>
+  <div class="caveat"><p class="ck">No drafting without the barrister's citations</p><p class="cd">The drafting AI may only cite authorities the barrister supplied. Anything else is flagged as unverified.</p></div>
+
   <p>In every case, the rule is the same: <strong>a place where this software could be confidently wrong is marked, or it refuses to answer at all.</strong> That honesty is the product's core design principle — and the reason it is practice software, not a legal oracle.</p>
 </section>
 

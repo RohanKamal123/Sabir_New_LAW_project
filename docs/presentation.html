@@ -45,6 +45,14 @@ a { color:var(--system); }
 .grid2 .card .n { font-family:var(--mono); font-size:13px; color:var(--alarm); display:block; margin-bottom:6px; }
 .grid2 .card h3 { font-family:var(--display); font-size:18px; margin:0 0 6px; }
 .grid2 .card p { color:var(--ink-2); font-size:16px; margin:0; }
+.grid2 .card .cost { font-family:var(--mono); font-size:13px; line-height:1.5; color:var(--alarm); border-top:1px solid var(--hair); padding-top:10px; margin-top:12px; }
+.grid2 .card-alarm { border-left:4px solid var(--alarm); }
+.grid2 .card-alarm .n { font-weight:700; }
+.grid2 .card-trust { border-left:4px solid var(--system); }
+
+.group-head { display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 14px; margin:34px 0 4px; padding-bottom:8px; border-bottom:1px solid var(--hair); }
+.group-head .gname { font-family:var(--display); font-weight:600; font-size:15px; letter-spacing:.02em; text-transform:uppercase; color:var(--ink); }
+.group-head .gmeta { font-family:var(--mono); font-size:12px; color:var(--ink-3); }
 
 .feature { display:grid; grid-template-columns:minmax(150px,220px) 1fr; gap:26px; padding:26px 0; border-top:1px solid var(--hair); }
 .feature .fnum { font-family:var(--mono); font-size:13px; color:var(--spine); }
@@ -73,6 +81,12 @@ a { color:var(--system); }
 .refuse { border-left:3px solid var(--alarm); background:var(--panel); padding:16px 18px; margin:12px 0; border-radius:2px; }
 .refuse h3 { font-family:var(--display); font-size:16px; margin:0 0 4px; color:var(--alarm); }
 .refuse p { margin:0; color:var(--ink-2); font-size:15.5px; }
+.refuse--data { border-left-color:var(--system); }
+.refuse--data h3 { color:var(--system); }
+
+.pivot { display:flex; align-items:center; gap:16px; margin:8px 0; }
+.pivot:before, .pivot:after { content:""; flex:1; height:1px; background:var(--hair); }
+.pivot span { font-family:var(--display); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--spine); white-space:nowrap; }
 
 .beat { display:grid; grid-template-columns:130px 1fr; gap:16px; padding:11px 0; border-top:1px solid var(--hair); align-items:baseline; }
 .beat:last-child { border-bottom:1px solid var(--hair); }
@@ -99,10 +113,12 @@ footer { border-top:1px solid var(--hair); padding:26px 0 0; font-family:var(--m
 
 <nav>
   <div class="wrap">
+    <a href="#who">For whom</a>
     <a href="#problem">The problem</a>
     <a href="#product">The product</a>
     <a href="#features">Features</a>
     <a href="#trust">Why you can trust it</a>
+    <a href="#without">Without it</a>
     <a href="#week">A week with it</a>
     <a href="#next">What's next</a>
     <a href="#ask">The ask</a>
@@ -114,27 +130,38 @@ footer { border-top:1px solid var(--hair); padding:26px 0 0; font-family:var(--m
 <section class="cover">
   <div class="brand">Barrister Tools</div>
   <div>
-    <h1>You never miss a listing.<br>You never miss a deadline.<br>And nothing is cited that you didn't give it.</h1>
-    <p class="promise">A single desk for a Supreme Court of Bangladesh barrister — the cause list, the case file, the statute, the deadline and the draft, in one place.</p>
+    <h1>Copy time is counted. Condonation is possible.<br>Connected matters carry their parent's serial — so does this desk.</h1>
+    <p class="promise">A single desk for a Supreme Court of Bangladesh barrister — the cause list, the case file, the statute, the deadline and the draft, in one place. The work, named in its own words.</p>
   </div>
   <div class="tag">Practitioner software · Appellate &amp; High Court Divisions · CLI · web · API · Telegram</div>
 </section>
 
-<section class="slide" id="problem">
-  <div class="kicker">01 — The problem</div>
-  <h2>The work is repetitive, and the mistakes are expensive.</h2>
-  <p class="lede">Four tasks repeat every single working week. Each is easy to do badly and costly to get wrong.</p>
+<section class="slide" id="who">
+  <div class="kicker">01 — Who it's for</div>
+  <h2>One barrister's own desk. Yours.</h2>
+  <p class="lede">This tool is built for a single desk — your name, your cases, your clients. It is not a client-matching platform, not a public directory, not a firm dashboard.</p>
   <div class="grid2">
-    <div class="card"><span class="n">Task 1</span><h3>Check the cause list</h3><p>Every evening the Court publishes the roster of tomorrow's hearings. The barrister must find their own matters across ~60 benches — at 9pm, the night before.</p></div>
-    <div class="card"><span class="n">Task 2</span><h3>Track the case</h3><p>Old matters move slowly. A result — an order, an adjournment, a judgment — can appear on a case you'd stopped watching. Someone has to re-check the history.</p></div>
-    <div class="card"><span class="n">Task 3</span><h3>Watch the deadline</h3><p>Filing deadlines are set by law, not by the judge. Miss one and the client's cause of action can be barred entirely — the most expensive mistake in practice.</p></div>
-    <div class="card"><span class="n">Task 4</span><h3>Draft correctly</h3><p>A petition has a fixed, conventional shape. Drafting is slow, and a wrong citation or a wrong section can sink a matter you'll only regret later.</p></div>
+    <div class="card card-trust"><span class="n">Runs on your machine</span><h3>No cloud unless you choose it</h3><p>Install it on your laptop or your own server. Single-tenant, no account, no public signup. Your matters, your files, your cases — all stay with you.</p></div>
+    <div class="card"><span class="n">Four surfaces, one desk</span><h3>Web · Telegram · CLI · API</h3><p>Your desk in the browser, your pocket on Telegram, the scheduled sweep in one cron job each evening, and a JSON API for anything else you build.</p></div>
+  </div>
+  <div class="refuse"><h3>No signup. No tracking. No ads.</h3><p>There is no "us" to sign up to. The cause list is read from the Court's public pages; statute text is read from the Bangladesh Code. Everything else lives on your machine or your server — nothing is sent anywhere.</p></div>
+</section>
+
+<section class="slide" id="problem">
+  <div class="kicker">02 — The problem</div>
+  <h2>The work is repetitive, and the mistakes are expensive.</h2>
+  <p class="lede">Four tasks repeat every single working week. Each is easy to do badly and costly to get wrong — ordered here by how much a mistake costs.</p>
+  <div class="grid2">
+    <div class="card card-alarm"><span class="n">The costly one</span><h3>Watch the deadline</h3><p>Filing deadlines are set by law, not by the judge. Miss one and the client's cause of action can be barred entirely — the most expensive mistake in practice.</p><div class="cost">Missed deadline = cause of action BARRED · Tk 500K+ fee loss</div></div>
+    <div class="card"><span class="n">Task 1</span><h3>Check the cause list</h3><p>Every evening the Court publishes the roster of tomorrow's hearings. The barrister must find their own matters across ~60 benches — at 9pm, the night before.</p><div class="cost">A missed listing = default + a wasted day + a fee lost</div></div>
+    <div class="card"><span class="n">Task 4</span><h3>Draft correctly</h3><p>A petition has a fixed, conventional shape. Drafting is slow, and a wrong citation or a wrong section can sink a matter you'll only regret later.</p><div class="cost">A wrong citation = a permanent loss of trust</div></div>
+    <div class="card"><span class="n">Task 2</span><h3>Track the case</h3><p>Old matters move slowly. A result — an order, an adjournment, a judgment — can appear on a case you'd stopped watching. Someone has to re-check the history.</p><div class="cost">A missed result = months of wasted re-checking</div></div>
   </div>
   <p>The Court offers no API. The list is plain HTML, published the evening before. The statute text is free. Nothing exists to tie it all together — until now.</p>
 </section>
 
 <section class="slide" id="product">
-  <div class="kicker">02 — The product</div>
+  <div class="kicker">03 — The product</div>
   <h2>One desk, four doors in.</h2>
   <p class="lede">One set of services. Four surfaces — a Telegram bot for the phone, a web UI for the desk, a command-line for scheduled jobs, and an API. They can never disagree, because they are the same software.</p>
   <div class="grid2">
@@ -146,8 +173,11 @@ footer { border-top:1px solid var(--hair); padding:26px 0 0; font-family:var(--m
 </section>
 
 <section class="slide" id="features">
-  <div class="kicker">03 — The features</div>
+  <div class="kicker">04 — The features</div>
   <h2>Seven features, one habit.</h2>
+  <p class="lede">Organised the way the work actually runs — the daily ritual, the on-demand research, and the moment before you file.</p>
+
+  <div class="group-head"><span class="gname">Group A — The daily ritual</span><span class="gmeta">every day · the sweep, your desk, your pocket</span></div>
 
   <div class="feature">
     <div class="fnum">Feature 01</div>
@@ -161,9 +191,29 @@ footer { border-top:1px solid var(--hair); padding:26px 0 0; font-family:var(--m
           <div class="row"><div class="s">22</div><div class="cell"><div class="sn">Writ Petition 8412/2025</div><div class="who">Court No. 4 · For Hearing · matched: party Karim Uddin</div></div></div>
         </div>
       </div>
-      <p class="saves"><b>What it saves you</b>Scanning ~65 pages at 9pm. A missed hearing — a default, a wasted day, a client let down.</p>
+      <p class="saves"><b>What it saves you</b>Roughly 30 minutes of scanning at 9pm — and the risk of a missed hearing, a default, a wasted day.</p>
     </div>
   </div>
+
+  <div class="feature">
+    <div class="fnum">Feature 06</div>
+    <div>
+      <h3>Matter / case-file management</h3>
+      <p class="does">A lightweight file per client — details, every case, notes, documents, time and deadlines in one place. Linking a case to a file also starts watching it.</p>
+      <p class="saves"><b>What it saves you</b>The daily-habit layer that turns single-use tools into your desk. Time logged is time billed; a deadline caught is a client's case saved.</p>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="fnum">Feature 07</div>
+    <div>
+      <h3>Telegram bot</h3>
+      <p class="does">The same features in the app you already have open — today's listings, the diary, case and statute lookups, quick notes and time entries.</p>
+      <p class="saves"><b>What it saves you</b>The barrier between "the tool" and "your day." A tool embedded in an open surface gets used; a separate dashboard gets ignored.</p>
+    </div>
+  </div>
+
+  <div class="group-head"><span class="gname">Group B — When you need it</span><span class="gmeta">on demand · research and deadline work</span></div>
 
   <div class="feature">
     <div class="fnum">Feature 02</div>
@@ -180,23 +230,6 @@ footer { border-top:1px solid var(--hair); padding:26px 0 0; font-family:var(--m
       <h3>Statute lookup</h3>
       <p class="does">Search the official Bangladesh Code for the exact text of a section — verbatim, never summarised, with the source URL attached.</p>
       <p class="saves"><b>What it saves you</b>The "which act, which section, which words" guesswork. What a judge reads is the exact statutory wording — this hands it to you.</p>
-    </div>
-  </div>
-
-  <div class="feature">
-    <div class="fnum">Feature 04</div>
-    <div>
-      <h3>Template-based drafting</h3>
-      <p class="does">Pick a document — writ petition, leave to appeal, stay application, condonation application. Supply parties, facts, grounds and prayers. The template owns the structure; the AI writes only the narrative from the facts you gave.</p>
-      <div class="specimen" style="margin:14px 0;">
-        <div class="head"><div class="d">Draft · Writ Petition</div><div class="t">IN THE SUPREME COURT OF BANGLADESH — High Court Division</div></div>
-        <div class="body">
-          <div class="row"><div class="cell"><div class="who">Petitioner: Md. Karim Uddin of Dhaka<br>Respondents: Bangladesh, represented by the Secretary, Ministry of Land<br>Subject: challenge to the acquisition notice dated 12.03.2026</div></div></div>
-          <div class="row"><div class="cell"><div class="who">Grounds: That the notice violates the principles of natural justice. …<br>Prayers: Issue a Rule Nisi calling upon the respondents to show cause…</div></div></div>
-          <div class="row"><div class="cell"><div class="who" style="color:var(--p-ox)">⚠ UNVERIFIED CITATION — flagged for your review</div></div></div>
-        </div>
-      </div>
-      <p class="saves"><b>What it saves you</b>Hours of first-draft drudgery — and, via the citation guard, the specific failure that would cost a barrister's trust permanently.</p>
     </div>
   </div>
 
@@ -218,40 +251,57 @@ footer { border-top:1px solid var(--hair); padding:26px 0 0; font-family:var(--m
     </div>
   </div>
 
+  <div class="group-head"><span class="gname">Group C — Before you file</span><span class="gmeta">pre-draft · the document itself</span></div>
+
   <div class="feature">
-    <div class="fnum">Feature 06</div>
+    <div class="fnum">Feature 04</div>
     <div>
-      <h3>Matter / case-file management</h3>
-      <p class="does">A lightweight file per client — details, every case, notes, documents, time and deadlines in one place. Linking a case to a file also starts watching it.</p>
-      <p class="saves"><b>What it saves you</b>The daily-habit layer that turns single-use tools into your desk. Time logged is time billed; a deadline caught is a client's case saved.</p>
+      <h3>Template-based drafting</h3>
+      <p class="does">Pick a document — writ petition, leave to appeal, stay application, condonation application. Supply parties, facts, grounds and prayers. The template owns the structure; the AI writes only the narrative from the facts you gave.</p>
+      <div class="specimen" style="margin:14px 0;">
+        <div class="head"><div class="d">Draft · Writ Petition</div><div class="t">IN THE SUPREME COURT OF BANGLADESH — High Court Division</div></div>
+        <div class="body">
+          <div class="row"><div class="cell"><div class="who">Petitioner: Md. Karim Uddin of Dhaka<br>Respondents: Bangladesh, represented by the Secretary, Ministry of Land<br>Subject: challenge to the acquisition notice dated 12.03.2026</div></div></div>
+          <div class="row"><div class="cell"><div class="who">Grounds: That the notice violates the principles of natural justice. …<br>Prayers: Issue a Rule Nisi calling upon the respondents to show cause…</div></div></div>
+          <div class="row"><div class="cell"><div class="who" style="color:var(--p-ox)">⚠ UNVERIFIED CITATION — flagged for your review</div></div></div>
+        </div>
+      </div>
+      <p class="saves"><b>What it saves you</b>Hours of first-draft drudgery — and, via the citation guard, the specific failure that would cost a barrister's trust permanently.</p>
     </div>
   </div>
 
-  <div class="feature">
-    <div class="fnum">Feature 07</div>
-    <div>
-      <h3>Telegram bot</h3>
-      <p class="does">The same features in the app you already have open — today's listings, the diary, case and statute lookups, quick notes and time entries.</p>
-      <p class="saves"><b>What it saves you</b>The barrier between "the tool" and "your day." A tool embedded in an open surface gets used; a separate dashboard gets ignored.</p>
-    </div>
-  </div>
 </section>
 
 <section class="slide" id="trust">
-  <div class="kicker">04 — Why you can trust it</div>
-  <h2>Built to be honest, not to impress.</h2>
-  <p class="lede">The credibility of practice software rests on one thing: the barrister believing the red things when they appear. So the product is designed around what it refuses to do.</p>
+  <div class="kicker">05 — Why you can trust it</div>
+  <h2>Built to refuse, so it earns trust.</h2>
+  <p class="lede">The credibility of practice software rests on one thing: the barrister believing the red things when they appear. So this product is built around what it refuses to do — and each refusal is paired with its proof.</p>
+  <div class="refuse"><h3>▲ No invented case law</h3><p>Even the big global tools invent citations 17–33% of the time. This tool refuses rather than risk a false citation — search a case, get "not found," and that is the right answer.</p></div>
+  <div class="refuse"><h3>▲ No unverified rules</h3><p>Limitation articles were extracted by machine; none is verified yet, and every one stays refused until a lawyer checks it.</p></div>
+  <div class="refuse"><h3>▲ No generated answers</h3><p>It never answers with a Bangladeshi judgment from memory, and it never writes statutory text. What it returns is verbatim, with the source attached.</p></div>
+  <div class="refuse"><h3>▲ No invented citations</h3><p>It refuses to cite any authority you did not supply, and it flags unverified citations for your review.</p></div>
   <div class="trust">
-    <div class="t"><h3>Statute text is verbatim, not generated</h3><p>Results are exact spans from the official Bangladesh Code, with the source URL. Zero hallucination risk by design.</p></div>
-    <div class="t"><h3>Rules are encoded, not guessed</h3><p>Limitation periods and filing deadlines are rule-based date arithmetic — sections 4, 5 and 12 applied as exact law, not as model memory.</p></div>
-    <div class="t"><h3>The working is shown</h3><p>A limitation figure you cannot audit is a figure you cannot file on. Every step, every citation, every exclusion is laid out.</p></div>
-    <div class="t"><h3>It prints like your documents</h3><p>Designed around the printed cause list and the law report — and it prints correctly. You can take it to court.</p></div>
+    <div class="t"><h3>The proof beside each refusal</h3><p>Statute text is exact spans from the official Bangladesh Code, with the URL. Rules are rule-based date arithmetic — sections 4, 5 and 12 as exact law, not model memory.</p></div>
+    <div class="t"><h3>What is shown, and why</h3><p>A limitation figure you cannot audit is a figure you cannot file on. Every step, every citation, every exclusion is laid out — and it prints correctly, so you can take it to court.</p></div>
   </div>
-  <div class="refuse"><h3>Where it deliberately says no</h3><p>It never answers with a Bangladeshi judgment from memory — reporters are paywalled, and even the big global tools invent citations 17–33% of the time. It refuses unverified limitation articles until a lawyer checks them. It refuses to cite any authority you didn't supply. Every refusal is a trust feature, not a missing one.</p></div>
+  <div class="refuse refuse--data"><h3>DATA · Your data is not our data</h3><p>The cause list is read from the Court's public pages; statute text from the Bangladesh Code. Your files, matters and time entries live on your machine or your server — no cloud, no sync, no analytics. If you run it locally, nobody but you sees your files.</p></div>
+</section>
+
+<section class="slide" id="without">
+  <div class="kicker">06 — A week without it</div>
+  <h2>The same week, done by hand.</h2>
+  <p class="lede">Before the desk, the same Thursday-to-Friday looks like this — the scanning, the explaining, the missed result.</p>
+  <div class="beat"><div class="t">Thu 20:30<span class="who">Sabir</span></div><p>The list drops. He saves it, opens the PDF, searches his name. ~8 minutes. He finds one matter — and misses the other, listed under his client's name.</p></div>
+  <div class="beat"><div class="t">Fri 09:00<span class="who">Sabir</span></div><p>At court he discovers the second matter is listed. His client is outside Dhaka, two hours away. The bench fixes a date anyway. Matter adjourned; client's day wasted; fee lost.</p></div>
+  <div class="beat"><div class="t">Fri 09:30<span class="who">Sabir</span></div><p>Thirty minutes on the phone explaining the adjournment.</p></div>
+  <div class="beat"><div class="t">Sat<span class="who">Sabir</span></div><p>He realises he miscounted a filing deadline — forgot Friday and Saturday are closed. The appeal is filed Monday, a day late. The court refuses to hear it. Cause of action barred; Tk 500,000+ in fees gone.</p></div>
+  <div class="beat"><div class="t">Tue<span class="who">Sabir</span></div><p>An old matter has a new result he does not know about. He does not prepare for the next date, shows up unprepared, and the judge notices.</p></div>
+  <div class="refuse"><h3>The bill for one week</h3><p>Roughly 90 minutes of scanning, planning, explaining and apologising — and Tk 750,000+ in fees and reputation. That is the cost the desk exists to prevent.</p></div>
 </section>
 
 <section class="slide" id="week">
-  <div class="kicker">05 — A week with it</div>
+  <div class="kicker">07 — A week with it</div>
+  <div class="pivot"><span>Same week — now with the desk</span></div>
   <h2>Thursday evening to the following Friday.</h2>
 
   <div class="beat"><div class="t">Thu 20:30<span class="who">System</span></div><p>The list drops; the sweep reads ~65 pages, matching your name, cases and clients.</p></div>
@@ -267,24 +317,28 @@ footer { border-top:1px solid var(--hair); padding:26px 0 0; font-family:var(--m
 </section>
 
 <section class="slide" id="next">
-  <div class="kicker">06 — What's next</div>
+  <div class="kicker">08 — What's next</div>
   <h2>Built now, and honest about the road.</h2>
-  <p class="lede">The full desk is built and tested. Two directions follow, and both are gated on correctness, not ambition.</p>
+  <p class="lede">Status: the core desk is live. The next move is depth, not breadth — and it is gated on correctness, not engineering.</p>
   <div class="grid2">
-    <div class="card"><span class="n">Now · Tier 1</span><h3>Depth for daily use</h3><p>More limitation articles verified with lawyers, richer diary automation, and the pieces that convert daily users into paying ones.</p></div>
-    <div class="card"><span class="n">Later · Tier 2</span><h3>Grounded case-law research</h3><p>A real, checkable corpus of judgments — RAG with citation accuracy as the core problem. Not shipped until the citations are right. Shipping it wrong costs more trust than not having it.</p></div>
+    <div class="card"><span class="n">✓ Built</span><h3>The sweep</h3><p>Reads the whole published cause list, matches your matters, sends one message. Tested against real published lists.</p></div>
+    <div class="card"><span class="n">✓ Built</span><h3>The desk</h3><p>Your files, your matters, your deadlines, your drafts — one place across web, Telegram, CLI and API.</p></div>
+    <div class="card"><span class="n">✓ Built</span><h3>The guard</h3><p>Refuses to cite what you did not supply, and flags the rest. Zero invented citations shipped.</p></div>
+    <div class="card"><span class="n">✗ Blocked</span><h3>More limitation articles</h3><p>Extracted, but none verified yet — each stays refused until a lawyer checks it. Correctness is the gate.</p></div>
+    <div class="card"><span class="n">✗ Blocked</span><h3>Diary automation</h3><p>Awaits court-holiday and closure data, verified by a lawyer, before anything auto-flags.</p></div>
+    <div class="card"><span class="n">✗ Blocked</span><h3>Case-law research</h3><p>Gated on citation accuracy. Not shipped until it stops inventing citations.</p></div>
   </div>
-  <p>The absence of case-law answers is deliberate. It is the difference between a tool that helps and a tool that misleads — and it is why the refusal earns trust.</p>
+  <p>No features ship until they are correct. That is the whole product promise.</p>
 </section>
 
 <section class="slide" id="ask">
-  <div class="kicker">07 — The ask</div>
-  <h2>Put it on your desk for a week.</h2>
+  <div class="kicker">09 — The ask</div>
+  <h2>Try it on your real cause list this week.</h2>
   <div class="ask">
-    <h3>Try it on your real cause list.</h3>
-    <p>Register yourself, tell it what to watch, and run the sweep the evening the list drops. It will send you one message with everything that's yours tomorrow.</p>
-    <p>Then open a real file, run a real deadline, and draft a real first draft. Where it is wrong — <em>tell us</em>. That is the product's whole point: every place it could be confidently wrong is marked, and the corrections are how it gets better.</p>
-    <p><strong>No marketing. No client-matching. No public listing of barristers.</strong> This is inward-facing practice software, built for one barrister's own desk — yours.</p>
+    <h3>The bet is 30 seconds of reading.</h3>
+    <p>Install it, add yourself, and tell it what to watch — your name, your cases, one client. Thursday evening the list drops, and the sweep sends one message naming everything you are listed for Friday.</p>
+    <p>Worth 30 seconds of reading? If yes, run a real deadline, use the calculator, draft a first petition. Where it fails, reply with one word — <em>hit</em> or <em>miss</em> — and that correction makes it better.</p>
+    <p><strong>No payment. No long trial. No tracking.</strong> Just: does it save you real time on your own desk?</p>
   </div>
 </section>
 </div>
