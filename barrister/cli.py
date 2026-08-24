@@ -17,7 +17,7 @@ from .config import settings
 from .db import session
 from .http import PoliteClient
 from .scrapers import bdlaws, case_status, cause_list
-from .services import drafting, limitation, statutes, tracker, watchlist
+from .services import bot, drafting, limitation, matters, statutes, tracker, watchlist
 from .services.notify import ConsoleNotifier, default_notifier
 
 log = logging.getLogger(__name__)
@@ -221,6 +221,127 @@ def cmd_templates(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_matter_open(args: argparse.Namespace) -> int:
+    with session(args.db) as conn:
+        client_id = None
+        if args.client:
+            client_id = matters.add_client(conn, args.user, args.client)
+        matter_id = matters.open_matter(
+            conn, args.user, args.title, reference=args.reference,
+            client_id=client_id, court=args.court, fee_agreed=args.fee,
+        )
+        reference = matters.get_matter(conn, matter_id)["reference"]
+        for case in args.case or []:
+            parts = case.rsplit(maxsplit=2)
+            if len(parts) != 3:
+                print(f"skipping {case!r}: expected '<type> <number> <year>'", file=sys.stderr)
+                continue
+            matters.link_case(
+                conn, matter_id, case_type=parts[0], case_number=parts[1], case_year=parts[2]
+            )
+            print(f"  linked and watching {case}")
+    print(f"opened {reference} ({matter_id}): {args.title}")
+    return 0
+
+
+def cmd_matter_list(args: argparse.Namespace) -> int:
+    with session(args.db) as conn:
+        rows = matters.list_matters(conn, args.user, status=args.status)
+        summary = matters.practice_summary(conn, args.user)
+    if not rows:
+        print("no matters yet")
+        return 0
+    for row in rows:
+        client = f" — {row['client_name']}" if row["client_name"] else ""
+        print(f"  {row['reference']:<14} [{row['status']:<8}] {row['title']}{client}")
+    print(f"\n{summary['total_matters']} matter(s); {summary['unbilled_hours']}h unbilled; "
+          f"{summary['deadlines_30d']} deadline(s) in 30 days")
+    return 0
+
+
+def cmd_matter_show(args: argparse.Namespace) -> int:
+    with session(args.db) as conn:
+        matter = matters.find_matter_by_reference(conn, args.user, args.reference)
+        if matter is None:
+            print(f"no matter {args.reference!r}", file=sys.stderr)
+            return 1
+        overview = matters.matter_overview(conn, int(matter["id"]))
+
+    info = overview["matter"]
+    print(f"{info['reference']}  {info['title']}")
+    print(f"  status: {info['status']}   client: {info['client_name'] or '-'}")
+    print(f"  time:   {overview['time']['hours']}h "
+          f"({overview['time']['unbilled_minutes']}m unbilled)")
+    if overview["cases"]:
+        print("  cases:")
+        for case in overview["cases"]:
+            print(f"    {case['case_type']} {case['case_number']}/{case['case_year']}")
+    if overview["deadlines"]:
+        print("  deadlines:")
+        for deadline in overview["deadlines"]:
+            flag = "" if deadline["verified"] else "  (basis unverified)"
+            done = " [done]" if deadline["completed"] else ""
+            print(f"    {deadline['due_on']}  {deadline['label']}{flag}{done}")
+    if overview["notes"]:
+        print("  notes:")
+        for note in overview["notes"][:10]:
+            print(f"    {note['noted_on']}  [{note['kind']}] {note['body'][:70]}")
+    return 0
+
+
+def cmd_matter_note(args: argparse.Namespace) -> int:
+    with session(args.db) as conn:
+        matter = matters.find_matter_by_reference(conn, args.user, args.reference)
+        if matter is None:
+            print(f"no matter {args.reference!r}", file=sys.stderr)
+            return 1
+        matters.add_note(conn, int(matter["id"]), args.body, kind=args.kind)
+    print(f"noted on {args.reference}")
+    return 0
+
+
+def cmd_matter_time(args: argparse.Namespace) -> int:
+    with session(args.db) as conn:
+        matter = matters.find_matter_by_reference(conn, args.user, args.reference)
+        if matter is None:
+            print(f"no matter {args.reference!r}", file=sys.stderr)
+            return 1
+        matters.log_time(
+            conn, int(matter["id"]), args.minutes, args.description, rate=args.rate
+        )
+        summary = matters.time_summary(conn, int(matter["id"]))
+    print(f"logged {args.minutes}m on {args.reference}; {summary.hours}h total, "
+          f"{summary.billable} billable")
+    return 0
+
+
+def cmd_diary(args: argparse.Namespace) -> int:
+    with session(args.db) as conn:
+        rows = matters.upcoming_deadlines(conn, args.user, within_days=args.days)
+    if not rows:
+        print(f"no deadlines in the next {args.days} days")
+        return 0
+    today = date.today()
+    for row in rows:
+        due = date.fromisoformat(row["due_on"])
+        remaining = (due - today).days
+        marker = f"OVERDUE {abs(remaining)}d" if remaining < 0 else f"{remaining}d"
+        flag = "" if row["verified"] else "  (basis unverified)"
+        print(f"  {row['due_on']}  {marker:>10}  {row['reference']}  {row['label']}{flag}")
+    return 0
+
+
+def cmd_bot(args: argparse.Namespace) -> int:
+    """Run the Telegram bot until interrupted."""
+    try:
+        handled = bot.run(db_path=args.db, max_iterations=args.iterations)
+    except bot.BotError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    print(f"handled {handled} message(s)")
+    return 0
+
+
 def cmd_review_queue(args: argparse.Namespace) -> int:
     """List Schedule articles still awaiting a lawyer's verification."""
     pending = limitation.unverified_articles()
@@ -332,6 +453,54 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = subparsers.add_parser("templates", help="list drafting templates")
     p.set_defaults(func=cmd_templates)
+
+    matter_parser = subparsers.add_parser("matter", help="case-file management")
+    matter_sub = matter_parser.add_subparsers(dest="matter_command", required=True)
+
+    p = matter_sub.add_parser("open", help="open a new file")
+    p.add_argument("user", type=int)
+    p.add_argument("title")
+    p.add_argument("--reference", help="defaults to MAT-<year>-<seq>")
+    p.add_argument("--client")
+    p.add_argument("--court")
+    p.add_argument("--fee", type=float)
+    p.add_argument("--case", action="append",
+                   help='"<type> <number> <year>"; also starts watching it')
+    p.set_defaults(func=cmd_matter_open)
+
+    p = matter_sub.add_parser("list", help="list files")
+    p.add_argument("user", type=int)
+    p.add_argument("--status", choices=list(matters.MATTER_STATUSES))
+    p.set_defaults(func=cmd_matter_list)
+
+    p = matter_sub.add_parser("show", help="show one file")
+    p.add_argument("user", type=int)
+    p.add_argument("reference")
+    p.set_defaults(func=cmd_matter_show)
+
+    p = matter_sub.add_parser("note", help="add a note to a file")
+    p.add_argument("user", type=int)
+    p.add_argument("reference")
+    p.add_argument("body")
+    p.add_argument("--kind", default="note", choices=list(matters.NOTE_KINDS))
+    p.set_defaults(func=cmd_matter_note)
+
+    p = matter_sub.add_parser("time", help="log time against a file")
+    p.add_argument("user", type=int)
+    p.add_argument("reference")
+    p.add_argument("minutes", type=int)
+    p.add_argument("description")
+    p.add_argument("--rate", type=float)
+    p.set_defaults(func=cmd_matter_time)
+
+    p = subparsers.add_parser("diary", help="deadlines falling due")
+    p.add_argument("user", type=int)
+    p.add_argument("--days", type=int, default=30)
+    p.set_defaults(func=cmd_diary)
+
+    p = subparsers.add_parser("bot", help="run the Telegram bot")
+    p.add_argument("--iterations", type=int, help="stop after N polls (for testing)")
+    p.set_defaults(func=cmd_bot)
 
     p = subparsers.add_parser("review-queue", help="limitation articles needing verification")
     p.add_argument("--limit", type=int, default=200)

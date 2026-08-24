@@ -4,6 +4,7 @@ lxml>=5.0
 jinja2>=3.1
 fastapi>=0.110
 uvicorn>=0.29
+python-multipart>=0.0.9
 pydantic>=2.6
 
 # Optional: drafting via Claude. DeepSeek needs no extra package (it is

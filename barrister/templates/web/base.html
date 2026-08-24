@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Barrister Tools{% endblock %}</title>
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <h1 class="masthead__title"><a href="/">Barrister Tools</a></h1>
+    <div class="masthead__meta">
+      {{ today }} &nbsp;·&nbsp; {{ user.name if user else 'not registered' }}
+    </div>
+  </div>
+  <nav class="nav">
+    {% for href, label, key in [
+        ('/', 'Today', 'today'),
+        ('/cause-list', 'Cause list', 'causelist'),
+        ('/matters', 'Files', 'matters'),
+        ('/diary', 'Diary', 'diary'),
+        ('/statutes', 'Statutes', 'statutes'),
+        ('/limitation', 'Limitation', 'limitation'),
+        ('/drafting', 'Drafting', 'drafting')] %}
+      <a href="{{ href }}"{% if nav == key %} aria-current="page"{% endif %}>{{ label }}</a>
+    {% endfor %}
+  </nav>
+</header>
+
+<main class="page">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="colophon">
+  Data from <a href="https://www.supremecourt.gov.bd/web/">supremecourt.gov.bd</a>
+  and <a href="http://bdlaws.minlaw.gov.bd/">bdlaws.minlaw.gov.bd</a>.
+  Everything here is a working aid, not advice — verify against the official
+  record before you rely on it or file.
+</footer>
+
+</body>
+</html>

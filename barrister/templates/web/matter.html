@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% from "_caveat.html" import caveat %}
+{% block title %}{{ matter.reference }} — Barrister Tools{% endblock %}
+{% block content %}
+
+<div class="page__head">
+  <div>
+    <h1>{{ matter.title }}</h1>
+    <p class="page__subtitle">
+      {{ matter.reference }} ·
+      <span class="state state--{{ matter.status }}">{{ matter.status }}</span>
+      {% if matter.client_name %} · {{ matter.client_name }}{% endif %}
+      {% if matter.client_phone %} · {{ matter.client_phone }}{% endif %}
+    </p>
+  </div>
+</div>
+
+<div class="figures">
+  <div class="figure">
+    <div class="figure__value">{{ time.hours }}</div>
+    <div class="figure__label">Hours logged</div>
+  </div>
+  <div class="figure">
+    <div class="figure__value">{{ (time.unbilled_minutes / 60)|round(1) }}</div>
+    <div class="figure__label">Unbilled</div>
+  </div>
+  <div class="figure">
+    <div class="figure__value">{{ cases|length }}</div>
+    <div class="figure__label">Cases</div>
+  </div>
+  <div class="figure">
+    <div class="figure__value{% if open_deadlines %} figure__value--alert{% endif %}">{{ open_deadlines|length }}</div>
+    <div class="figure__label">Open deadlines</div>
+  </div>
+</div>
+
+{% if cases %}
+<p class="rubric">Cases</p>
+<table class="ledger">
+  <thead><tr><th>Case</th><th>Division</th><th>Watching</th></tr></thead>
+  <tbody>
+    {% for case in cases %}
+    <tr>
+      <td class="ledger__title">{{ case.case_type }} {{ case.case_number }}/{{ case.case_year }}</td>
+      <td>{{ 'Appellate' if case.division_id == 1 else ('High Court' if case.division_id == 2 else '—') }}</td>
+      <td>{{ 'yes' if case.watch_id else 'no' }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% if deadlines %}
+<p class="rubric">Deadlines</p>
+<div class="diary">
+  {% for item in deadlines %}
+    <div class="diary__item{% if not item.completed and item.days_left is not none and item.days_left <= 7 %} diary__item--urgent{% endif %}">
+      <div class="diary__date">{{ item.due_on }}</div>
+      <div class="diary__countdown">
+        {% if item.completed %}done
+        {% elif item.days_left < 0 %}+{{ -item.days_left }}d over
+        {% else %}{{ item.days_left }}d{% endif %}
+      </div>
+      <div>
+        <div class="diary__label">{{ item.label }}</div>
+        {% if item.basis %}<div class="diary__matter">{{ item.basis }}</div>{% endif %}
+        {% if not item.verified %}
+          <div class="diary__matter" style="color:var(--oxblood)">Basis not verified by a lawyer</div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<p class="rubric">Attendance and notes</p>
+{% if notes %}
+<div class="note-list">
+  {% for note in notes %}
+  <div class="note">
+    <div>
+      <div class="note__date">{{ note.noted_on }}</div>
+      <span class="note__kind">{{ note.kind }}</span>
+    </div>
+    <p class="note__body">{{ note.body }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="ledger__empty">No notes on this file yet.</p>
+{% endif %}
+
+{% if documents %}
+<p class="rubric">Documents</p>
+<table class="ledger">
+  <thead><tr><th>Title</th><th>Kind</th><th>Filed</th></tr></thead>
+  <tbody>
+    {% for document in documents %}
+    <tr>
+      <td class="ledger__title">{{ document.title }}</td>
+      <td>{{ document.kind or '—' }}</td>
+      <td class="date">{{ document.filed_on or '—' }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% if time_entries %}
+<p class="rubric">Time</p>
+<table class="ledger">
+  <thead>
+    <tr><th>Date</th><th>Description</th><th class="num">Minutes</th><th class="num">Value</th><th>Billed</th></tr>
+  </thead>
+  <tbody>
+    {% for entry in time_entries %}
+    <tr>
+      <td class="date">{{ entry.worked_on }}</td>
+      <td>{{ entry.description }}</td>
+      <td class="num">{{ entry.minutes }}</td>
+      <td class="num">{% if entry.rate %}{{ ((entry.rate * entry.minutes / 60))|round(0)|int }}{% else %}—{% endif %}</td>
+      <td>{{ 'yes' if entry.billed else 'no' }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

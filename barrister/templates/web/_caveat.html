@@ -1,0 +1,5 @@
+{% macro caveat(label, body, quiet=false) %}
+<div class="caveat{% if quiet %} caveat--quiet{% endif %}">
+  <span class="caveat__label">{{ label }}</span>{{ body }}
+</div>
+{% endmacro %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Files — Barrister Tools{% endblock %}
+{% block content %}
+
+<div class="page__head">
+  <div>
+    <h1>Files</h1>
+    <p class="page__subtitle">
+      {{ summary.total_matters }} in all · {{ summary.matters.open }} open ·
+      {{ summary.unbilled_hours }}h unbilled
+    </p>
+  </div>
+  <form class="inline-form" method="get" action="/matters">
+    <div class="field">
+      <label for="status">Showing</label>
+      <select name="status" id="status" onchange="this.form.submit()">
+        <option value=""{% if not status %} selected{% endif %}>All</option>
+        {% for value in statuses %}
+          <option value="{{ value }}"{% if status == value %} selected{% endif %}>{{ value|capitalize }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </form>
+</div>
+
+{% if matters %}
+<div class="scroll-x">
+<table class="ledger">
+  <thead>
+    <tr>
+      <th>Reference</th><th>Matter</th><th>Client</th>
+      <th>Status</th><th class="num">Cases</th><th>Opened</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for matter in matters %}
+    <tr>
+      <td class="ledger__ref"><a href="/matters/{{ matter.id }}">{{ matter.reference }}</a></td>
+      <td class="ledger__title">{{ matter.title }}</td>
+      <td>{{ matter.client_name or '—' }}</td>
+      <td><span class="state state--{{ matter.status }}">{{ matter.status }}</span></td>
+      <td class="num">{{ matter.case_count }}</td>
+      <td class="date">{{ matter.opened_on }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p class="ledger__empty">
+  No files yet. Open one with
+  <code>barrister matter open {{ user.id if user else 1 }} "Title"</code>.
+</p>
+{% endif %}
+
+{% endblock %}

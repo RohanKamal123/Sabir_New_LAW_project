@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% from "_caveat.html" import caveat %}
+{% block title %}Limitation — Barrister Tools{% endblock %}
+{% block content %}
+
+<div class="page__head">
+  <div>
+    <h1>Limitation</h1>
+    <p class="page__subtitle">Rule-based, and it shows its working</p>
+  </div>
+</div>
+
+<form class="form" method="get" action="/limitation">
+  <div class="field">
+    <label for="start">Date of the decree, order or judgment</label>
+    <input type="date" name="start" id="start" value="{{ form.start or '' }}" required>
+    <p class="field__hint">Excluded from the count by s. 12(1).</p>
+  </div>
+  <div class="field">
+    <label for="proceeding">Proceeding</label>
+    <select name="proceeding" id="proceeding">
+      {% for value, label in proceedings %}
+        <option value="{{ value }}"{% if form.proceeding == value %} selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="field">
+    <label for="days">Prescribed period (days)</label>
+    <input type="number" name="days" id="days" min="1" value="{{ form.days or '' }}" required>
+    <p class="field__hint">
+      Take this from the First Schedule and check it — the extracted articles are
+      not yet verified, so the calculator will not supply one for you.
+    </p>
+  </div>
+  <div class="field">
+    <label for="copy_applied">Certified copy applied for</label>
+    <input type="date" name="copy_applied" id="copy_applied" value="{{ form.copy_applied or '' }}">
+  </div>
+  <div class="field">
+    <label for="copy_ready">Certified copy ready</label>
+    <input type="date" name="copy_ready" id="copy_ready" value="{{ form.copy_ready or '' }}">
+    <p class="field__hint">
+      For an appeal, leave to appeal or review, s. 12(2) excludes the time
+      requisite for obtaining the copy. Leave both blank and the answer will be
+      earlier than the law allows.
+    </p>
+  </div>
+  <button class="button" type="submit">Compute</button>
+</form>
+
+{% if error %}
+  {{ caveat('Cannot compute', error) }}
+{% endif %}
+
+{% if result %}
+  <p class="rubric">Result</p>
+  <div class="working">
+    <p class="working__answer">{{ result.deadline }}</p>
+    <p class="working__answer-note">
+      {{ result.weekday }} ·
+      {%- if result.days_remaining < 0 %}
+        {{ -result.days_remaining }} days ago ·
+        <strong style="color:var(--oxblood)">expired</strong>
+      {%- elif result.days_remaining == 0 %} today
+      {%- else %} {{ result.days_remaining }} days from today{% endif %}
+    </p>
+
+    {% for step in result.steps %}
+      <div class="working__step">
+        <div class="working__rule">{{ step.rule }}</div>
+        <div>
+          {{ step.explanation }}
+          {% if step.result %}<span class="working__result"> → {{ step.result }}</span>{% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% for warning in result.warnings %}
+    {{ caveat('Note', warning) }}
+  {% endfor %}
+
+  {% if result.citations %}
+    <p class="rubric">Authority relied on</p>
+    {% for citation in result.citations %}
+      <div class="authority">{{ citation }}</div>
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
+{% endblock %}

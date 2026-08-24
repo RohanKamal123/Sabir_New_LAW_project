@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% from "_caveat.html" import caveat %}
+{% block title %}Today — Barrister Tools{% endblock %}
+{% block content %}
+
+<div class="page__head">
+  <div>
+    <h1>Today</h1>
+    <p class="page__subtitle">{{ long_date }}</p>
+  </div>
+</div>
+
+{% if not user %}
+  {{ caveat('Not registered',
+     'No barrister is registered on this install yet. Run
+      <code>barrister adduser "Your Name"</code> to begin.') }}
+{% else %}
+
+<div class="figures">
+  <div class="figure">
+    <div class="figure__value">{{ listings|length }}</div>
+    <div class="figure__label">Listed today</div>
+  </div>
+  <div class="figure">
+    <div class="figure__value{% if urgent_count %} figure__value--alert{% endif %}">{{ urgent_count }}</div>
+    <div class="figure__label">Due within 7 days</div>
+  </div>
+  <div class="figure">
+    <div class="figure__value">{{ summary.matters.open }}</div>
+    <div class="figure__label">Open files</div>
+  </div>
+  <div class="figure">
+    <div class="figure__value">{{ summary.unbilled_hours }}</div>
+    <div class="figure__label">Unbilled hours</div>
+  </div>
+</div>
+
+<p class="rubric">Your listings</p>
+
+{% if listings %}
+<div class="listing">
+  {% for court, entries in listings_by_court %}
+    <div class="bench">
+      <p class="bench__court">{{ court or 'Court not stated' }}</p>
+      {% if entries[0].judges %}<p class="bench__judges">{{ entries[0].judges }}</p>{% endif %}
+    </div>
+    {% for entry in entries %}
+      <div class="entry entry--mine">
+        <div class="entry__serial">{{ entry.serial if entry.serial is not none else '—' }}</div>
+        <div>
+          <span class="entry__case">{{ entry.case_type }} {{ entry.case_number }}/{{ entry.case_year }}</span>
+          {% if entry.matter_reference %}
+            <a class="entry__file" href="/matters/{{ entry.matter_id }}">{{ entry.matter_reference }}</a>
+          {% endif %}
+          <div class="entry__parties">
+            {{ entry.petitioner or '—' }}<span class="vs">vs</span>{{ entry.respondent or '—' }}
+          </div>
+          {% if entry.section %}<div class="entry__advocates">{{ entry.section }}</div>{% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  {% endfor %}
+</div>
+{% else %}
+<p class="ledger__empty">
+  Nothing of yours is listed for {{ today }}. If the list has only just been
+  published, the sweep may not have run yet — <code>barrister sweep</code>.
+</p>
+{% endif %}
+
+<p class="rubric">Falling due</p>
+
+{% if deadlines %}
+<div class="diary">
+  {% for item in deadlines[:6] %}
+    <div class="diary__item{% if item.days_left <= 7 %} diary__item--urgent{% endif %}">
+      <div class="diary__date">{{ item.due_on }}</div>
+      <div class="diary__countdown">
+        {% if item.days_left < 0 %}+{{ -item.days_left }}d over{% else %}{{ item.days_left }}d{% endif %}
+      </div>
+      <div>
+        <div class="diary__label">{{ item.label }}</div>
+        <div class="diary__matter">
+          <a href="/matters/{{ item.matter_id }}">{{ item.reference }}</a> · {{ item.title }}
+          {% if not item.verified %}· basis unverified{% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="ledger__empty">Nothing falls due in the next 30 days.</p>
+{% endif %}
+
+{% endif %}
+{% endblock %}

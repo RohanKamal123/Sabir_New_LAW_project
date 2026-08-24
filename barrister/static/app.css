@@ -1,0 +1,744 @@
+/* ===========================================================================
+   Barrister Tools — design system
+
+   The reference is not a SaaS dashboard. It is the two things a Supreme Court
+   barrister already reads every day: the printed cause list and the law
+   report. Both are dense, ruled, typographically quiet, and built to be
+   scanned by someone in a hurry who knows exactly what they are looking for.
+
+   The rules that follow from that:
+
+   - Rules, not cards. Information is separated by hairlines the way a cause
+     list separates benches, never by floating boxes with drop shadows.
+   - Serif for reading, mono for data. Case numbers, dates, serials and money
+     are tabular figures so columns align down the page.
+   - One accent colour. Oxblood means *urgent* — overdue, unverified, refused.
+     If everything is coloured, nothing is. Status is carried by a rule and a
+     word, not by a pill.
+   - Paper, not screen. The background is warm off-white; the ink is warm
+     near-black. Dark mode is lamplight on paper, not a black void.
+   - It must print. Barristers print things and take them to court.
+   =========================================================================== */
+
+:root {
+    /* Paper and ink */
+    --paper:        #f6f3ec;
+    --paper-raised: #fbf9f4;
+    --paper-sunk:   #efeade;
+    --ink:          #22201c;
+    --ink-muted:    #5f5a51;
+    --ink-faint:    #8b8478;
+
+    /* Rules — the primary structural device */
+    --rule:         #d6cfc0;
+    --rule-heavy:   #2a2722;
+
+    /* The single accent. Urgency only. */
+    --oxblood:      #8a2b2b;
+    --oxblood-sunk: #f2e4e2;
+
+    /* Links and references */
+    --ink-blue:     #1f3f66;
+
+    /* Quiet supporting hues, used for text only, never as fills */
+    --green:        #2f5d3f;
+    --amber:        #7a5a12;
+
+    --serif: Georgia, "Times New Roman", "Noto Serif Bengali", Times, serif;
+    --mono: ui-monospace, "SF Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    --gutter: 2.5rem;
+    --measure: 68ch;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --paper:        #1a1815;
+        --paper-raised: #221f1b;
+        --paper-sunk:   #141210;
+        --ink:          #e8e2d6;
+        --ink-muted:    #a49c8e;
+        --ink-faint:    #776f62;
+        --rule:         #3a352d;
+        --rule-heavy:   #6b6355;
+        --oxblood:      #d97070;
+        --oxblood-sunk: #33201f;
+        --ink-blue:     #8fb4dd;
+        --green:        #7fb08f;
+        --amber:        #c9a44e;
+    }
+}
+
+:root[data-theme="dark"] {
+    --paper:        #1a1815;
+    --paper-raised: #221f1b;
+    --paper-sunk:   #141210;
+    --ink:          #e8e2d6;
+    --ink-muted:    #a49c8e;
+    --ink-faint:    #776f62;
+    --rule:         #3a352d;
+    --rule-heavy:   #6b6355;
+    --oxblood:      #d97070;
+    --oxblood-sunk: #33201f;
+    --ink-blue:     #8fb4dd;
+    --green:        #7fb08f;
+    --amber:        #c9a44e;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.55;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------------
+   Masthead — modelled on the head of a cause list: the court's name, a rule,
+   then the date. Double rule (heavy over hairline) is the court-document tell.
+   --------------------------------------------------------------------------- */
+
+.masthead {
+    border-bottom: 3px double var(--rule-heavy);
+    background: var(--paper-raised);
+}
+
+.masthead__inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 1.1rem var(--gutter) 0.9rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.masthead__title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.masthead__title a { color: inherit; text-decoration: none; }
+
+.masthead__meta {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+}
+
+/* Navigation reads as a run of tabs on a folder, not buttons. */
+.nav {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.nav a {
+    display: block;
+    padding: 0.55rem 0;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+
+.nav a:hover { color: var(--ink); }
+
+.nav a[aria-current="page"] {
+    color: var(--ink);
+    border-bottom-color: var(--oxblood);
+}
+
+/* --------------------------------------------------------------------------- */
+
+.page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 2rem var(--gutter) 5rem;
+}
+
+.page__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--rule-heavy);
+    margin-bottom: 1.75rem;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+}
+
+.page__subtitle {
+    margin: 0.25rem 0 0;
+    color: var(--ink-muted);
+    font-size: 0.92rem;
+}
+
+/* Section label — the small-caps rubric of a law report. */
+.rubric {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 2.25rem 0 0.6rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+.rubric:first-child { margin-top: 0; }
+
+/* ---------------------------------------------------------------------------
+   The cause list. This is the screen that has to feel exactly right, because
+   it is the one the barrister compares against the Court's own printed list.
+   Serial numbers sit in a fixed gutter; the bench heading spans; connected
+   matters are indented under their parent the way the Court prints them.
+   --------------------------------------------------------------------------- */
+
+.listing { border-top: 1px solid var(--rule-heavy); }
+
+.bench {
+    padding: 1rem 0 0.35rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+.bench__court {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.bench__judges {
+    margin: 0.15rem 0 0.5rem;
+    color: var(--ink-muted);
+    font-size: 0.88rem;
+    font-style: italic;
+}
+
+.section-head {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0.9rem 0 0.3rem 3.5rem;
+}
+
+.entry {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: 0 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+}
+
+.entry--connected {
+    padding-left: 1.5rem;
+    grid-template-columns: 2rem 1fr;
+}
+
+.entry--connected .entry__serial::before {
+    content: "with ";
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+}
+
+.entry--mine {
+    /* Your own matter: a rule in the margin, not a highlighted row. */
+    border-left: 3px solid var(--oxblood);
+    padding-left: 0.75rem;
+    margin-left: -0.75rem;
+}
+
+.entry--connected.entry--mine { padding-left: 2.25rem; }
+
+.entry__serial {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    text-align: right;
+}
+
+.entry__case {
+    font-weight: 600;
+    font-size: 0.98rem;
+}
+
+.entry__file {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--oxblood);
+    letter-spacing: 0.03em;
+    margin-left: 0.5rem;
+}
+
+.entry__parties {
+    color: var(--ink-muted);
+    font-size: 0.88rem;
+    margin-top: 0.1rem;
+}
+
+.entry__parties .vs {
+    font-style: italic;
+    color: var(--ink-faint);
+    padding: 0 0.35rem;
+}
+
+.entry__advocates {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin-top: 0.15rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Ledger tables — matters, time, hearings.
+   --------------------------------------------------------------------------- */
+
+.ledger {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+.ledger th {
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0 0.6rem 0.4rem 0;
+    border-bottom: 1px solid var(--rule-heavy);
+    white-space: nowrap;
+}
+
+.ledger td {
+    padding: 0.55rem 0.6rem 0.55rem 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: baseline;
+}
+
+.ledger tr:hover td { background: var(--paper-raised); }
+
+.ledger .num, .ledger .date {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    white-space: nowrap;
+}
+
+.ledger .num { text-align: right; }
+
+.ledger__ref {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-muted);
+    white-space: nowrap;
+}
+
+.ledger__title { font-weight: 600; }
+
+.ledger__empty {
+    padding: 2rem 0;
+    color: var(--ink-faint);
+    font-style: italic;
+}
+
+/* Status as a word with a mark, never a coloured pill. */
+.state {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    white-space: nowrap;
+}
+
+.state::before {
+    content: "—";
+    margin-right: 0.4rem;
+    color: var(--ink-faint);
+}
+
+.state--open::before   { content: "●"; color: var(--green); }
+.state--reserved::before { content: "◐"; color: var(--amber); }
+.state--disposed::before, .state--closed::before { content: "○"; color: var(--ink-faint); }
+
+/* ---------------------------------------------------------------------------
+   The diary. Urgency is the whole point, so this is the one place where the
+   accent earns its keep.
+   --------------------------------------------------------------------------- */
+
+.diary { border-top: 1px solid var(--rule-heavy); }
+
+.diary__item {
+    display: grid;
+    grid-template-columns: 7rem 5rem 1fr;
+    gap: 0 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+}
+
+.diary__date { font-family: var(--mono); font-size: 0.84rem; }
+
+.diary__countdown {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    text-align: right;
+}
+
+.diary__item--urgent {
+    border-left: 3px solid var(--oxblood);
+    padding-left: 0.75rem;
+    margin-left: -0.75rem;
+}
+
+.diary__item--urgent .diary__countdown { color: var(--oxblood); font-weight: 600; }
+
+.diary__label { font-weight: 600; }
+
+.diary__matter { font-size: 0.82rem; color: var(--ink-muted); }
+
+/* ---------------------------------------------------------------------------
+   Figures — counts on the dashboard. Rules between, no boxes.
+   --------------------------------------------------------------------------- */
+
+.figures {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    border-top: 1px solid var(--rule-heavy);
+    border-bottom: 1px solid var(--rule-heavy);
+}
+
+.figure {
+    padding: 0.9rem 1.25rem 0.9rem 0;
+    border-right: 1px solid var(--rule);
+}
+
+.figure:last-child { border-right: 0; }
+
+.figure__value {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.figure__value--alert { color: var(--oxblood); }
+
+.figure__label {
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 0.25rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Statute text — set like a law report: measured column, hanging section
+   number, quiet provenance line.
+   --------------------------------------------------------------------------- */
+
+.provision {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--rule);
+    max-width: var(--measure);
+}
+
+.provision__citation {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.provision__heading {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0.2rem 0 0.45rem;
+}
+
+.provision__body {
+    margin: 0;
+    line-height: 1.62;
+}
+
+.provision__source {
+    margin-top: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Working — the limitation calculation. It must read like a clerk's
+   handwritten computation in the margin of a brief.
+   --------------------------------------------------------------------------- */
+
+.working {
+    border-left: 2px solid var(--rule-heavy);
+    padding-left: 1.25rem;
+    max-width: var(--measure);
+}
+
+.working__answer {
+    font-family: var(--mono);
+    font-size: 1.75rem;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.working__answer-note {
+    color: var(--ink-muted);
+    font-size: 0.88rem;
+    margin: 0.15rem 0 1.25rem;
+}
+
+.working__step {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 0 0.9rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 0.9rem;
+}
+
+.working__rule {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--oxblood);
+}
+
+.working__result { font-family: var(--mono); font-size: 0.82rem; }
+
+.authority {
+    margin-top: 1.5rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--paper-sunk);
+    border-left: 2px solid var(--rule-heavy);
+    font-size: 0.86rem;
+    line-height: 1.6;
+    max-width: var(--measure);
+}
+
+.authority q { font-style: italic; }
+
+/* ---------------------------------------------------------------------------
+   Caveats. Every one of these exists because a wrong answer here costs a
+   client something real, so they are set to be read, not dismissed.
+   --------------------------------------------------------------------------- */
+
+.caveat {
+    border-left: 3px solid var(--oxblood);
+    background: var(--oxblood-sunk);
+    padding: 0.8rem 1.1rem;
+    margin: 1.25rem 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    max-width: var(--measure);
+}
+
+.caveat__label {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--oxblood);
+    margin-bottom: 0.3rem;
+}
+
+.caveat--quiet {
+    border-left-color: var(--rule-heavy);
+    background: var(--paper-sunk);
+}
+
+.caveat--quiet .caveat__label { color: var(--ink-faint); }
+
+/* --------------------------------------------------------------------------- */
+
+a { color: var(--ink-blue); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+.form { max-width: var(--measure); }
+
+.field { margin-bottom: 1.1rem; }
+
+.field label {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.3rem;
+}
+
+.field input, .field select, .field textarea {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+}
+
+.field input:focus, .field select:focus, .field textarea:focus {
+    outline: 2px solid var(--ink-blue);
+    outline-offset: -1px;
+}
+
+.field__hint {
+    margin: 0.3rem 0 0;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+}
+
+.button {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.4rem;
+    color: var(--paper);
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.button:hover { background: var(--oxblood); border-color: var(--oxblood); }
+
+.inline-form { display: flex; gap: 0.6rem; align-items: flex-end; flex-wrap: wrap; }
+.inline-form .field { margin-bottom: 0; flex: 1 1 12rem; }
+
+.searchbar { display: flex; gap: 0; max-width: var(--measure); margin-bottom: 1.5rem; }
+
+.searchbar input {
+    flex: 1;
+    padding: 0.6rem 0.75rem;
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--paper-raised);
+    border: 1px solid var(--rule-heavy);
+    border-right: 0;
+    border-radius: 2px 0 0 2px;
+}
+
+.searchbar button {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 1.5rem;
+    color: var(--paper);
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+}
+
+.note-list { border-top: 1px solid var(--rule); }
+
+.note {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0 1rem;
+}
+
+.note__date { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-muted); }
+.note__kind {
+    font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-faint); display: block;
+}
+.note__body { margin: 0; font-size: 0.92rem; }
+
+.colophon {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 1.25rem var(--gutter) 3rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    line-height: 1.6;
+}
+
+.draft-output {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    overflow-x: auto;
+}
+
+.scroll-x { overflow-x: auto; }
+
+/* --------------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+    :root { --gutter: 1.1rem; }
+    .entry, .entry--connected { grid-template-columns: 2.5rem 1fr; }
+    .diary__item { grid-template-columns: 5.5rem 1fr; }
+    .diary__countdown { grid-column: 2; text-align: left; }
+    .figure { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .note { grid-template-columns: 1fr; }
+}
+
+/* Barristers print things and take them to court. */
+@media print {
+    :root {
+        --paper: #fff; --paper-raised: #fff; --paper-sunk: #fff;
+        --ink: #000; --ink-muted: #333; --ink-faint: #555;
+        --rule: #bbb; --rule-heavy: #000; --oxblood: #000;
+    }
+    body { font-size: 11pt; }
+    .nav, .searchbar, .button, .form { display: none; }
+    .page { padding: 0; max-width: none; }
+    .entry, .diary__item, .ledger tr { page-break-inside: avoid; }
+    a { text-decoration: none; color: #000; }
+    .provision__source::after { content: " (printed from Barrister Tools)"; }
+}

@@ -76,3 +76,69 @@ class TestCommands:
         text = out.read_text()
         assert "IN THE SUPREME COURT OF BANGLADESH" in text
         assert "(i) Issue a Rule Nisi" in text
+
+
+class TestMatterCommands:
+    def _user(self, db, capsys):
+        main(["--db", db, "adduser", "Sabir", "--telegram", "123"])
+        capsys.readouterr()
+
+    def test_open_a_file_and_link_a_case(self, tmp_path, capsys):
+        db = str(tmp_path / "m.db")
+        self._user(db, capsys)
+
+        code = main([
+            "--db", db, "matter", "open", "1", "Karim v Bangladesh",
+            "--client", "Md. Karim", "--case", "First Appeal 226 2013",
+        ])
+        out = capsys.readouterr().out
+
+        assert code == 0
+        assert "opened MAT-" in out
+        assert "linked and watching" in out
+
+    def test_a_malformed_case_is_skipped_not_fatal(self, tmp_path, capsys):
+        db = str(tmp_path / "m.db")
+        self._user(db, capsys)
+
+        code = main([
+            "--db", db, "matter", "open", "1", "Some matter", "--case", "nonsense",
+        ])
+        captured = capsys.readouterr()
+
+        assert code == 0
+        assert "skipping" in captured.err
+        assert "opened MAT-" in captured.out
+
+    def test_show_an_unknown_reference(self, tmp_path, capsys):
+        db = str(tmp_path / "m.db")
+        self._user(db, capsys)
+        assert main(["--db", db, "matter", "show", "1", "MAT-1999-001"]) == 1
+
+    def test_time_and_notes_round_trip(self, tmp_path, capsys):
+        db = str(tmp_path / "m.db")
+        self._user(db, capsys)
+        main(["--db", db, "matter", "open", "1", "Karim v Bangladesh"])
+        capsys.readouterr()
+
+        main(["--db", db, "matter", "time", "1", "MAT-2026-001", "90", "Drafting", "--rate", "5000"])
+        assert "7500.0 billable" in capsys.readouterr().out
+
+        main(["--db", db, "matter", "note", "1", "MAT-2026-001", "Conference"])
+        capsys.readouterr()
+
+        main(["--db", db, "matter", "show", "1", "MAT-2026-001"])
+        out = capsys.readouterr().out
+        assert "1.5h" in out
+        assert "Conference" in out
+
+    def test_diary_with_nothing_due(self, tmp_path, capsys):
+        db = str(tmp_path / "m.db")
+        self._user(db, capsys)
+        assert main(["--db", db, "diary", "1"]) == 0
+        assert "no deadlines" in capsys.readouterr().out
+
+    def test_bot_without_a_token_exits_cleanly(self, tmp_path, capsys):
+        db = str(tmp_path / "m.db")
+        assert main(["--db", db, "bot", "--iterations", "1"]) == 1
+        assert "TELEGRAM_BOT_TOKEN" in capsys.readouterr().err

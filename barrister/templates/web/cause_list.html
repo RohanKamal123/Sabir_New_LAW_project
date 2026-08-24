@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% from "_caveat.html" import caveat %}
+{% block title %}Cause list — Barrister Tools{% endblock %}
+{% block content %}
+
+<div class="page__head">
+  <div>
+    <h1>Cause list</h1>
+    <p class="page__subtitle">
+      {{ division_name }}{% if list_date %} · {{ list_date }}{% endif %}
+    </p>
+  </div>
+  <form class="inline-form" method="get" action="/cause-list">
+    <div class="field">
+      <label for="division">Division</label>
+      <select name="division" id="division">
+        <option value="2"{% if division == 2 %} selected{% endif %}>High Court Division</option>
+        <option value="1"{% if division == 1 %} selected{% endif %}>Appellate Division</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="bench">Bench</label>
+      <select name="bench_id" id="bench">
+        <option value="">— select a bench —</option>
+        {% for bench in benches %}
+          <option value="{{ bench.bench_id }}"{% if bench.bench_id == bench_id %} selected{% endif %}>
+            {{ bench.court_name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <button class="button" type="submit">Show</button>
+  </form>
+</div>
+
+{% if error %}
+  {{ caveat('Could not fetch', error) }}
+{% endif %}
+
+{% if entries %}
+<div class="listing">
+  <div class="bench">
+    <p class="bench__court">{{ court_name }}</p>
+    {% if judges %}<p class="bench__judges">{{ judges }}</p>{% endif %}
+  </div>
+  {% set ns = namespace(section=None) %}
+  {% for entry in entries %}
+    {% if entry.section != ns.section %}
+      {% set ns.section = entry.section %}
+      <p class="section-head">{{ entry.section or 'Not stated' }}</p>
+    {% endif %}
+    <div class="entry{% if entry.connected_to is not none %} entry--connected{% endif %}{% if entry.matter_reference %} entry--mine{% endif %}">
+      <div class="entry__serial">{{ entry.serial if entry.serial is not none else '—' }}</div>
+      <div>
+        <span class="entry__case">
+          {{ entry.case_type }} {{ entry.case_number }}/{{ entry.case_year }}
+          {%- if entry.district %} <span style="font-weight:400;color:var(--ink-muted)">{{ entry.district }}</span>{% endif %}
+        </span>
+        {% if entry.matter_reference %}
+          <a class="entry__file" href="/matters/{{ entry.matter_id }}">{{ entry.matter_reference }}</a>
+        {% endif %}
+        <div class="entry__parties">
+          {{ entry.petitioner or '—' }}<span class="vs">vs</span>{{ entry.respondent or '—' }}
+        </div>
+        {% if entry.advocates %}
+          <div class="entry__advocates">{{ entry.advocates|join('; ') }}</div>
+        {% endif %}
+        {% if entry.notes %}
+          <div class="entry__advocates">{{ entry.notes|join(', ') }}</div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% elif not error %}
+<p class="ledger__empty">Choose a bench to see its list.</p>
+{% endif %}
+
+{% endblock %}

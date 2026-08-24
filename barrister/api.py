@@ -20,6 +20,8 @@ from .scrapers import case_status as case_status_scraper
 from .scrapers import cause_list as cause_list_scraper
 from .services import drafting, limitation, statutes, watchlist
 
+from fastapi.staticfiles import StaticFiles
+
 app = FastAPI(
     title="Barrister Tools",
     version="0.1.0",
@@ -28,6 +30,14 @@ app = FastAPI(
         "calculation and template drafting for Supreme Court of Bangladesh practice."
     ),
 )
+
+
+# The web UI and the JSON API are one application: same services, same
+# database session, so neither can drift from the other.
+from . import web as _web  # noqa: E402  (imported after `app` for clarity)
+
+app.mount("/static", StaticFiles(directory=str(_web.STATIC_DIR)), name="static")
+app.include_router(_web.router)
 
 
 def get_conn():
@@ -320,3 +330,8 @@ def create_draft(payload: DraftIn) -> dict[str, Any]:
         "text": result.text, "template": result.template, "provider": result.provider,
         "model": result.model, "warnings": result.warnings,
     }
+
+
+# Both surfaces resolve the database through the same dependency, so a test (or
+# a future connection pool) overriding one overrides both.
+app.dependency_overrides[_web.get_conn] = get_conn

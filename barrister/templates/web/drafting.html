@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% from "_caveat.html" import caveat %}
+{% block title %}Drafting — Barrister Tools{% endblock %}
+{% block content %}
+
+<div class="page__head">
+  <div>
+    <h1>Drafting</h1>
+    <p class="page__subtitle">
+      The template owns the form; the model writes only the narrative ·
+      provider: {{ provider }}
+    </p>
+  </div>
+</div>
+
+{% if provider == 'none' %}
+  {{ caveat('No model configured',
+     'Set <code>ANTHROPIC_API_KEY</code> or <code>DEEPSEEK_API_KEY</code> to have
+      the narrative written. Without one the template still renders with your
+      facts laid out and the narrative left as a marked gap.', quiet=true) }}
+{% endif %}
+
+<form class="form" method="post" action="/drafting">
+  <div class="field">
+    <label for="template">Document</label>
+    <select name="template" id="template">
+      {% for name in templates %}
+        <option value="{{ name }}"{% if form.template == name %} selected{% endif %}>
+          {{ name.replace('_', ' ')|title }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="field">
+    <label for="petitioners">Petitioner(s) — one per line</label>
+    <textarea name="petitioners" id="petitioners" rows="2">{{ form.petitioners or '' }}</textarea>
+  </div>
+  <div class="field">
+    <label for="respondents">Respondent(s) — one per line</label>
+    <textarea name="respondents" id="respondents" rows="3">{{ form.respondents or '' }}</textarea>
+  </div>
+  <div class="field">
+    <label for="subject">Subject matter</label>
+    <input type="text" name="subject" id="subject" value="{{ form.subject or '' }}">
+  </div>
+  <div class="field">
+    <label for="facts">Facts</label>
+    <textarea name="facts" id="facts" rows="7">{{ form.facts or '' }}</textarea>
+    <p class="field__hint">
+      Only these facts will be used. Anything missing comes back as
+      <code>[TO BE SUPPLIED]</code> rather than invented.
+    </p>
+  </div>
+  <div class="field">
+    <label for="grounds">Grounds — one per line</label>
+    <textarea name="grounds" id="grounds" rows="3">{{ form.grounds or '' }}</textarea>
+  </div>
+  <div class="field">
+    <label for="prayers">Prayer — one per line</label>
+    <textarea name="prayers" id="prayers" rows="3">{{ form.prayers or '' }}</textarea>
+  </div>
+  <div class="field">
+    <label for="authorities">Authorities you have checked — one per line</label>
+    <textarea name="authorities" id="authorities" rows="2">{{ form.authorities or '' }}</textarea>
+    <p class="field__hint">
+      The model may cite these and nothing else. Any other law-report citation
+      appearing in the output is flagged.
+    </p>
+  </div>
+  <button class="button" type="submit">Draft</button>
+</form>
+
+{% if error %}
+  {{ caveat('Could not draft', error) }}
+{% endif %}
+
+{% if draft %}
+  {% for warning in draft.warnings %}
+    {{ caveat('Check before filing' if 'UNVERIFIED' in warning else 'Note', warning,
+              quiet='UNVERIFIED' not in warning) }}
+  {% endfor %}
+  <p class="rubric">Draft</p>
+  <div class="draft-output">{{ draft.text }}</div>
+{% endif %}
+
+{% endblock %}

@@ -74,14 +74,16 @@ def store_entries(conn: sqlite3.Connection, entries: Iterable[CauseListEntry]) -
         conn.execute(
             """INSERT INTO cause_list_entries
                (list_date, division, court_id, bench_id, court_name, judges, section,
-                serial, case_type, case_number, case_year, district, parties, advocates, raw)
-               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                serial, case_type, case_number, case_year, district, parties,
+                petitioner, respondent, advocates, raw)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                ON CONFLICT DO NOTHING""",
             (
                 entry.list_date, entry.division, entry.court_id, entry.bench_id,
                 entry.court_name, entry.judges, entry.section, entry.serial,
                 entry.case_type, entry.case_number, entry.case_year, entry.district,
-                entry.parties, "; ".join(entry.advocates), entry.raw,
+                entry.parties, entry.petitioner, entry.respondent,
+                "; ".join(entry.advocates), entry.raw,
             ),
         )
         stored += 1
@@ -90,12 +92,20 @@ def store_entries(conn: sqlite3.Connection, entries: Iterable[CauseListEntry]) -
 
 # -- alerts -------------------------------------------------------------
 
-def format_alert(matches: Sequence[Match]) -> tuple[str, str]:
+def format_alert(
+    matches: Sequence[Match], matter_refs: dict[str, str] | None = None
+) -> tuple[str, str]:
     """Render one user's matches into a subject and a body they can act on.
 
     A barrister reads this on a phone the evening before. What they need, in
-    order: which court, what serial number, what the bench will do with it.
+    order: which of their files it is, which court, what serial number, and
+    what the bench will do with it.
+
+    ``matter_refs`` maps a case reference to a chamber file reference, so the
+    alert can say "MAT-2026-004" instead of leaving the barrister to recognise
+    a bare case number.
     """
+    matter_refs = matter_refs or {}
     first = matches[0].entry
     subject = f"Cause list {first.list_date}: {len(matches)} matter(s) listed"
 
@@ -104,7 +114,8 @@ def format_alert(matches: Sequence[Match]) -> tuple[str, str]:
         matches, key=lambda m: (m.entry.court_name or "", m.entry.serial or 0)
     ):
         entry = match.entry
-        lines.append(f"• {entry.case_ref}")
+        file_ref = matter_refs.get(entry.case_ref)
+        lines.append(f"• {entry.case_ref}" + (f"  [{file_ref}]" if file_ref else ""))
         lines.append(f"   {entry.division} — {entry.court_name or 'court n/a'}")
         if entry.judges:
             lines.append(f"   Bench: {entry.judges}")
@@ -156,6 +167,32 @@ def deliver_pending(conn: sqlite3.Connection, notifier: Notifier) -> int:
     return delivered
 
 
+def _matter_refs(
+    conn: sqlite3.Connection, user_id: int, matches: Sequence[Match]
+) -> dict[str, str]:
+    """Map each matched case reference to the barrister's own file reference.
+
+    Imported lazily: matters are a Tier 1 feature and the sweep must keep
+    working for a user who only ever set up cause-list watches.
+    """
+    from .matters import matter_for_case
+
+    refs: dict[str, str] = {}
+    for match in matches:
+        entry = match.entry
+        if not (entry.case_type and entry.case_number and entry.case_year):
+            continue
+        if entry.case_ref in refs:
+            continue
+        matter = matter_for_case(
+            conn, user_id,
+            case_type=entry.case_type, case_number=entry.case_number, case_year=entry.case_year,
+        )
+        if matter is not None:
+            refs[entry.case_ref] = matter["reference"]
+    return refs
+
+
 @dataclass
 class SweepResult:
     entries_seen: int
@@ -187,7 +224,7 @@ def run_sweep(
         if not matches:
             continue
 
-        subject, body = format_alert(matches)
+        subject, body = format_alert(matches, _matter_refs(conn, int(user["id"]), matches))
         # One alert per user per list-date; re-running the sweep after the
         # court amends the list produces a new key only if the matters changed.
         dedupe_key = "causelist:" + "|".join(sorted(m.dedupe_key for m in matches))

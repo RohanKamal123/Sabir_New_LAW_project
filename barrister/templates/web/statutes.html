@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% from "_caveat.html" import caveat %}
+{% block title %}Statutes — Barrister Tools{% endblock %}
+{% block content %}
+
+<div class="page__head">
+  <div>
+    <h1>Statutes</h1>
+    <p class="page__subtitle">
+      The Bangladesh Code, verbatim · {{ stats.acts }} act(s), {{ stats.sections }} section(s) synced
+    </p>
+  </div>
+</div>
+
+<form class="searchbar" method="get" action="/statutes">
+  <input type="search" name="q" value="{{ query or '' }}"
+         placeholder="s. 5 of the Limitation Act — or any words in the text"
+         aria-label="Search the Bangladesh Code">
+  <button type="submit">Search</button>
+</form>
+
+{% if stats.sections == 0 %}
+  {{ caveat('Corpus empty',
+     'No statute text has been synced yet. Run
+      <code>barrister statutes sync --act 88</code> to fetch the Limitation Act,
+      or omit <code>--act</code> to fetch the whole Code.', quiet=true) }}
+{% endif %}
+
+{% if query %}
+  {% if hits %}
+    <p class="rubric">{{ hits|length }} result{{ '' if hits|length == 1 else 's' }}</p>
+    {% for hit in hits %}
+      <article class="provision">
+        <div class="provision__citation">
+          {{ hit.citation }}{% if hit.part %} · {{ hit.part }}{% endif %}
+        </div>
+        <h2 class="provision__heading">{{ hit.heading }}</h2>
+        <p class="provision__body">{{ hit.body }}</p>
+        <div class="provision__source"><a href="{{ hit.url }}">{{ hit.url }}</a></div>
+      </article>
+    {% endfor %}
+    {{ caveat('Retrieved, not generated',
+       'Every word above is the official text as published by the Ministry of
+        Law, reproduced exactly. Nothing here is summarised or paraphrased by a
+        model. Follow the link to confirm.', quiet=true) }}
+  {% else %}
+    <p class="ledger__empty">Nothing matched “{{ query }}”.</p>
+  {% endif %}
+{% endif %}
+
+{% endblock %}

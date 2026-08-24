@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Diary — Barrister Tools{% endblock %}
+{% block content %}
+
+<div class="page__head">
+  <div>
+    <h1>Diary</h1>
+    <p class="page__subtitle">Deadlines across every open file, nearest first</p>
+  </div>
+  <form class="inline-form" method="get" action="/diary">
+    <div class="field">
+      <label for="days">Horizon</label>
+      <select name="days" id="days" onchange="this.form.submit()">
+        {% for option in [30, 60, 90, 180] %}
+          <option value="{{ option }}"{% if days == option %} selected{% endif %}>{{ option }} days</option>
+        {% endfor %}
+      </select>
+    </div>
+  </form>
+</div>
+
+{% if deadlines %}
+<div class="diary">
+  {% for item in deadlines %}
+    <div class="diary__item{% if item.days_left <= 7 %} diary__item--urgent{% endif %}">
+      <div class="diary__date">{{ item.due_on }}</div>
+      <div class="diary__countdown">
+        {% if item.days_left < 0 %}+{{ -item.days_left }}d over{% else %}{{ item.days_left }}d{% endif %}
+      </div>
+      <div>
+        <div class="diary__label">{{ item.label }}</div>
+        <div class="diary__matter">
+          <a href="/matters/{{ item.matter_id }}">{{ item.reference }}</a> · {{ item.title }}
+        </div>
+        {% if item.basis %}<div class="diary__matter">{{ item.basis }}</div>{% endif %}
+        {% if not item.verified %}
+          <div class="diary__matter" style="color:var(--oxblood)">Basis not verified by a lawyer</div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="ledger__empty">Nothing falls due in the next {{ days }} days.</p>
+{% endif %}
+
+{% endblock %}

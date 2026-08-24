@@ -10,6 +10,7 @@ dependencies = [
     "jinja2>=3.1",
     "fastapi>=0.110",
     "uvicorn>=0.29",
+    "python-multipart>=0.0.9",
     "pydantic>=2.6",
 ]
 
@@ -31,7 +32,7 @@ build-backend = "setuptools.build_meta"
 include = ["barrister*"]
 
 [tool.setuptools.package-data]
-barrister = ["data/*.json", "templates/drafts/*.j2"]
+barrister = ["data/*.json", "templates/drafts/*.j2", "templates/web/*.html", "static/*.css"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

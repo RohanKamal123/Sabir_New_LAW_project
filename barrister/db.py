@@ -56,6 +56,8 @@ CREATE TABLE IF NOT EXISTS cause_list_entries (
     case_year    TEXT,
     district     TEXT,
     parties      TEXT,
+    petitioner   TEXT,
+    respondent   TEXT,
     advocates    TEXT,
     raw          TEXT,
     fetched_at   TEXT NOT NULL DEFAULT (datetime('now')),
@@ -76,6 +78,102 @@ CREATE TABLE IF NOT EXISTS alerts (
     created_at   TEXT NOT NULL DEFAULT (datetime('now')),
     UNIQUE (user_id, dedupe_key)
 );
+
+-- A matter is the file a barrister keeps: one brief, one client, one or more
+-- court cases. Cause-list hits and status changes attach here, which is what
+-- turns four separate tools into one desk.
+CREATE TABLE IF NOT EXISTS clients (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    name       TEXT NOT NULL,
+    phone      TEXT,
+    email      TEXT,
+    address    TEXT,
+    notes      TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_clients_user ON clients(user_id);
+
+CREATE TABLE IF NOT EXISTS matters (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id      INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    client_id    INTEGER REFERENCES clients(id) ON DELETE SET NULL,
+    reference    TEXT NOT NULL,
+    title        TEXT NOT NULL,
+    description  TEXT,
+    status       TEXT NOT NULL DEFAULT 'open'
+                 CHECK (status IN ('open', 'reserved', 'disposed', 'closed')),
+    court        TEXT,
+    opened_on    TEXT NOT NULL DEFAULT (date('now')),
+    closed_on    TEXT,
+    fee_agreed   REAL,
+    created_at   TEXT NOT NULL DEFAULT (datetime('now')),
+    UNIQUE (user_id, reference)
+);
+CREATE INDEX IF NOT EXISTS idx_matters_user ON matters(user_id, status);
+
+-- The court cases belonging to a matter. `watch_id` links the file to the
+-- cause-list watch, so an alert can name the matter, not just the case number.
+CREATE TABLE IF NOT EXISTS matter_cases (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    matter_id   INTEGER NOT NULL REFERENCES matters(id) ON DELETE CASCADE,
+    case_type   TEXT NOT NULL,
+    case_number TEXT NOT NULL,
+    case_year   TEXT NOT NULL,
+    division_id INTEGER,
+    watch_id    INTEGER REFERENCES watches(id) ON DELETE SET NULL,
+    UNIQUE (matter_id, case_type, case_number, case_year)
+);
+CREATE INDEX IF NOT EXISTS idx_matter_cases_ref
+    ON matter_cases(case_type, case_number, case_year);
+
+CREATE TABLE IF NOT EXISTS matter_notes (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    matter_id  INTEGER NOT NULL REFERENCES matters(id) ON DELETE CASCADE,
+    body       TEXT NOT NULL,
+    kind       TEXT NOT NULL DEFAULT 'note'
+               CHECK (kind IN ('note', 'attendance', 'advice', 'hearing')),
+    noted_on   TEXT NOT NULL DEFAULT (date('now')),
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_notes_matter ON matter_notes(matter_id);
+
+CREATE TABLE IF NOT EXISTS matter_documents (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    matter_id   INTEGER NOT NULL REFERENCES matters(id) ON DELETE CASCADE,
+    title       TEXT NOT NULL,
+    kind        TEXT,
+    path        TEXT,
+    filed_on    TEXT,
+    created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_docs_matter ON matter_documents(matter_id);
+
+CREATE TABLE IF NOT EXISTS time_entries (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    matter_id   INTEGER NOT NULL REFERENCES matters(id) ON DELETE CASCADE,
+    worked_on   TEXT NOT NULL DEFAULT (date('now')),
+    minutes     INTEGER NOT NULL CHECK (minutes > 0),
+    description TEXT NOT NULL,
+    rate        REAL,
+    billed      INTEGER NOT NULL DEFAULT 0,
+    created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_time_matter ON time_entries(matter_id);
+
+-- Deadlines computed by the limitation calculator, pinned to a matter so they
+-- show up on the diary instead of living in a terminal's scrollback.
+CREATE TABLE IF NOT EXISTS matter_deadlines (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    matter_id   INTEGER NOT NULL REFERENCES matters(id) ON DELETE CASCADE,
+    label       TEXT NOT NULL,
+    due_on      TEXT NOT NULL,
+    basis       TEXT,
+    verified    INTEGER NOT NULL DEFAULT 0,
+    completed   INTEGER NOT NULL DEFAULT 0,
+    created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_deadlines_due ON matter_deadlines(due_on, completed);
 
 -- Generic snapshot store used by the case-status differ.
 CREATE TABLE IF NOT EXISTS snapshots (
