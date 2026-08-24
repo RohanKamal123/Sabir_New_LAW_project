@@ -282,3 +282,37 @@ class TestAlertsNameTheFile:
 
         assert len(notifier.sent) == 1
         assert "MAT-" not in notifier.sent[0][2]
+
+
+class TestSchemaUpgrade:
+    """A column added in a later release must appear on an older database."""
+
+    def test_added_columns_are_applied_to_an_existing_database(self, tmp_path):
+        import sqlite3
+
+        from barrister.db import SCHEMA, connect, init_db
+
+        path = tmp_path / "old.db"
+        legacy = sqlite3.connect(path)
+        legacy.executescript(
+            SCHEMA.replace("    petitioner   TEXT,\n    respondent   TEXT,\n", "")
+        )
+        legacy.commit()
+        legacy.close()
+
+        conn = connect(path)
+        init_db(conn)
+
+        columns = {row["name"] for row in conn.execute("PRAGMA table_info(cause_list_entries)")}
+        assert {"petitioner", "respondent"} <= columns
+        conn.close()
+
+    def test_applying_twice_is_a_no_op(self, tmp_path):
+        from barrister.db import connect, init_db
+
+        conn = connect(tmp_path / "new.db")
+        init_db(conn)
+        init_db(conn)   # must not raise "duplicate column name"
+        columns = {row["name"] for row in conn.execute("PRAGMA table_info(cause_list_entries)")}
+        assert "petitioner" in columns
+        conn.close()

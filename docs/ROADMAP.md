@@ -43,15 +43,19 @@ See [`../README.md`](../README.md) for usage and
 
 | # | Feature | Status |
 |---|---|---|
-| 1 | Cause-list watch + alerts | Built — scraper, watch matching, grouped Telegram alerts, idempotent nightly sweep |
+| 1 | Cause-list watch + alerts | Built — scraper, watch matching, grouped alerts naming the file, idempotent nightly sweep |
 | 2 | Case status tracker | Built — 110-type registry, full hearing history, change detection |
 | 3 | Statute lookup | Built — bdlaws scraper, FTS5 exact-text search, no generation |
 | 4 | Template-based drafting | Built — Claude or DeepSeek writes narrative only; templates own structure; citation guard |
 | 5 | Limitation calculator | Engine built (ss. 4, 12(1)–(3)); First Schedule articles extracted but **all unverified** and refused until a lawyer checks them |
-| 6–11 | Tier 1 remainder and Tier 2 | Not started |
+| 6 | Matter/case-file management | Built — clients, files, cases, notes, documents, time, deadlines; linking a case starts its watch |
+| 7 | Messaging-app interface | Built — Telegram bot over long polling; WhatsApp would replace one module |
+| 8–11 | Tier 2 | Not started, and gated on citation accuracy |
 
-Parsers were built against live pages, which are committed as fixtures in
-`tests/fixtures/` and drive a 186-test suite that needs no network.
+Delivered through four front ends over one set of services: a CLI, a JSON API, a
+server-rendered web UI and the Telegram bot. Parsers were built against live
+pages, committed as fixtures in `tests/fixtures/`, driving a 309-test suite that
+needs no network.
 
 ---
 

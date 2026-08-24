@@ -235,8 +235,35 @@ def connect(db_path: Path | str | None = None) -> sqlite3.Connection:
     return conn
 
 
+# Columns added to tables that already shipped. `CREATE TABLE IF NOT EXISTS`
+# creates new tables but silently leaves existing ones alone, so a column added
+# in a later release never appears on an install that predates it. Rather than
+# carry a migration framework for a schema this small, each added column is
+# listed here and applied idempotently on every connection.
+ADDED_COLUMNS: tuple[tuple[str, str, str], ...] = (
+    ("cause_list_entries", "petitioner", "TEXT"),
+    ("cause_list_entries", "respondent", "TEXT"),
+)
+
+
+def _apply_added_columns(conn: sqlite3.Connection) -> list[str]:
+    """Add any column this build expects that the database does not have."""
+    applied: list[str] = []
+    for table, column, decl in ADDED_COLUMNS:
+        existing = {
+            row["name"] for row in conn.execute(f"PRAGMA table_info({table})").fetchall()
+        }
+        if not existing:
+            continue  # table not created yet; the schema above will make it
+        if column not in existing:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {decl}")
+            applied.append(f"{table}.{column}")
+    return applied
+
+
 def init_db(conn: sqlite3.Connection) -> None:
     conn.executescript(SCHEMA)
+    _apply_added_columns(conn)
     conn.commit()
 
 
